@@ -19,7 +19,7 @@ function Register() {
           </p>
           <p className="flex flex-col items-center justify-center mt-10 text-center">
             <span>Have an account?</span>
-            <a href="#" className="underline" onClick={()=> navigate('/')}>Click me to Login!</a>
+            <a href="#" className="underline" onClick={()=> navigate('/login')}>Click me to Login!</a>
           </p>
           <p className="mt-6 text-sm text-center text-gray-300">
             Read our <a href="#" className="underline">terms</a> and <a href="#" className="underline">conditions</a>
