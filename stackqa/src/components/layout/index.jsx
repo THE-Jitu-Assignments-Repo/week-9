@@ -5,7 +5,7 @@ import Sidebar from '../sidebar/Sidebar'
 function Layout() {
   return (
     <div className='w-full min-h-screen flex'>
-        <div className="w-[200px] bg-fixed">
+        <div className="w-[200px]">
             <Sidebar />
         </div>
         <div className='flex-1 bg-[#C2C6CB]'>
