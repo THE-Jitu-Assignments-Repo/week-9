@@ -29,7 +29,7 @@ function Home() {
               <button className="inline-flex text-white bg-green-400 font-semibold border-0 py-2 px-6 focus:outline-none hover:bg-green-300 rounded text-lg">
                 ASK QUESTION
               </button>
-              <button className="ml-4 inline-flex text-black bg-white border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">
+              <button className="ml-4 inline-flex font-semibold text-black bg-white border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">
                 About us
               </button>
             </div>

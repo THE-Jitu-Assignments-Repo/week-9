@@ -4,6 +4,10 @@ import { AiOutlineHome, AiOutlineMenu, AiOutlineSearch } from "react-icons/ai";
 function Header({close}) {
   return (
     <nav className="flex fixed top-0 inset-x-0 h-[60px] items-center  bg-gray-100 shadow-xl mb-1">
+      <div className="block flex-grow lg:flex lg:items-center lg:w-auto ml-8">
+        <div className="">
+          <AiOutlineMenu className="hover:bg-gray-300 cursor-pointer text-2xl" onClick={close}/>
+        </div>
       <div className="flex items-center flex-shrink-0 text-white mr-5">
         <span className="font-bold font-serif text-2xl tracking-tight text-blue-900 pr-2 pl-3 ">
           STACK<i className="text-blue-600">QA</i>
@@ -14,10 +18,6 @@ function Header({close}) {
           className="h-8 w-8 mr-2"
         />
       </div>
-      <div className="block flex-grow lg:flex lg:items-center lg:w-auto ml-8">
-        <div className="">
-          <AiOutlineMenu className="hover:bg-gray-300 cursor-pointer text-2xl" onClick={close}/>
-        </div>
       </div>
       <div className="flex-grow my-auto pb-5 hidden sm:hidden md:block ">
         <section className="">

@@ -17,7 +17,7 @@ function Sidebar({isOpen}) {
            <AiOutlineHome /> Home
           </Link>
         </div>
-        <div className="text-xl text-white py-1">
+        <div className="text-xl text-white font-extralight py-1">
           <Link
             to="question"
             className="items-center flex-row flex p-1 gap-1 pl-5 hover:bg-gray-800"
@@ -26,7 +26,7 @@ function Sidebar({isOpen}) {
             Questions
           </Link>
         </div>
-        <div className="text-xl text-white py-1">
+        <div className="text-xl font-extralight text-white py-1">
           <Link
             to="users"
             className="items-center flex-row flex p-1 gap-1 pl-5 hover:bg-gray-800"
@@ -35,7 +35,7 @@ function Sidebar({isOpen}) {
             Users
           </Link>
         </div>
-        <div className="text-xl text-white py-1">
+        <div className="text-xl font-extralight text-white py-1">
           <Link
             to="users"
             className="items-center flex-row flex p-1 gap-1 pl-5 hover:bg-gray-800"
