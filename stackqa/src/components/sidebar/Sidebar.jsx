@@ -8,7 +8,7 @@ function Sidebar({isOpen}) {
     <div className={`bg-[#06152D] p-1 pt-10 min-h-screen h-screen  fixed top-[60px] left-0  flex-col flex justify-between pb-20 transition-all duration-100 ease-linear overflow-x-hidden
     ${isOpen?"w-[200px] opacity-100":"w-[0px] opacity-0"}
     `}>
-      <div class="flex flex-col h-64 text-center max-w-full w-full">
+      <div className="flex flex-col h-64 text-center max-w-full w-full">
         <div className="text-xl text-white text-start font-extralight divide-gray-600 ">
           <Link
             to="/"

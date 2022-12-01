@@ -1,10 +1,10 @@
 import React from "react";
 
-function UsersCard({ key, user }) {
+function UsersCard({ user }) {
   return (
-    <div key={key} className="flex flex-col  shadow-sm">
+    <div key={user.login.uuid} className="md:flex flex-col  shadow-sm">
       <div className="card flex justify-center items-center flex-row">
-        <div className=" border">
+        <div className=" border md:shrink-0">
           <img
             src={user.picture.thumbnail}
             alt="users"
