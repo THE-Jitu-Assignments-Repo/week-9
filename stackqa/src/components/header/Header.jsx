@@ -3,7 +3,7 @@ import { AiOutlineHome, AiOutlineMenu, AiOutlineSearch } from "react-icons/ai";
 
 function Header({close}) {
   return (
-    <nav className="flex items-center justify-between flex-wrap bg-gray-100 shadow-xl mb-1">
+    <nav className="flex fixed top-0 inset-x-0 h-[60px] items-center justify-between flex-wrap bg-gray-100 shadow-xl mb-1">
       <div class="flex items-center flex-shrink-0 text-white mr-5">
         <span class="font-bold font-serif text-2xl tracking-tight text-blue-900 pr-2 pl-3 ">
           STACK<i className="text-blue-600">QA</i>

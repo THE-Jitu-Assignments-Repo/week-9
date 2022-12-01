@@ -3,9 +3,11 @@ import "./sidebar.css";
 import { Link } from "react-router-dom";
 import { AiFillLock, AiOutlineQuestion, AiOutlineUser } from "react-icons/ai";
 
-function Sidebar() {
+function Sidebar({isOpen}) {
   return (
-    <div className="w-full bg-[#06152D] p-1 pt-10 min-h-screen h-full  flex-col flex justify-between pb-20">
+    <div className={`bg-[#06152D] p-1 pt-10 min-h-screen h-screen  fixed top-[60px] left-0  flex-col flex justify-between pb-20 transition-all duration-100 ease-linear overflow-x-hidden
+    ${isOpen?"w-[200px] opacity-100":"w-[0px] opacity-0"}
+    `}>
       <div class="flex flex-col h-64 text-center max-w-full w-full">
         <div className="text-xl text-white text-start font-extralight divide-gray-600 ">
           <Link
@@ -26,7 +28,7 @@ function Sidebar() {
         </div>
         <div className="text-xl text-white">
           <Link
-            to="profile"
+            to="users"
             className="items-center flex-row flex p-1 gap-1 justify-center hover:bg-gray-800"
           >
             <AiOutlineUser />

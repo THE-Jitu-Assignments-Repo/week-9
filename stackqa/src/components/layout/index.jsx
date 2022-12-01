@@ -4,17 +4,15 @@ import Header from "../header/Header";
 import Sidebar from "../sidebar/Sidebar";
 
 function Layout() {
-  const [isopen, setIsOpen] = useState(true)
+  const [isOpen, setIsOpen] = useState(true)
   return (
     <>
     <div className="w-full min-w-full">
-      <Header close={()=>setIsOpen(!isopen)}/>
+      <Header close={()=>setIsOpen(prev =>!prev)}/>
     </div>
     <div className="w-full min-h-screen flex">
-      <div className={isopen? `w-[200px] `: `w-[0]`}>
-        {isopen? <Sidebar /> : null}
-      </div>
-      <div className="flex-1 bg-gray-100">
+        <Sidebar isOpen={isOpen} />
+      <div className={`flex-1 mt-[60px] ${isOpen?"ml-[200px]":"ml-[0px]"} transition-all duration-100 ease-linear bg-gray-100`}>
         <Outlet />
       </div>
     </div>
