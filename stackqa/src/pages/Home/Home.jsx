@@ -18,7 +18,7 @@ function Home() {
   return (
     <div className="w-full">
       <section className="text-gray-700 body-font">
-        <div className="container mx-auto flex px-5 py-24 md:flex-row w-full flex-col items-center bg-blue-500">
+        <div className="flex px-5 py-24 md:flex-row w-full flex-col items-center bg-blue-500">
           <div className="lg:flex-grow md:w-1/2 lg:pr-12  md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
             <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-white  py-5">
               StackQA is an Open community
@@ -181,7 +181,7 @@ function Home() {
                   Blue bottle crucifix vinyl post-ironic four dollar toast vegan
                   taxidermy. Gastropub indxgo juice poutine.
                 </p>
-                <a className="mt-3 text-indigo-500 inline-flex items-center">
+                <a className="mt-3 text-blue-500 inline-flex items-center">
                   Learn More
                   <svg
                     fill="none"
@@ -225,7 +225,7 @@ function Home() {
       </section>
       <a
         href="https://github.com/mik284"
-        className="rounded-full w-12 h-12 bg-gray-100 fixed bottom-0 right-0 flex items-center justify-center text-gray-800 mr-8 mb-8 shadow-sm border-gray-300 border"
+        className="rounded-full w-12 h-12 bg-gray-100 fixed bottom-0 right-0 flex items-center justify-center text-blue-500  mr-8 mb-8 shadow-sm border-gray-300"
         target="_blank"
       >
         <AiFillGithub size={50} />

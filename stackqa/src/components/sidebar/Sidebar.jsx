@@ -1,7 +1,7 @@
 import React from "react";
 import "./sidebar.css";
 import { Link } from "react-router-dom";
-import { AiFillLock, AiOutlineQuestion, AiOutlineUser } from "react-icons/ai";
+import {  AiFillFileUnknown, AiFillLock,  AiOutlineHome, AiOutlineQuestion, AiOutlineUser } from "react-icons/ai";
 
 function Sidebar({isOpen}) {
   return (
@@ -14,25 +14,34 @@ function Sidebar({isOpen}) {
             to="/"
             className="items-center flex-row flex p-1 gap-1 justify-start hover:bg-gray-800"
           >
-            Home
+           <AiOutlineHome /> Home
           </Link>
         </div>
-        <div className="text-xl text-white">
+        <div className="text-xl text-white py-1">
           <Link
             to="question"
-            className="items-center flex-row flex p-1 gap-1 justify-center hover:bg-gray-800"
+            className="items-center flex-row flex p-1 gap-1 pl-5 hover:bg-gray-800"
           >
             <AiOutlineQuestion />
             Questions
           </Link>
         </div>
-        <div className="text-xl text-white">
+        <div className="text-xl text-white py-1">
           <Link
             to="users"
-            className="items-center flex-row flex p-1 gap-1 justify-center hover:bg-gray-800"
+            className="items-center flex-row flex p-1 gap-1 pl-5 hover:bg-gray-800"
           >
             <AiOutlineUser />
             Users
+          </Link>
+        </div>
+        <div className="text-xl text-white py-1">
+          <Link
+            to="users"
+            className="items-center flex-row flex p-1 gap-1 pl-5 hover:bg-gray-800"
+          >
+            <AiFillFileUnknown />
+            About us
           </Link>
         </div>
       </div>

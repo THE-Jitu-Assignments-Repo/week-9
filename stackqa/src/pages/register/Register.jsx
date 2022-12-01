@@ -12,7 +12,7 @@ function Register() {
           className="p-4 py-6 text-white bg-blue-500 md:w-80 md:flex-shrink-0 md:flex md:flex-col md:items-center md:justify-evenly"
         >
           <div className="my-3 text-4xl font-bold tracking-wider text-center">
-            <a href="#">STACKQA</a>
+            <a href="#">STACK<i className="text-white">QA</i></a>
           </div>
           <p className="mt-6 font-normal text-center text-gray-300 md:mt-0">
             With the power of STACKQA, you can now ask your question and answer your question accordingly 
