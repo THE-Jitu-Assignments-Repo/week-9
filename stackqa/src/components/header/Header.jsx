@@ -14,7 +14,7 @@ function Header({close}) {
           className="h-8 w-8 mr-2"
         />
       </div>
-      <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto ml-8">
+      <div className="block flex-grow lg:flex lg:items-center lg:w-auto ml-8">
         <div className="">
           <AiOutlineMenu className="hover:bg-gray-300 cursor-pointer text-2xl" onClick={close}/>
         </div>
