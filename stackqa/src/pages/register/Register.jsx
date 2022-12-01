@@ -27,7 +27,7 @@ function Register() {
         </div>
         <div className="p-5 bg-white md:flex-1">
           <h3 className="my-4 text-2xl font-semibold text-gray-700">Create New Account</h3>
-          <form className="flex flex-col space-y-5"  onSubmit={(e)=> navigate('/')}>
+          <form className="flex flex-col space-y-5"  onSubmit={(e)=> navigate('/login')}>
             <div className="flex flex-col space-y-1">
               <label htmlFor="username" className="text-sm font-semibold text-gray-500">UserName</label>
               <input
@@ -66,7 +66,7 @@ function Register() {
                 type="submit"
                 className="w-full px-4 py-2 text-lg font-semibold text-white transition-colors duration-300 bg-blue-500 rounded-md shadow hover:bg-blue-600 focus:outline-none focus:ring-blue-200 focus:ring-4"
               >
-                Log in
+                Sign up
               </button>
             </div>
           </form>
