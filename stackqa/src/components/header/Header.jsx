@@ -1,5 +1,6 @@
 import React from "react";
 import { AiOutlineHome, AiOutlineMenu, AiOutlineSearch } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 function Header({close}) {
   return (
@@ -51,7 +52,7 @@ function Header({close}) {
             href="#"
             className="block mt-4 lg:inline-block lg:mt-0 text-blue-400 hover:text-blue-900"
           >
-            Profile
+           <Link to='profile'>Profile</Link> 
           </a>
         </div>
       </div>

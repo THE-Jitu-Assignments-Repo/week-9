@@ -26,6 +26,20 @@ function Sidebar({isOpen}) {
             Questions
           </Link>
         </div>
+        <div className="relative text-white pl-5 bg-gray-500">
+          <Link
+            to="aboutus"
+            className="items-center flex-row flex p-1 gap-1 justify-start hover:bg-gray-800"
+          >Most answered</Link>
+          <Link
+            to="aboutus"
+            className="items-center flex-row flex p-1 gap-1 justify-start hover:bg-gray-800"
+          >Most Votes</Link>
+          <Link
+            to="aboutus"
+            className="items-center flex-row flex p-1 gap-1 justify-start hover:bg-gray-800"
+          >Recently asked</Link>
+        </div>
         <div className="text-xl font-extralight text-white py-1">
           <Link
             to="users"
