@@ -1,5 +1,6 @@
 import React from "react";
 import { AiFillFileText, AiOutlineUser } from "react-icons/ai";
+import Questions from "../questions/Questions";
 
 function Profile() {
   return (
@@ -55,6 +56,7 @@ function Profile() {
           </div>
         </div>
       </section>
+      <Questions />
     </div>
   );
 }

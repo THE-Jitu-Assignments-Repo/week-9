@@ -28,15 +28,15 @@ function Sidebar({isOpen}) {
         </div>
         <div className="relative text-white pl-5 bg-gray-500">
           <Link
-            to="aboutus"
+            to="question"
             className="items-center flex-row flex p-1 gap-1 justify-start hover:bg-gray-800"
           >Most answered</Link>
           <Link
-            to="aboutus"
+            to="question"
             className="items-center flex-row flex p-1 gap-1 justify-start hover:bg-gray-800"
           >Most Votes</Link>
           <Link
-            to="aboutus"
+            to="question"
             className="items-center flex-row flex p-1 gap-1 justify-start hover:bg-gray-800"
           >All Questions</Link>
         </div>
