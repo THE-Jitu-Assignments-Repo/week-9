@@ -38,7 +38,7 @@ function Sidebar({isOpen}) {
           <Link
             to="aboutus"
             className="items-center flex-row flex p-1 gap-1 justify-start hover:bg-gray-800"
-          >Recently asked</Link>
+          >All Questions</Link>
         </div>
         <div className="text-xl font-extralight text-white py-1">
           <Link
