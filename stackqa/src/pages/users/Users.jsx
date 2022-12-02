@@ -24,7 +24,7 @@ function Users() {
         <div className="flex flex-row justify-between items-center border pt-5">
           <h2 className="text-2xl pl-5 flex flex-row items-center gap-2"> <AiOutlineUser />Users</h2>
         </div>
-        <div className="grid grid-cols-4 gap-4 w-full p-10">
+        <div className="grid grid-cols-1 gap-4 w-full p-10 sm:grid-cols-4 sm:place-content-center lg:grid-cols-4 md:grid-cols-2">
           {users.results?.map((user) => (
             <UsersCard key={user.login.uuid} user={user} />
           ))}

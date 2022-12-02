@@ -13,7 +13,7 @@ function Header({close}) {
           STACK<i className="text-blue-600">QA</i>
         </span>
         <img
-          src="../../../public/assets/logo3.png"
+          src="/assets/logo3.png"
           alt="logo"
           className="h-8 w-8 mr-2"
         />

@@ -38,7 +38,7 @@ function Home() {
             <img
               className="object-cover object-center rounded"
               alt="hero"
-              src="../../../public/assets/stack.png"
+              src="/assets/stack.png"
             />
           </div>
         </div>
@@ -47,7 +47,7 @@ function Home() {
         <div className="container px-5 py-24 mx-auto">
           <div className="flex flex-col text-center w-full mb-20">
             <h2 className="text-xs text-blue-500 tracking-widest font-medium title-font mb-1">
-              WHY THE HELL SHOULD YOU
+              WHY SHOULD YOU
             </h2>
             <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900">
               ASK QUESTIONS WITH STACKQA
