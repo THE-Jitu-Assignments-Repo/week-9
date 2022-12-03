@@ -6,21 +6,24 @@ import {
   AiOutlineEllipsis,
   AiOutlineUser,
 } from "react-icons/ai";
-import Answers from "../../components/modals/Answers";
+import Answers from "../../components/modals/answers/Answers";
+import Postquestion from "../../components/modals/ask/Postquestion";
 
 function Questions() {
   const [isanswer, setIsAnswer] = useState(false);
+  const [post, setPost] = useState(false);
 
   return (
     <div>
       <div className="pl-5 mt-2 flex items-center justify-between pr-5 p-2">
         <h1 className="text-xl">All Questions</h1>
         <div>
-          <button className="border p-1 bg-blue-500 rounded-md hover:bg-blue-300 text-white">
-            ASk Question
+          <button className="border p-1 bg-blue-500 rounded-md hover:bg-blue-300 text-white" onClick={()=>setPost(prev=>!prev)}>
+            Post Question
           </button>
         </div>
       </div>
+      {post && <Postquestion setPost={()=>setPost(prev=>!prev)}/>}
       <hr />
       <div className="w-full grid grid-cols-2 gap-5 pl-10">
         <section className="border mt-5 min-h-screen bg-slate-50 mb-4 rounded-md flex-col flex">

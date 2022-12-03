@@ -33,7 +33,7 @@ function Home() {
             </p>
             <div className="flex justify-center">
               <button className="inline-flex text-white bg-green-400 font-semibold border-0 py-2 px-6 focus:outline-none hover:bg-green-300 rounded text-lg">
-                ASK QUESTION
+                POST QUESTION
               </button>
               <button className="ml-4 inline-flex font-semibold text-black bg-white border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">
                 About us
@@ -134,7 +134,7 @@ function Home() {
           <div className="lg:w-1/2 w-full mb-10 lg:mb-0 rounded-lg overflow-hidden">
             <img
               alt="feature"
-              className="object-cover object-center h-full w-full"
+              className="object-cover object-center h-full w-full hover:scale-110 transition duration-300 ease-in-out"
               src="https://imgs.search.brave.com/PhVFuf0Wo7MLhruyb02Bjy2zbcuUb-HrD8esCnHKXn4/rs:fit:960:640:1/g:ce/aHR0cHM6Ly9jZG4u/cGl4YWJheS5jb20v/cGhvdG8vMjAxNi8x/Mi8wNy8xMi81Mi9w/aG9uZS0xODg5NDAx/Xzk2MF83MjAuanBn"
             />
           </div>
