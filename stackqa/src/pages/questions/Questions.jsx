@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   AiFillCaretDown,
   AiFillCaretUp,
@@ -8,6 +8,7 @@ import {
 } from "react-icons/ai";
 
 function Questions() {
+  const [isanswer, setIsAnswer] = useState(false);
   return (
     <div>
       <div className="pl-5 mt-4">
@@ -16,9 +17,9 @@ function Questions() {
       <hr />
       <div className="w-full grid grid-cols-2 gap-5 pl-4">
         <section className="border mt-5 min-h-screen bg-slate-50 mb-4 rounded-md flex-col flex">
-          <article className="border-b h-[50%] grid-col-1 grid-flow-row items-center p-3">
+          <article className="border-b h-auto grid-col-1 grid-flow-row items-center p-3">
             <div className="flex flex-row">
-              <div className="rounded-full bg-blue-400 w-12 h-12 flex items-center justify-center">
+              <div className="rounded-full bg-blue-400 w-12 h-11 flex items-center justify-center">
                 <AiOutlineUser size={20} />
               </div>
               <div className="p-2 justify-between flex-grow flex-wrap">
@@ -49,15 +50,15 @@ function Questions() {
               <div className="p-2 justify-between flex-grow flex-wrap">
                 <h3 className="leading-relaxed max-w-md font-extralight line-clamp-3">
                   How can one be good at programming. How can one be good at
-                  programming. How can one be good at programming. How can
-                  one be good at programming ... How can one be good at
-                  programming. How can one be good at programming 
+                  programming. How can one be good at programming. How can one
+                  be good at programming ... How can one be good at programming.
+                  How can one be good at programming
                 </h3>
               </div>
             </div>
             <div className="flex flex-row items-center rounded-sm justify-between bg-slate-300 m-8  p-2">
               <div className="items-center justify-between flex flow-row w-full ">
-                <div className="p-1 flex items-center bg-white rounded-md">
+                <div className="p-1 flex items-center bg-white rounded-md" onClick={()=> setIsAnswer(prev=>!prev)}>
                   <AiFillSchedule
                     className="text-blue-500 hover:text-blue-400"
                     size={20}
@@ -69,10 +70,30 @@ function Questions() {
                 </div>
               </div>
             </div>
+            {/* answer modal-content */}
+            <div className="border-t h-auto bg-gray-300 p-5">
+              <div className="flex flex-row">
+                <div className="rounded-full bg-blue-400 w-12 h-11 flex items-center justify-center border">
+                  <AiOutlineUser size={15} />
+                </div>
+                <div className="p-2 justify-between flex-grow flex-wrap">
+                  <span className="text-black-300 text-ellipsis">
+                    Asked March 07, 2022
+                  </span>
+                  <h3 className="leading-relaxed max-w-md font-semibold">
+                    How can one be good at programming. How can one be good at
+                    programming. How can one be good at programming
+                  </h3>
+                </div>
+                <div className="p-2">
+                  <AiOutlineEllipsis size={20} />
+                </div>
+              </div>
+            </div>
           </article>
-          <article className="border-b h-[50%] grid-col-1 grid-flow-row items-center p-3">
+          <article className="border-b h-auto grid-col-1 grid-flow-row items-center p-3">
             <div className="flex flex-row">
-              <div className="rounded-full bg-blue-400 w-12 h-12 flex items-center justify-center">
+              <div className="rounded-full bg-blue-400 w-12 h-11 flex items-center justify-center">
                 <AiOutlineUser size={20} />
               </div>
               <div className="p-2 justify-between flex-grow flex-wrap">
@@ -81,8 +102,8 @@ function Questions() {
                 </span>
                 <h3 className="leading-relaxed line-clamp-3 max-w-md font-semibold">
                   How can one be good at programming. How can one be good at
-                  programming. How can one be good at programming Lorem,
-                  ipsum dolor sit amet consectetur adipisicing elit. Minima id
+                  programming. How can one be good at programming Lorem, ipsum
+                  dolor sit amet consectetur adipisicing elit. Minima id
                   quisquam porro illum officia blanditiis fugiat ea sapiente hic
                   corporis. Totam dicta animi iste.
                 </h3>
@@ -106,9 +127,9 @@ function Questions() {
               <div className="p-2 justify-between flex-grow flex-wrap">
                 <h3 className="leading-relaxed max-w-md font-extralight line-clamp-3">
                   How can one be good at programming. How can one be good at
-                  programming. How can one be good at programming. How can
-                  one be good at programming. How can one be good at
-                  programming. How can one be good at programming
+                  programming. How can one be good at programming. How can one
+                  be good at programming. How can one be good at programming.
+                  How can one be good at programming
                 </h3>
               </div>
             </div>
