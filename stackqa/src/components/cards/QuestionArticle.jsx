@@ -9,10 +9,13 @@ import {
   AiOutlineSave,
   AiOutlineUser,
 } from "react-icons/ai";
-import Answers from "../modals/answers/Answers";
+import Answers from "./answers/Answers";
+import CommentModal from "../modals/commentModal/CommentModal";
+import Comment from "./Comment";
 
 function QuestionArticle() {
   const [isanswer, setIsAnswer] = useState(false);
+  const [iscomment, setIsComment] = useState(false)
 
   return (
     <article className="border-b h-auto grid-col-1 grid-flow-row items-center from-sky-200 bg-white p-3">
@@ -79,7 +82,9 @@ function QuestionArticle() {
       </div>
 
       {/* answer modal-content */}
-      {isanswer && <Answers />}
+      {isanswer && <Answers setIsComment={()=>setIsComment(prev=>!prev)}/>}
+      <Comment />
+      {iscomment && <CommentModal setIsComment={()=>setIsComment(prev=>!prev)}/>}
     </article>
   );
 }

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import QuestionArticle from "../../components/cards/QuestionArticle";
-import Postquestion from "../../components/modals/ask/Postquestion";
+import Postquestion from "../../components/modals/postModal/Postquestion";
 
 function Questions() {
   const [post, setPost] = useState(false);
@@ -27,10 +27,13 @@ function Questions() {
         <section className="border mt-5 min-h-screen bg-slate-50 mb-4 rounded-md flex-col flex">
           <QuestionArticle />
           <QuestionArticle />
+          <QuestionArticle />
+          <QuestionArticle />
+          <QuestionArticle />
         </section>
         <section className="w-1/2 mt-5 bg-slate-50 min-h-screen mb-10">
           <div className="text-xl font-extralight">
-            <span className="leading-relaxed pl-5">Recently Asked</span>
+            <span className="leading-relaxed pl-5">Top suggested for you</span>
           </div>
         </section>
       </div>

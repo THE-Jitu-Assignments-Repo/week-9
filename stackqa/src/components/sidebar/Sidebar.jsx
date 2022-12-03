@@ -45,19 +45,19 @@ function Sidebar({ isOpen }) {
               to="question"
               className="items-center flex-row flex p-1 gap-1 justify-start hover:bg-gray-300 hover:text-blue-500"
             >
+            All Questions
+            </Link>
+            <Link
+              to="question"
+              className="items-center flex-row flex p-1 gap-1 justify-start hover:bg-gray-300 hover:text-blue-500"
+              >
+              Recently asked
+            </Link>
+            <Link
+              to="question"
+              className="items-center flex-row flex p-1 gap-1 justify-start hover:bg-gray-300 hover:text-blue-500"
+              >
               Most answered
-            </Link>
-            <Link
-              to="question"
-              className="items-center flex-row flex p-1 gap-1 justify-start hover:bg-gray-300 hover:text-blue-500"
-            >
-              Most Votes
-            </Link>
-            <Link
-              to="question"
-              className="items-center flex-row flex p-1 gap-1 justify-start hover:bg-gray-300 hover:text-blue-500"
-            >
-              All Questions
             </Link>
           </div>
         </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import {
   AiFillCaretDown,
   AiFillCaretUp,
@@ -6,12 +7,12 @@ import {
   AiOutlineComment,
   AiOutlineDelete,
   AiOutlineEllipsis,
-  AiOutlineSend,
   AiOutlineUser,
 } from "react-icons/ai";
 import { GrSend } from "react-icons/gr";
 
-function Answers() {
+function Answers({setIsComment}) {
+  
   return (
     <div>
       <div className="border-t h-auto p-5">
@@ -19,7 +20,7 @@ function Answers() {
           <input
             type="text"
             className="outline-none font-extralight p-1 pl-2 w-full rounded-l-md caret-slate-400"
-            placeholder="Write answer ..."
+            placeholder="Write your answer ..."
           />
           <button className="bg-blue-500 rounded-r-md w-20 hover:bg-blue-300 hover:text-white flex-row flex items-center justify-center">
             <GrSend size={20} />
@@ -57,7 +58,7 @@ function Answers() {
               <AiOutlineEllipsis className="" size={30} />
             </div>
             <ul className="h-auto hidden absolute peer-hover:flex hover:flex flex-col  drop-shadow-lg top-46 bg-white shadow-lg font-extralight w-[150px] z-10 rounded-sm">
-              <li className="hover:bg-slate-200 cursor-pointer p-2 flex items-center gap-1 ">
+              <li className="hover:bg-slate-200 cursor-pointer p-2 flex items-center gap-1 " onClick={setIsComment}>
                 <AiOutlineComment />comment
               </li>
               <li className="hover:bg-slate-200 cursor-pointer p-2 flex items-center gap-1  ">
