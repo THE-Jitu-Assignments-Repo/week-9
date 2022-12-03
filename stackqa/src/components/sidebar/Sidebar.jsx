@@ -17,7 +17,7 @@ function Sidebar({ isOpen }) {
     `}
     >
       <div className="flex flex-col h-64 text-center max-w-full w-full">
-        <div className="text-xl text-blue-500 text-start font-semibold divide-gray-600 ">
+        <div className="text-xl text-blue-500 text-start divide-gray-600 ">
           <Link
             to="/"
             className="items-center flex-row flex p-1 gap-1 justify-start hover:bg-gray-800"
@@ -39,7 +39,7 @@ function Sidebar({ isOpen }) {
           <div
             className="hidden peer-hover:flex hover:flex
          w-[200px]
-         flex-col text-white drop-shadow-lg pl-10"
+         flex-col text-white drop-shadow-lg pl-10 font-extralight"
           >
             <Link
               to="question"

@@ -6,27 +6,35 @@ import {
   AiOutlineEllipsis,
   AiOutlineUser,
 } from "react-icons/ai";
+import Answers from "../../components/modals/Answers";
 
 function Questions() {
   const [isanswer, setIsAnswer] = useState(false);
+
   return (
     <div>
-      <div className="pl-5 mt-4">
+      <div className="pl-5 mt-2 flex items-center justify-between pr-5 p-2">
         <h1 className="text-xl">All Questions</h1>
+        <div>
+          <button className="border p-1 bg-blue-500 rounded-md hover:bg-blue-300 text-white">
+            ASk Question
+          </button>
+        </div>
       </div>
       <hr />
-      <div className="w-full grid grid-cols-2 gap-5 pl-4">
+      <div className="w-full grid grid-cols-2 gap-5 pl-10">
         <section className="border mt-5 min-h-screen bg-slate-50 mb-4 rounded-md flex-col flex">
-          <article className="border-b h-auto grid-col-1 grid-flow-row items-center p-3">
+          <article className="border-b h-auto grid-col-1 grid-flow-row items-center from-sky-200 bg-white p-3">
             <div className="flex flex-row">
-              <div className="rounded-full bg-blue-400 w-12 h-11 flex items-center justify-center">
+              <div className="rounded-full bg-blue-400 w-12 h-11 mt-4 flex items-center justify-center">
                 <AiOutlineUser size={20} />
               </div>
               <div className="p-2 justify-between flex-grow flex-wrap">
+                <div>Michael Jay</div>
                 <span className="text-gray-300 text-ellipsis">
                   Asked March 07, 2022
                 </span>
-                <h3 className="leading-relaxed max-w-md font-semibold">
+                <h3 className="leading-relaxed max-w-md hover:text-blue-500">
                   How can one be good at programming. How can one be good at
                   programming. How can one be good at programming
                 </h3>
@@ -58,40 +66,23 @@ function Questions() {
             </div>
             <div className="flex flex-row items-center rounded-sm justify-between bg-slate-300 m-8  p-2">
               <div className="items-center justify-between flex flow-row w-full ">
-                <div className="p-1 flex items-center bg-white rounded-md" onClick={()=> setIsAnswer(prev=>!prev)}>
-                  <AiFillSchedule
-                    className="text-blue-500 hover:text-blue-400"
-                    size={20}
-                  />
+                <div
+                  className="p-1 flex items-center bg-white rounded-md  hover:text-white hover:bg-blue-300 cursor-pointer"
+                  onClick={() => setIsAnswer((prev) => !prev)}
+                >
+                  <AiFillSchedule className="text-blue-500" size={20} />
                   <span className="pr-1 pl-1">15 Answers</span>
                 </div>
-                <div className="p-1 flex items-center bg-white rounded-md">
+                <div className="p-1 flex items-center bg-white rounded-md hover:text-white hover:bg-blue-300 cursor-pointer">
                   <span className="pr-1 pl-1">Answer</span>
                 </div>
               </div>
             </div>
+
             {/* answer modal-content */}
-            <div className="border-t h-auto bg-gray-300 p-5">
-              <div className="flex flex-row">
-                <div className="rounded-full bg-blue-400 w-12 h-11 flex items-center justify-center border">
-                  <AiOutlineUser size={15} />
-                </div>
-                <div className="p-2 justify-between flex-grow flex-wrap">
-                  <span className="text-black-300 text-ellipsis">
-                    Asked March 07, 2022
-                  </span>
-                  <h3 className="leading-relaxed max-w-md font-semibold">
-                    How can one be good at programming. How can one be good at
-                    programming. How can one be good at programming
-                  </h3>
-                </div>
-                <div className="p-2">
-                  <AiOutlineEllipsis size={20} />
-                </div>
-              </div>
-            </div>
+            {isanswer && <Answers />}
           </article>
-          <article className="border-b h-auto grid-col-1 grid-flow-row items-center p-3">
+          <article className="border-b h-auto grid-col-1 grid-flow-row from-sky-200 bg-white  items-center p-3">
             <div className="flex flex-row">
               <div className="rounded-full bg-blue-400 w-12 h-11 flex items-center justify-center">
                 <AiOutlineUser size={20} />
