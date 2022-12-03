@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function Header({close}) {
   return (
-    <nav className="flex fixed top-0 inset-x-0 h-[60px] items-center  bg-gray-100 shadow-xl mb-1">
+    <nav className="flex fixed top-0 inset-x-0 h-[60px] items-center z-10  bg-gray-100 shadow-xl mb-1">
       <div className="block flex-grow lg:flex lg:items-center lg:w-auto ml-8">
         <div className="">
           <AiOutlineMenu className="hover:bg-gray-300 cursor-pointer text-2xl" onClick={close}/>
