@@ -25,6 +25,12 @@ function Home() {
               <br className="hidden lg:inline-block" />
               For anyone that has a Question. Just ASK...
             </h1>
+            <p className="text-gray-300 font-extralight mb-4 ">
+              We want to connect the people who have knowledge to the people who
+              need it, to bring together people with different perspectives so
+              they can understand each other better, and to empower everyone to
+              share their knowledge.
+            </p>
             <div className="flex justify-center">
               <button className="inline-flex text-white bg-green-400 font-semibold border-0 py-2 px-6 focus:outline-none hover:bg-green-300 rounded text-lg">
                 ASK QUESTION
@@ -58,7 +64,7 @@ function Home() {
               <div className="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
                 <div className="flex items-center mb-3">
                   <div className="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-blue-500 text-white flex-shrink-0">
-                    <AiOutlineComment size={20}/>
+                    <AiOutlineComment size={20} />
                   </div>
                   <h2 className="text-gray-900 text-lg title-font font-medium">
                     Comments
@@ -80,7 +86,7 @@ function Home() {
               <div className="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
                 <div className="flex items-center mb-3">
                   <div className="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-blue-500 text-white flex-shrink-0">
-                    <AiOutlineCheck size={20}/>
+                    <AiOutlineCheck size={20} />
                   </div>
                   <h2 className="text-gray-900 text-lg title-font font-medium">
                     Votes
@@ -135,11 +141,11 @@ function Home() {
           <div className="flex flex-col flex-wrap lg:py-6 -mb-10 lg:w-1/2 lg:pl-12 lg:text-left text-center">
             <div className="flex flex-col mb-10 lg:items-start items-center">
               <div className="w-12 h-12 inline-flex items-center justify-center rounded-full bg-indigo-100 text-blue-500 mb-5">
-                <AiOutlineSafety size={30}/>
+                <AiOutlineSafety size={30} />
               </div>
               <div className="flex-grow">
                 <h2 className="text-gray-900 text-lg title-font font-medium mb-3">
-                 Private
+                  Private
                 </h2>
                 <p className="leading-relaxed text-base">
                   Blue bottle crucifix vinyl post-ironic four dollar toast vegan
@@ -171,7 +177,7 @@ function Home() {
             </div>
             <div className="flex flex-col mb-10 lg:items-start items-center">
               <div className="w-12 h-12 inline-flex items-center justify-center rounded-full bg-indigo-100 text-blue-500 mb-5">
-                <AiFillMobile size={30}/>
+                <AiFillMobile size={30} />
               </div>
               <div className="flex-grow">
                 <h2 className="text-gray-900 text-lg title-font font-medium mb-3">
