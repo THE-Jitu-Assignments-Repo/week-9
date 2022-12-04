@@ -13,6 +13,8 @@ import { GrSend } from "react-icons/gr";
 import Comment from "../comment/Comment";
 
 function Answers({ setIsComment }) {
+  const [showComment, setShowComment] = React.useState(false);
+
   return (
     <div>
       <div className="border-t h-auto p-5">
@@ -54,10 +56,10 @@ function Answers({ setIsComment }) {
             </h3>
           </div>
           <div>
-            <div className="peer hover:bg-blue-500 peer cursor-pointer hover:rounded-full hover:text-white">
+            <div className="peer hover:bg-blue-500 peer cursor-pointer hover:rounded-full z-10 hover:text-white">
               <AiOutlineEllipsis className="" size={30} />
             </div>
-            <ul className="h-auto hidden absolute peer-hover:flex hover:flex flex-col  drop-shadow-lg top-46 bg-white shadow-lg font-extralight w-[150px] z-10 rounded-sm">
+            <ul className="h-auto hidden absolute peer-hover:flex hover:flex flex-col  drop-shadow-lg top-46 bg-white shadow-lg font-extralight w-[150px]  rounded-sm">
               <li
                 className="hover:bg-slate-200 cursor-pointer p-2 flex items-center gap-1 "
                 onClick={setIsComment}
@@ -76,12 +78,17 @@ function Answers({ setIsComment }) {
           </div>
         </div>
         <div className="pt-1">
-          <span className="font-extralight"> 2 comments</span> |{" "}
-          <span className="font-extralight text-green-500">Prefered</span>
+          <span
+            className="font-extralight cursor-pointer hover:bg-slate-300 hover:rounded-md pr-1 pl-1"
+            onClick={() => setShowComment((prev) => !prev)}
+          >
+            {" "}
+            1 comment
+          </span>{" "}
+          | <span className="font-extralight text-green-500">Prefered</span>
         </div>
       </div>
-      <Comment />
-      <Comment />
+      {showComment && <Comment />}
     </div>
   );
 }
