@@ -22,6 +22,7 @@ function Postquestion({ setPost }) {
             cols="30"
             rows="10"
           ></textarea>
+          <input type="text" />
         </article>
 
         <div className="flex items-center justify-end p-5  gap-3">

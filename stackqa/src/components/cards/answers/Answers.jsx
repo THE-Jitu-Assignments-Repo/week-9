@@ -12,8 +12,7 @@ import {
 import { GrSend } from "react-icons/gr";
 import Comment from "../comment/Comment";
 
-function Answers({setIsComment}) {
-  
+function Answers({ setIsComment }) {
   return (
     <div>
       <div className="border-t h-auto p-5">
@@ -59,23 +58,29 @@ function Answers({setIsComment}) {
               <AiOutlineEllipsis className="" size={30} />
             </div>
             <ul className="h-auto hidden absolute peer-hover:flex hover:flex flex-col  drop-shadow-lg top-46 bg-white shadow-lg font-extralight w-[150px] z-10 rounded-sm">
-              <li className="hover:bg-slate-200 cursor-pointer p-2 flex items-center gap-1 " onClick={setIsComment}>
-                <AiOutlineComment />comment
+              <li
+                className="hover:bg-slate-200 cursor-pointer p-2 flex items-center gap-1 "
+                onClick={setIsComment}
+              >
+                <AiOutlineComment />
+                comment
               </li>
               <li className="hover:bg-slate-200 cursor-pointer p-2 flex items-center gap-1  ">
                 <AiOutlineCheckCircle /> Accept
               </li>
               <li className="hover:bg-slate-200 cursor-pointer p-2 flex items-center gap-1 ">
-                <AiOutlineDelete />Delete answer
+                <AiOutlineDelete />
+                Delete answer
               </li>
             </ul>
           </div>
         </div>
         <div className="pt-1">
-          <span className="font-extralight"> 3 comments</span> |{" "}
+          <span className="font-extralight"> 2 comments</span> |{" "}
           <span className="font-extralight text-green-500">Prefered</span>
         </div>
       </div>
+      <Comment />
       <Comment />
     </div>
   );

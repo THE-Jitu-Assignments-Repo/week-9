@@ -13,7 +13,6 @@ import {
 } from "react-icons/ai";
 import Answers from "../answers/Answers";
 import CommentModal from "../../modals/commentModal/CommentModal";
-import Comment from "../comment/Comment";
 
 function QuestionArticle() {
   const [isanswer, setIsAnswer] = useState(false);

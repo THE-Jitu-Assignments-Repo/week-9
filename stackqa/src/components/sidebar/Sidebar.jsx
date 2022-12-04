@@ -1,6 +1,6 @@
 import React from "react";
 import "./sidebar.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   AiFillFileUnknown,
   AiFillLock,
@@ -8,8 +8,13 @@ import {
   AiOutlineQuestion,
   AiOutlineUser,
 } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../features/Auth/UserSlice";
 
 function Sidebar({ isOpen }) {
+  const {user} = useSelector(state=>state.user)
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
   return (
     <div
       className={`bg-[#06152D] p-1 pt-10 min-h-screen h-screen  fixed top-[60px] left-0  flex-col flex justify-between pb-20 transition-all duration-100 ease-linear overflow-x-hidden
@@ -80,16 +85,17 @@ function Sidebar({ isOpen }) {
           </Link>
         </div>
       </div>
-      <div className="w-full grid  text-xl text-white">
-        <Link
-          to="/login"
-          className="flex items-center justify-center gap-3 my-5 hover:text-blue-500"
+      {user && <div className="w-full grid  text-xl text-white">
+        <span
+          
+          className="flex items-center cursor-pointer justify-center gap-3 my-5 hover:text-blue-500"
+          onClick={()=>dispatch(logout())}
         >
           {" "}
           <AiFillLock />
           Log out
-        </Link>
-      </div>
+        </span>
+      </div>}
     </div>
   );
 }

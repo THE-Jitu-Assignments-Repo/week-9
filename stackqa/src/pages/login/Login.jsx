@@ -1,8 +1,13 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+// import { userLogin } from '../../features/Auth/UserSlice'
+import { userLogin } from '../../features/Auth/UserSlice'
+
 
 function Login() {
     const navigate = useNavigate()
+    const dispatch = useDispatch()
 
     const [login, setLogin] = useState({ email: '', password: '' })
   return (
@@ -62,6 +67,7 @@ function Login() {
               <button
                 type="submit"
                 className="w-full px-4 py-2 text-lg font-semibold text-white transition-colors duration-300 bg-blue-500 rounded-md shadow hover:bg-blue-600 focus:outline-none focus:ring-blue-200 focus:ring-4"
+                onClick={()=>dispatch(userLogin(true))}
               >
                 Log in
               </button>

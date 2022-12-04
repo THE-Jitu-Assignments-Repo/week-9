@@ -1,5 +1,5 @@
 import React from "react";
-import { AiFillFileText, AiOutlineUser } from "react-icons/ai";
+import { AiFillFileText, AiOutlineFilter, AiOutlineUser } from "react-icons/ai";
 import Questions from "../questions/Questions";
 
 function Profile() {
@@ -56,7 +56,20 @@ function Profile() {
           </div>
         </div>
       </section>
-      <Questions />
+      <div className="pl-5 mt-2 flex items-center justify-between pr-5 p-2">
+        <h1 className="text-xl">My Questions</h1>
+        <div className="flex items-center w-1/6">
+          <div className="flex items-center border">
+            <span className="flex items-center gap-1"><AiOutlineFilter />Filter</span>
+          </div>
+          <button
+            className="border p-1 bg-blue-500 rounded-md hover:bg-blue-300 text-white"
+            onClick={() => setPost((prev) => !prev)}
+          >
+            Post Question
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
