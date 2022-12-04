@@ -40,12 +40,12 @@ function Questions() {
           <QuestionArticle />
           <QuestionArticle />
         </section>
-        <section className="w-1/2 mt-5 bg-slate-50 h-[500px] mb-10">
+        <section className="w-[300px] p-4 mt-5 bg-slate-50 h-[500px] mb-10">
           <div className="text-xl font-extralight">
             <span className="leading-relaxed pl-5">Top suggested topics</span>
           </div>
-          <div className="grid border-t h-auto grid-rows-3 grid-cols-2 gap-2 p-4">
-            {options?.map(opt=><button className="text-black  bg-slate-300 p-1 rounded-md outline-none hover:bg-blue-200 hover:text-white">{opt.value}</button>)}
+          <div className="grid border-t h-auto grid-rows-3 grid-cols-2 gap-2 pt-4">
+            {options?.map(opt=><button className="text-black  font-extralight  bg-slate-300 pr-1 pl-1 rounded-md outline-none hover:bg-blue-200 hover:text-white">{opt.value}</button>)}
           </div>
         </section>
       </div>

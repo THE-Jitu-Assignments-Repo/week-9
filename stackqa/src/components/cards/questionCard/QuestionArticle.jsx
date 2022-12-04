@@ -21,7 +21,7 @@ function QuestionArticle() {
   return (
     <article className="border-b h-auto grid-col-1 grid-flow-row items-center from-sky-200 bg-white p-3">
       <div className="flex flex-row">
-        <div className="rounded-full bg-blue-400 w-12 h-12  mt-4 flex items-center justify-center">
+        <div className="rounded-full bg-blue-400 w-12 h-10  mt-4 flex items-center justify-center">
           <AiOutlineUser size={20} />
         </div>
         <div className="p-2 justify-between flex-grow flex-wrap">
