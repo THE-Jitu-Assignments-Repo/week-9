@@ -58,7 +58,7 @@ function Profile() {
       </section>
       <div className="pl-5 mt-2 flex items-center justify-between pr-5 p-2">
         <h1 className="text-xl">My Questions</h1>
-        <div className="flex items-center w-1/6">
+        <div className="flex items-center w-1/6 gap-3">
           <div className="flex items-center border">
             <span className="flex items-center gap-1"><AiOutlineFilter />Filter</span>
           </div>

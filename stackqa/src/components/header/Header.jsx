@@ -44,7 +44,7 @@ function Header({ close }) {
               href="#"
               className="block mt-4 lg:inline-block lg:mt-0 text-blue-400 hover:text-blue-900"
             >
-              <Link to="profile">Profile</Link>
+              <Link to="profile">My Profile</Link>
             </a>
           )}
           {!user && (
