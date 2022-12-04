@@ -1,9 +1,14 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
 import { AiFillCloseSquare } from "react-icons/ai";
 import { MdPostAdd } from "react-icons/md";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import Select from "react-select";
 
 function Postquestion({ setPost }) {
+  const {user} =  useSelector(state=>state.user)
+  const navigate= useNavigate()
   const options = [
     { value: "nodejs", label: "nodejs" },
     { value: "programming", label: "programming" },
@@ -14,6 +19,14 @@ function Postquestion({ setPost }) {
   ];
 
   const [selectedOption, setSelectedOption] = useState(null)
+
+  useEffect(()=>{
+    if(!user){
+      navigate('/login')
+    } 
+
+  },[])
+  
   return (
     <div className="fixed flex top-0 left-0 right-0 w-full h-full items-center  justify-center backdrop-blur-sm">
       <div className="absolute bg-white  w-2/6  top-40 shadow-md rounded-sm h-auto z-10  outline-none overflow-x-hidden overflow-y-auto">

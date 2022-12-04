@@ -45,7 +45,7 @@ function Questions() {
             <span className="leading-relaxed pl-5">Top suggested topics</span>
           </div>
           <div className="grid border-t h-auto grid-rows-3 grid-cols-2 gap-2 p-4">
-            {options?.map(opt=><button className="text-white  bg-slate-300 p-1 rounded-md outline-none hover:bg-blue-200">{opt.value}</button>)}
+            {options?.map(opt=><button className="text-black  bg-slate-300 p-1 rounded-md outline-none hover:bg-blue-200 hover:text-white">{opt.value}</button>)}
           </div>
         </section>
       </div>

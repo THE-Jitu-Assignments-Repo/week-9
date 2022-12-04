@@ -1,10 +1,12 @@
 import React from "react";
 import { AiOutlineHome, AiOutlineMenu, AiOutlineSearch } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../features/Auth/UserSlice";
 
 function Header({ close }) {
   const { user } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   console.log(user);
   return (
@@ -62,6 +64,14 @@ function Header({ close }) {
                 signup
               </button>{" "}
             </div>
+          )}
+          {user && (
+            <button
+              className="p-1 bg-blue-500 text-white rounded-md pr-4 pl-4 hover:bg-blue-400"
+              onClick={() => dispatch(logout())}
+            >
+              Logout
+            </button>
           )}
         </div>
       </div>
