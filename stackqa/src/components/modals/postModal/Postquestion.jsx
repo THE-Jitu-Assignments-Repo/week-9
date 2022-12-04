@@ -20,7 +20,7 @@ function Postquestion({ setPost }) {
         <div className="flex items-center justify-between p-5 border">
           <span className="text-xl flex items-center gap-2">
             <MdPostAdd size={30} />
-            Write your Question here ...
+            Create new post
           </span>
           <AiFillCloseSquare
             className="text-blue-500 hover:text-red-500"
