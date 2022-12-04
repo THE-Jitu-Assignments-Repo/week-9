@@ -5,17 +5,19 @@ import {
   AiFillSchedule,
   AiOutlineCodepen,
   AiOutlineDelete,
+  AiOutlineEdit,
   AiOutlineEllipsis,
   AiOutlineSave,
+  AiOutlineShareAlt,
   AiOutlineUser,
 } from "react-icons/ai";
-import Answers from "./answers/Answers";
-import CommentModal from "../modals/commentModal/CommentModal";
-import Comment from "./Comment";
+import Answers from "../answers/Answers";
+import CommentModal from "../../modals/commentModal/CommentModal";
+import Comment from "../comment/Comment";
 
 function QuestionArticle() {
   const [isanswer, setIsAnswer] = useState(false);
-  const [iscomment, setIsComment] = useState(false)
+  const [iscomment, setIsComment] = useState(false);
 
   return (
     <article className="border-b h-auto grid-col-1 grid-flow-row items-center from-sky-200 bg-white p-3">
@@ -35,14 +37,26 @@ function QuestionArticle() {
         </div>
         <div>
           <div className="peer hover:bg-blue-500 peer cursor-pointer hover:rounded-full hover:text-white">
-            <AiOutlineEllipsis  className="" size={30} />
+            <AiOutlineEllipsis className="" size={30} />
           </div>
-            <ul className="h-auto hidden absolute peer-hover:flex hover:flex flex-col  drop-shadow-lg top-46 bg-white shadow-lg font-extralight w-[150px] z-10 rounded-sm">
-                <li className="hover:bg-slate-200 cursor-pointer p-2 flex items-center gap-1 "><AiOutlineDelete />Delete post</li>
-                <li className="hover:bg-slate-200 cursor-pointer p-2 flex items-center gap-1 "><AiOutlineSave />Save post</li>
-                <li className="hover:bg-slate-200 cursor-pointer p-2 flex items-center gap-1 "><AiOutlineCodepen /> Embed post</li>
-            </ul>
+          <ul className="h-auto hidden absolute peer-hover:flex hover:flex flex-col  drop-shadow-lg top-46 bg-white shadow-lg font-extralight w-[150px] z-10 rounded-sm">
+            <li className="hover:bg-slate-200 cursor-pointer p-2 flex items-center gap-1 ">
+              <AiOutlineEdit />
+              Edit post
+            </li>
+            <li className="hover:bg-slate-200 cursor-pointer p-2 flex items-center gap-1 ">
+              <AiOutlineDelete />
+              Delete post
+            </li>
 
+            <li className="hover:bg-slate-200 cursor-pointer p-2 flex items-center gap-1 ">
+              <AiOutlineSave />
+              Save post
+            </li>
+            <li className="hover:bg-slate-200 cursor-pointer p-2 flex items-center gap-1 ">
+              <AiOutlineCodepen /> Embed post
+            </li>
+          </ul>
         </div>
       </div>
       <div className="flex flex-row items-center mb-4">
@@ -76,15 +90,21 @@ function QuestionArticle() {
             <span className="pr-1 pl-1">15 Answers</span>
           </div>
           <div className="p-1 flex items-center bg-white rounded-md hover:text-white hover:bg-blue-300 cursor-pointer">
-            <span className="pr-1 pl-1">Answer</span>
+            <span className="pr-1 pl-1 flex items-center gap-1">
+              <AiOutlineShareAlt /> share
+            </span>
           </div>
         </div>
       </div>
 
       {/* answer modal-content */}
-      {isanswer && <Answers setIsComment={()=>setIsComment(prev=>!prev)}/>}
-      <Comment />
-      {iscomment && <CommentModal setIsComment={()=>setIsComment(prev=>!prev)}/>}
+      {isanswer && (
+        <Answers setIsComment={() => setIsComment((prev) => !prev)} />
+      )}
+      
+      {iscomment && (
+        <CommentModal setIsComment={() => setIsComment((prev) => !prev)} />
+      )}
     </article>
   );
 }

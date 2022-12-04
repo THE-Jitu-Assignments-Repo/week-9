@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import QuestionArticle from "../../components/cards/QuestionArticle";
+import QuestionArticle from "../../components/cards/questionCard/QuestionArticle";
 import Postquestion from "../../components/modals/postModal/Postquestion";
 
 function Questions() {

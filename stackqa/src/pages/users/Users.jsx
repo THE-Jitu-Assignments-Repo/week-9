@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo } from "react";
-import UsersCard from "../../components/cards/UsersCard";
+import UsersCard from "../../components/cards/users/UsersCard";
 import axios from "axios";
 import { AiOutlineUser } from "react-icons/ai";
 

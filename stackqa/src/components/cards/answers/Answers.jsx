@@ -10,6 +10,7 @@ import {
   AiOutlineUser,
 } from "react-icons/ai";
 import { GrSend } from "react-icons/gr";
+import Comment from "../comment/Comment";
 
 function Answers({setIsComment}) {
   
@@ -75,6 +76,7 @@ function Answers({setIsComment}) {
           <span className="font-extralight text-green-500">Prefered</span>
         </div>
       </div>
+      <Comment />
     </div>
   );
 }
