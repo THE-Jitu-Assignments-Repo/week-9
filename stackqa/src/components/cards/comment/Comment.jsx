@@ -3,6 +3,7 @@ import {
   AiOutlineDelete,
   AiOutlineEdit,
   AiOutlineEllipsis,
+  AiOutlineWarning,
 } from "react-icons/ai";
 
 function Comment() {
@@ -32,6 +33,10 @@ function Comment() {
               <li className="hover:bg-slate-200 cursor-pointer p-2 flex items-center gap-1 ">
                 <AiOutlineDelete />
                 Delete
+              </li>
+              <li className="hover:bg-slate-200 cursor-pointer p-2 flex items-center gap-1 ">
+                <AiOutlineWarning />
+                Report
               </li>
             </ul>
           </div>
