@@ -72,8 +72,9 @@ function Home() {
                 </div>
                 <div className="flex-grow">
                   <p className="leading-relaxed text-base">
-                    Blue bottle crucifix vinyl post-ironic four dollar toast
-                    vegan taxidermy. Gastropub indxgo juice poutine.
+                    Your question will have many answers from different users of
+                    stackqa and an answer may have a comment to add more weight
+                    to it.
                   </p>
                   <a className="mt-3 text-blue-500 inline-flex items-center">
                     Learn More
@@ -94,8 +95,9 @@ function Home() {
                 </div>
                 <div className="flex-grow">
                   <p className="leading-relaxed text-base">
-                    Blue bottle crucifix vinyl post-ironic four dollar toast
-                    vegan taxidermy. Gastropub indxgo juice poutine.
+                    You can upvote or downvote a question based on what you feel
+                    the answer was given, and with this you will be able to
+                    increase engagement with other users in stackqa.
                   </p>
                   <a className="mt-3 text-blue-500 inline-flex items-center">
                     Learn More
@@ -116,8 +118,9 @@ function Home() {
                 </div>
                 <div className="flex-grow">
                   <p className="leading-relaxed text-base">
-                    Blue bottle crucifix vinyl post-ironic four dollar toast
-                    vegan taxidermy. Gastropub indxgo juice poutine.
+                    Your question will have answers and in addition to this you
+                    will have the rights to choose which is your most preferred
+                    answer, sounds cool yeah!
                   </p>
                   <a className="mt-3 text-blue-500 inline-flex items-center">
                     Learn More
@@ -148,8 +151,8 @@ function Home() {
                   Private
                 </h2>
                 <p className="leading-relaxed text-base">
-                  Blue bottle crucifix vinyl post-ironic four dollar toast vegan
-                  taxidermy. Gastropub indxgo juice poutine.
+                  We provide privacy to every question you asked provide it
+                  follows our terms and conditions
                 </p>
                 <a className="mt-3 text-blue-500 inline-flex items-center">
                   Learn More
@@ -166,8 +169,8 @@ function Home() {
                   Public
                 </h2>
                 <p className="leading-relaxed text-base">
-                  Blue bottle crucifix vinyl post-ironic four dollar toast vegan
-                  taxidermy. Gastropub indxgo juice poutine.
+                  You are free to see all questions asked by the users and the
+                  preferred answers to the question
                 </p>
                 <a className="mt-3 text-blue-500 inline-flex items-center">
                   Learn More
@@ -181,11 +184,11 @@ function Home() {
               </div>
               <div className="flex-grow">
                 <h2 className="text-gray-900 text-lg title-font font-medium mb-3">
-                  Personal
+                  Limits
                 </h2>
                 <p className="leading-relaxed text-base">
-                  Blue bottle crucifix vinyl post-ironic four dollar toast vegan
-                  taxidermy. Gastropub indxgo juice poutine.
+                  We make sure that for a user to ask a qution he/she must have
+                  an account
                 </p>
                 <a className="mt-3 text-blue-500 inline-flex items-center">
                   Learn More
