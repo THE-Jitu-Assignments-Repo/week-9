@@ -3,10 +3,13 @@ import { useState } from "react";
 import {
   AiFillCaretDown,
   AiFillCaretUp,
+  AiFillCheckCircle,
+  AiOutlineCheck,
   AiOutlineCheckCircle,
   AiOutlineComment,
   AiOutlineDelete,
   AiOutlineEllipsis,
+  AiOutlineRight,
   AiOutlineUser,
 } from "react-icons/ai";
 import { GrSend } from "react-icons/gr";
@@ -31,7 +34,11 @@ function Answers({ setIsComment }) {
         <div className="flex flex-row  bg-slate-300 p-2 rounded-lg">
           <div className="flex flex-col justify-start gap-2">
             <div className="w-8 mt-4 flex items-center justify-center ">
-              <img src="/assets/pic.png" alt="anspic" className="rounded-full" />
+              <img
+                src="/assets/pic.png"
+                alt="anspic"
+                className="rounded-full"
+              />
             </div>
             <div className="flex flex-col items-center justify-center">
               <AiFillCaretUp
@@ -77,7 +84,7 @@ function Answers({ setIsComment }) {
             </ul>
           </div>
         </div>
-        <div className="pt-1">
+        <div className="pt-1 flex items-center gap-1 ">
           <span
             className="font-extralight cursor-pointer hover:bg-slate-300 hover:rounded-md pr-1 pl-1"
             onClick={() => setShowComment((prev) => !prev)}
@@ -85,7 +92,8 @@ function Answers({ setIsComment }) {
             {" "}
             1 comment
           </span>{" "}
-          | <span className="font-extralight text-green-500">Prefered</span>
+          | <span className="font-extralight text-green-500">Prefered </span>
+          <AiFillCheckCircle className="font-extralight text-green-500" />
         </div>
       </div>
       {showComment && <Comment />}

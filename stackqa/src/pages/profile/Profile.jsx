@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import {  AiOutlineFilter } from "react-icons/ai";
+import Select from "react-select"
+import Postquestion from "../../components/modals/postModal/Postquestion";
+
 
 function Profile() {
+  const [filterQuestion, setFilterQuestion] = useState()
+  const [open, setOpen]= useState(false)
+  const myquestions =[
+    {value: "votes", label: "Most votes"},
+    {value: "answered", label: "Most answered"}
+  ]
   return (
     <div>
       <div className="w-full mx-auto my-auto bg-blue-500 p-18">
@@ -55,18 +64,25 @@ function Profile() {
           </div>
         </div>
       </section>
-      <div className="pl-5 mt-2 flex items-center justify-between pr-5 p-2">
+      <div className="pl-5  mt-2 flex items-center justify-between pr-5 p-2">
         <h1 className="text-xl">My Questions</h1>
-        <div className="flex items-center w-1/6 gap-3">
+        <div className="flex items-center gap-3 w-[30%]">
           <div className="flex items-center border">
             <span className="flex items-center gap-1"><AiOutlineFilter />Filter</span>
           </div>
+          <Select
+          defaultInputValue={filterQuestion}
+          onChange={setFilterQuestion}
+          options={myquestions}
+          className='w-full'
+          />
           <button
-            className="border p-1 bg-blue-500 rounded-md hover:bg-blue-300 text-white"
-            onClick={() => setPost((prev) => !prev)}
+            className=" w-full p-1 bg-blue-500 rounded-md hover:bg-blue-300 text-white"
+            onClick={() => setOpen((prev) => !prev)}
           >
             Post Question
           </button>
+          {open && <Postquestion  setOpen={() => setOpen((prev) => !prev)}/>}
         </div>
       </div>
     </div>

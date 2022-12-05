@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState={
     questions: [],
     answer:[],
-    comment:[]
+    comment:[],
+    postOpen: false
 }
 
 
@@ -11,6 +12,7 @@ export const QuestionSlice = createSlice({
     name: 'questions',
     initialState,
         reducers: {
+            
         }
 
 })

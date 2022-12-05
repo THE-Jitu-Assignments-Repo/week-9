@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Select from "react-select";
 
-function Postquestion({ setPost }) {
+function Postquestion({ setPost, setOpen }) {
   const {user} =  useSelector(state=>state.user)
   const navigate= useNavigate()
   const options = [
@@ -16,6 +16,8 @@ function Postquestion({ setPost }) {
     { value: "music", label: "music" },
     { value: "sports", label: "sports" },
     { value: "politics", label: "politics" },
+        { value: "General", label: "general" },
+
   ];
 
   const [selectedOption, setSelectedOption] = useState(null)
@@ -66,7 +68,7 @@ function Postquestion({ setPost }) {
           </button>
           <button
             className="bg-blue-500 p-2 rounded-sm pl-5 pr-5 text-white hover:bg-blue-300"
-            onClick={setPost}
+            onClick={()=>{setPost(),setOpen()}}
           >
             cancel
           </button>

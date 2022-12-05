@@ -1,5 +1,5 @@
 import React from "react";
-import { AiOutlineHome, AiOutlineMenu, AiOutlineSearch } from "react-icons/ai";
+import { AiOutlineMenu, AiOutlineSearch } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../features/Auth/UserSlice";
@@ -11,7 +11,7 @@ function Header({ close }) {
   console.log(user);
   return (
     <nav className="flex fixed top-0 inset-x-0 h-[60px] items-center z-10  bg-gray-100 shadow-xl mb-1">
-      <div className="block flex-grow lg:flex lg:items-center lg:w-auto ml-8">
+      <div className="flex-grow lg:flex lg:items-center lg:w-auto ml-8 flex items-center">
         <div className="">
           <AiOutlineMenu
             className="hover:bg-gray-300 cursor-pointer text-2xl"

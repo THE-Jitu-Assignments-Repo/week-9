@@ -21,7 +21,7 @@ function Home() {
         <div className="flex px-5 py-24 md:flex-row w-full flex-col items-center bg-blue-500">
           <div className="lg:flex-grow md:w-1/2 lg:pr-12 pl-5 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
             <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-white  py-5">
-              StackQA is an Open community
+              StackQA is an Open Community
               <br className="hidden lg:inline-block" />
               For anyone that has a Question. Just ASK...
             </h1>
@@ -33,7 +33,7 @@ function Home() {
             </p>
             <div className="flex justify-center">
               <button className="inline-flex text-white bg-green-400 font-semibold border-0 py-2 px-6 focus:outline-none hover:bg-green-300 rounded text-lg">
-                POST QUESTION
+                ASK QUESTION
               </button>
               <button className="ml-4 inline-flex font-semibold text-black bg-white border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">
                 About us
@@ -219,8 +219,7 @@ function Home() {
             />
 
             <p className="leading-relaxed text-lg">
-              You shouldn't panic so much, You'll never be a good thief if you
-              panic. Debugging is twice as hard as writing the code in the first
+               Debugging is twice as hard as writing the code in the first
               place. Therefore, if you write the code as cleverly as possible,
               you are, by definition, not smart enough to debug it.
             </p>
