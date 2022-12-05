@@ -34,6 +34,7 @@ function Questions() {
       <hr />
       <div className="w-full grid grid-cols-2 gap-5 pl-40">
         <section className="border mt-5 min-h-screen bg-slate-50 mb-4 rounded-md flex-col flex">
+          {/* map post here */}
           <QuestionArticle />
           <QuestionArticle />
           <QuestionArticle />
@@ -45,7 +46,7 @@ function Questions() {
             <span className="leading-relaxed pl-5">Top suggested topics</span>
           </div>
           <div className="grid border-t h-auto grid-rows-3 grid-cols-2 gap-2 pt-4">
-            {options?.map(opt=><button className="text-black  font-extralight  bg-slate-300 pr-1 pl-1 rounded-md outline-none hover:bg-blue-200 hover:text-white">{opt.value}</button>)}
+            {options?.map(opt=><button className="text-black  font-extralight  bg-slate-300 pr-1 pl-1 rounded-sm outline-none hover:bg-blue-200 hover:text-white">{opt.value}</button>)}
           </div>
         </section>
       </div>

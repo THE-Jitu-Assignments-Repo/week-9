@@ -30,8 +30,7 @@ function QuestionArticle() {
             Asked March 07, 2022
           </span>
           <h3 className="leading-relaxed max-w-md hover:text-blue-500">
-            How can one be good at programming. How can one be good at
-            programming. How can one be good at programming
+            How do native speakers tell I’m foreign based on my English alone?
           </h3>
         </div>
         <div>
@@ -71,11 +70,12 @@ function QuestionArticle() {
           />
         </div>
         <div className="p-2 justify-between flex-grow flex-wrap">
-          <h3 className="leading-relaxed max-w-md font-extralight line-clamp-3">
-            How can one be good at programming. How can one be good at
-            programming. How can one be good at programming. How can one be good
-            at programming ... How can one be good at programming. How can one
-            be good at programming
+          <h3 className="leading-relaxed max-w-md font-extralight line-clamp-none">
+            I’m a 19-year-old student from Nairobi, kenya. I’ve been introduced
+            to the language at a very young age and I’m capable of conducting
+            any type of conversation. However, some of my English-speaking
+            friends on the internet didn’t take too long to figure I’m not a
+            native speaker. Why is that?
           </h3>
         </div>
       </div>
@@ -88,10 +88,11 @@ function QuestionArticle() {
             <AiFillSchedule className="text-blue-500" size={20} />
             <span className="pr-1 pl-1">15 Answers</span>
           </div>
-          <div className="p-1 flex items-center bg-white rounded-md hover:text-white hover:bg-blue-300 cursor-pointer">
-            <span className="pr-1 pl-1 flex items-center gap-1">
+          <div className="p-1  flex items-center bg-white rounded-md hover:text-white hover:bg-blue-300 cursor-pointer">
+            <span className="pr-1 pl-1 flex items-center gap-1 ">
               <AiOutlineShareAlt /> share
             </span>
+            
           </div>
         </div>
       </div>
@@ -100,7 +101,7 @@ function QuestionArticle() {
       {isanswer && (
         <Answers setIsComment={() => setIsComment((prev) => !prev)} />
       )}
-      
+
       {iscomment && (
         <CommentModal setIsComment={() => setIsComment((prev) => !prev)} />
       )}

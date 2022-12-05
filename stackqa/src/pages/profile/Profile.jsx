@@ -1,6 +1,5 @@
 import React from "react";
-import { AiFillFileText, AiOutlineFilter, AiOutlineUser } from "react-icons/ai";
-import Questions from "../questions/Questions";
+import {  AiOutlineFilter } from "react-icons/ai";
 
 function Profile() {
   return (
@@ -8,7 +7,7 @@ function Profile() {
       <div className="w-full mx-auto my-auto bg-blue-500 p-18">
         <div className="rounded-full  w-[10%]  top-36 ml-4 flex items-center justify-center relative shadow-lg hover:shadow-blue-300">
           <div className="grid place-items-center">
-              <img src="../../../public/assets/pic.png" alt="pic" className="rounded-full w-full" />
+              <img src="/assets/pic.png" alt="pic" className="rounded-full w-full" />
           </div>
         </div>
         <div className="flex pl-44">

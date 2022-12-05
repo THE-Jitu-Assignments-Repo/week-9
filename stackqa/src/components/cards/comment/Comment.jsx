@@ -13,7 +13,7 @@ function Comment() {
           <div className="p-2 justify-between flex-grow flex-wrap">
             <div>Russel Jay</div>
             <span className="text-gray-300 text-ellipsis">
-              March 07, 2022
+              December 01, 2022
             </span>
             <h5 className="leading-relaxed max-w-md hover:text-blue-500">
               How can one be good at programming. How can one be good at
