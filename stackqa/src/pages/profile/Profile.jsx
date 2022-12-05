@@ -6,9 +6,9 @@ function Profile() {
   return (
     <div>
       <div className="w-full mx-auto my-auto bg-blue-500 p-18">
-        <div className="rounded-full p-20 bg-white w-10 h-10 top-40 ml-4 flex items-center justify-center relative shadow-lg hover:shadow-blue-300">
+        <div className="rounded-full  w-[10%]  top-36 ml-4 flex items-center justify-center relative shadow-lg hover:shadow-blue-300">
           <div className="grid place-items-center">
-              <AiOutlineUser size={100} />
+              <img src="../../../public/assets/pic.png" alt="pic" className="rounded-full w-full" />
           </div>
         </div>
         <div className="flex pl-44">

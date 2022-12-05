@@ -22,7 +22,7 @@ function QuestionArticle() {
     <article className="border-b h-auto grid-col-1 grid-flow-row items-center from-sky-200 bg-white p-3">
       <div className="flex flex-row">
         <div className="object-contain w-12 mt-4 flex items-start justify-center">
-          <img src="../../../../public/assets/pic.png" alt="profile" className="rounded-full" />
+          <img src="/assets/pic.png" alt="profile" className="rounded-full" />
         </div>
         <div className="p-2 justify-between flex-grow flex-wrap">
           <div>Michael Jay</div>

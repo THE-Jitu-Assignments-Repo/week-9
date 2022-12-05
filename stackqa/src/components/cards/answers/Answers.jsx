@@ -30,8 +30,8 @@ function Answers({ setIsComment }) {
         </div>
         <div className="flex flex-row  bg-slate-300 p-2 rounded-lg">
           <div className="flex flex-col justify-start gap-2">
-            <div className="rounded-full bg-blue-400 w-8 h-8 mt-4 flex items-center justify-center border">
-              <AiOutlineUser size={15} />
+            <div className="w-8 mt-4 flex items-center justify-center ">
+              <img src="/assets/pic.png" alt="anspic" className="rounded-full" />
             </div>
             <div className="flex flex-col items-center justify-center">
               <AiFillCaretUp
