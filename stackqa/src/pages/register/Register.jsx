@@ -1,8 +1,25 @@
 import React from 'react'
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { registerUser } from '../../features/Auth/UserSlice'
 
 function Register() {
     const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const [regUser, setRegUser]=useState({username: '', email: '', password:'', imageUrl:''})
+    const handleReg=(e)=>{
+      const [name, value]= e.target
+
+      setRegUser(prev=>({
+        ...prev,
+        [name]: value
+      }))
+    }
+    const registeruser=()=>{
+      dispatch(registerUser(regUser))
+    }
+    
   return (
     <div className="flex items-center min-h-screen p-4 bg-gray-100 lg:justify-center">
       <div
@@ -33,6 +50,9 @@ function Register() {
               <input
                 type="username"
                 id="username"
+                name='username'
+                value={regUser.username}
+                onChange={handleReg}
                 autoFocus
                 className="px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-blue-200"
               />
@@ -42,6 +62,9 @@ function Register() {
               <input
                 type="email"
                 id="email"
+                name='email'
+                value={regUser.email}
+                onChange={handleReg}
                 autoFocus
                 className="px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-blue-200"
               />
@@ -50,6 +73,19 @@ function Register() {
               <input
                 type="password"
                 id="password"
+                name='password'
+                value={regUser.password}
+                onChange={handleReg}
+                className="px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-blue-200"
+              />
+            </div>
+            <div className="flex flex-col space-y-1">
+              <input
+                type="image"
+                id="image"
+                name='imageurl'
+                value={regUser.imageUrl}
+                onChange={handleReg}
                 className="px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-blue-200"
               />
             </div>
@@ -65,6 +101,7 @@ function Register() {
               <button
                 type="submit"
                 className="w-full px-4 py-2 text-lg font-semibold text-white transition-colors duration-300 bg-blue-500 rounded-md shadow hover:bg-blue-600 focus:outline-none focus:ring-blue-200 focus:ring-4"
+                onClick={registeruser}
               >
                 Sign up
               </button>
