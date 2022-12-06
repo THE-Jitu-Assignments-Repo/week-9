@@ -18,8 +18,9 @@ function Register() {
     }
     const registeruser=()=>{
       dispatch(registerUser(regUser))
+      navigate('/login')
     }
-    
+
   return (
     <div className="flex items-center min-h-screen p-4 bg-gray-100 lg:justify-center">
       <div
