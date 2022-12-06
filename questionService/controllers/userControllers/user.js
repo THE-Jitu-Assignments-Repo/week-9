@@ -51,7 +51,7 @@ module.exports = {
         }
     },
     loginUser: async (req, res) => {
-        console.log(process.env.SECRET);
+        // console.log(process.env.SECRET);
         try {
             const {
                 email,
