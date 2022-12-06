@@ -14,8 +14,8 @@ function UsersCard({ user }) {
         <div className="card-content">
           <div className="flex flex-col justify-between pl-2">
             <div className="font-bold text-xl mb-1">{user.name.first}</div>
-            <div className="text-sm text-gray-600 ">{user.email}</div>
-            <div className="text-sm text-gray-600 mt-1">{user.dob.age} Questions</div>
+            <div className="text-[10px] text-gray-600  ">{user.email}</div>
+            <div className="text-[12px] text-gray-600 mt-1">{user.dob.age} Questions</div>
             <div className="text-sm text-gray-400 mt-1">{user.location.street.number} <span className="text-sm text-gray-400">Votes</span></div>
           </div>
         </div>
