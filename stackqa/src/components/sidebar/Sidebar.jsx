@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../features/Auth/UserSlice";
 
 function Sidebar({ isOpen }) {
-  const {user} = useSelector(state=>state.user)
+  const {token} = useSelector(state=>state.user)
   const navigate = useNavigate()
   const dispatch = useDispatch()
   return (
@@ -85,7 +85,7 @@ function Sidebar({ isOpen }) {
           </Link>
         </div>
       </div>
-      {user && <div className="w-full grid  text-xl text-white">
+      {token && <div className="w-full grid  text-xl text-white">
         <span
           
           className="flex items-center cursor-pointer justify-center gap-3 my-5 hover:text-blue-500"

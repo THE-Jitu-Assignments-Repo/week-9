@@ -39,7 +39,7 @@ export const signUser = createAsyncThunk(
         try {
 
             const response = await axios.post('http://localhost:3000/user/login',details)
-            console.log(response.data);
+            
             toast.success("Welcome to stackQA")
 
             return response.data            
@@ -59,7 +59,8 @@ export const UserSlice = createSlice({
             state.user = action.payload
         },
         logout: (state, action) => {
-            state.user = false
+            state.token = localStorage.removeItem('token') 
+            toast.success("User Logout successfully")
         }
 
     },
@@ -71,8 +72,9 @@ export const UserSlice = createSlice({
             console.log({"Rejaected" : action.payload})
         }), 
         builder.addCase(signUser.fulfilled, (state, action)=>{
-            state.token = action.payload.Token
-            localStorage.setItem({token: action.payload.Token})
+            localStorage.setItem('token', action.payload.Token)
+            state.token = localStorage.getItem('token')
+            
         }),
         builder.addCase(signUser.rejected, (state,action)=>{
             console.log(action.payload)

@@ -5,10 +5,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../features/Auth/UserSlice";
 
 function Header({ close }) {
-  const { user } = useSelector((state) => state.user);
+  const {token} = useSelector((state)=> state.user)
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  console.log(user);
+ 
+
   return (
     <nav className="flex fixed top-0 inset-x-0 h-[60px] items-center z-10  bg-gray-100 shadow-xl mb-1">
       <div className="flex-grow lg:flex lg:items-center lg:w-auto ml-8 flex items-center">
@@ -41,7 +42,7 @@ function Header({ close }) {
       </div>
       <div className="max-w-screen-sm w-80">
         <div className="text-sm lg:flex-grow justify-end flex pr-5 items-center gap-3">
-          {user && (
+          {token && (
             <a
               href="#"
               className="block mt-4 lg:inline-block lg:mt-0 text-blue-400 hover:text-blue-900"
@@ -49,7 +50,7 @@ function Header({ close }) {
               <Link to="profile">My Profile</Link>
             </a>
           )}
-          {!user && (
+          {!token && (
             <div className="items-center gap-3 flex">
               <button
                 className="p-1 bg-blue-500 text-white rounded-md pr-4 pl-4 hover:bg-blue-400"
@@ -65,7 +66,7 @@ function Header({ close }) {
               </button>{" "}
             </div>
           )}
-          {user && (
+          {token && (
             <button
               className="p-1 bg-blue-500 text-white rounded-md pr-4 pl-4 hover:bg-blue-400"
               onClick={() => dispatch(logout())}
