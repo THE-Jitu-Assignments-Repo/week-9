@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 // import { userLogin } from '../../features/Auth/UserSlice'
-import { userLogin } from '../../features/Auth/UserSlice'
+import { signUser, userLogin } from '../../features/Auth/UserSlice'
 
 
 function Login() {
@@ -10,6 +10,20 @@ function Login() {
     const dispatch = useDispatch()
 
     const [login, setLogin] = useState({ email: '', password: '' })
+    const handleLog=(e)=>{
+      const {name, value}= e.target
+      setLogin(prev=>({
+        ...prev,
+        [name]: value
+      }))
+    }
+
+    const loginSubmit=(e)=>{
+      e.preventDefault()
+
+      dispatch(signUser(login))
+      navigate('/')
+    }
   return (
     <div className="flex items-center min-h-screen p-4 bg-gray-100 lg:justify-center">
       <div
@@ -34,12 +48,15 @@ function Login() {
         </div>
         <div className="p-5 bg-white md:flex-1">
           <h3 className="my-4 text-2xl font-semibold text-gray-700">Account Login</h3>
-          <form className="flex flex-col space-y-5" onSubmit={()=> navigate('/')}>
+          <form className="flex flex-col space-y-5">
             <div className="flex flex-col space-y-1">
               <label htmlFor="email" className="text-sm font-semibold text-gray-500">Email address</label>
               <input
                 type="email"
                 id="email"
+                name='email'
+                value={login.email}
+                onChange={handleLog}
                 autoFocus
                 className="px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-blue-200"
               />
@@ -52,6 +69,9 @@ function Login() {
               <input
                 type="password"
                 id="password"
+                name='password'
+                value={login.password}
+                onChange={handleLog}
                 className="px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-blue-200"
               />
             </div>
@@ -67,7 +87,7 @@ function Login() {
               <button
                 type="submit"
                 className="w-full px-4 py-2 text-lg font-semibold text-white transition-colors duration-300 bg-blue-500 rounded-md shadow hover:bg-blue-600 focus:outline-none focus:ring-blue-200 focus:ring-4"
-                onClick={()=>dispatch(userLogin(true))}
+                onClick={loginSubmit}
               >
                 Log in
               </button>

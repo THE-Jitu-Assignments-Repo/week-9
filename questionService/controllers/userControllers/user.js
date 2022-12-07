@@ -73,7 +73,7 @@ module.exports = {
                         expiresIn: "10mins"
                     })
                     res.status(200).json({
-                        "my Token": token,
+                        Token: token,
                         message: "login successfully"
                     })
                 } else {

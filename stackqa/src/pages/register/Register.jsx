@@ -7,16 +7,17 @@ import { registerUser } from '../../features/Auth/UserSlice'
 function Register() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const [regUser, setRegUser]=useState({username: '', email: '', password:'', imageUrl:''})
+    const [regUser, setRegUser]=useState({username: '', email: '', password:''})
     const handleReg=(e)=>{
-      const [name, value]= e.target
+      const {name, value}= e.target
 
       setRegUser(prev=>({
         ...prev,
         [name]: value
       }))
     }
-    const registeruser=()=>{
+    const registeruser=(e)=>{
+      e.preventDefault()
       dispatch(registerUser(regUser))
       navigate('/login')
     }
@@ -80,7 +81,7 @@ function Register() {
                 className="px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-blue-200"
               />
             </div>
-            <div className="flex flex-col space-y-1">
+            {/* <div className="flex flex-col space-y-1">
               <input
                 type="image"
                 id="image"
@@ -89,7 +90,7 @@ function Register() {
                 onChange={handleReg}
                 className="px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-blue-200"
               />
-            </div>
+            </div> */}
             <div className="flex items-center space-x-2">
               <input
                 type="checkbox"
