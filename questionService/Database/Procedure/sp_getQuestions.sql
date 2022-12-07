@@ -1,0 +1,7 @@
+CREATE OR ALTER PROC sp_getQuestions
+AS
+BEGIN
+SET NOCOUNT ON;
+  SELECT * FROM post_tbl
+END;
+

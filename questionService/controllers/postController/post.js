@@ -33,71 +33,78 @@ module.exports = {
             res.status(401).json({message: error.message})
         }
     },
-    getQuestions: async () => {
+    getQuestions: async (req,res) => {
         try {
             const pool = await mssql.connect(sqlConfig)
+            const allQuestions = await (await pool.request().execute('sp_getQuestions')).recordset;
+            
+            if(allQuestions.length > 0){
+                return res.status(200).json({allPost: allQuestions})
+            }else{
+                return res.status(203).json({allPost: []})
+            }
 
         } catch (error) {
-
+                res.status(400).json({message: error.message})
         }
     },
-    getSingleQuestion: async () => {
+    getSingleQuestion: async (req,res) => {
         try {
 
         } catch (error) {
 
         }
     },
-    deleteQuestion: async () => {
+    deleteQuestion: async (req,res) => {
         try {
 
         } catch (error) {
 
         }
     },
-    postAnswer: async () => {
+    postAnswer: async (req,res) => {
         try {
 
         } catch (error) {
 
         }
     },
-    markPreferred: async () => {
+    markPreferred: async (req,res) => {
         try {
 
         } catch (error) {
 
         }
     },
-    vote: async () => {
+    vote: async (req,res) => {
         try {
 
         } catch (error) {
 
         }
     },
-    commentAnswer: async () => {
+    commentAnswer: async (req,res) => {
         try {
 
         } catch (error) {
 
         }
     },
-    fetchMyQuestions: async () => {
+    fetchMyQuestions: async (req,res) => {
         try {
 
         } catch (error) {
 
         }
     },
-    searchQuestions: async () => {
+    searchQuestions: async (req,res) => {
         try {
 
         } catch (error) {
 
         }
     },
-    questionMostAnswers: async () => {
+    questionMostAnswers: async (req,res) => {
         try {
 
         } catch (error) {
