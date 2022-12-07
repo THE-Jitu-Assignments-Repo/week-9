@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import Select from "react-select";
 
 function Postquestion({ setPost, setOpen }) {
-  const {user} =  useSelector(state=>state.user)
+  const {token} =  useSelector(state=>state.user)
   const navigate= useNavigate()
   const options = [
     { value: "nodejs", label: "nodejs" },
@@ -23,7 +23,7 @@ function Postquestion({ setPost, setOpen }) {
   const [selectedOption, setSelectedOption] = useState(null)
 
   useEffect(()=>{
-    if(!user){
+    if(!token){
       navigate('/login')
     } 
 
