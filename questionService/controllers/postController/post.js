@@ -23,7 +23,7 @@ module.exports = {
                 .input("postID", id)
                 .input("question", question)
                 .input("category", category)
-                .execute('sp_postQuestion')
+                .execute('sp_postOrEditQuestion')
 
             res.status(200).json({
                 message: "Posted a question"
@@ -35,6 +35,7 @@ module.exports = {
     },
     getQuestions: async () => {
         try {
+            const pool = await mssql.connect(sqlConfig)
 
         } catch (error) {
 
