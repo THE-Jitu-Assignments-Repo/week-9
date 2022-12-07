@@ -1,98 +1,106 @@
 const mssql = require('mssql')
 const sqlConfig = require('../../config/config')
 const dotenv = require('dotenv')
-const {v4:uuidv4} = require('uuid')
+const {
+    v4: uuidv4
+} = require('uuid')
 
 
 dotenv.config()
 
-module.exports={
-    postQuestion:async(res,req)=>{
+module.exports = {
+    postQuestion: async (req, res) => {
         try {
-            const {question, category} = req.body
+            const {
+                question,
+                category
+            } = req.body
             const id = uuidv4()
 
             const pool = await mssql.connect(sqlConfig)
 
             await pool.request()
-            .input("postID", id)
-            .input("question", question)
-            .input("category", category)
-            .execute('sp_postQuestion')
+                .input("postID", id)
+                .input("question", question)
+                .input("category", category)
+                .execute('sp_postQuestion')
 
-            res.status(200).json({message: "Posted a question"})
+            res.status(200).json({
+                message: "Posted a question"
+            })
         } catch (error) {
-            res.status(402).json({message: error.message})
+            console.log(error);
+            res.status(401).json({message: error.message})
         }
     },
-    getQuestions: async()=>{
+    getQuestions: async () => {
         try {
-            
+
         } catch (error) {
-            
+
         }
     },
-    getSingleQuestion:async()=>{
+    getSingleQuestion: async () => {
         try {
-            
+
         } catch (error) {
-            
+
         }
     },
-    deleteQuestion:async()=>{
+    deleteQuestion: async () => {
         try {
-            
+
         } catch (error) {
-            
+
         }
     },
-    postAnswer:async()=>{
+    postAnswer: async () => {
         try {
-            
+
         } catch (error) {
-            
-        }
-    }, 
-    markPreferred:async()=>{
-        try {
-            
-        } catch (error) {
-            
+
         }
     },
-    vote:async()=>{
+    markPreferred: async () => {
         try {
-            
+
         } catch (error) {
-            
-        }
-    }, 
-    commentAnswer:async()=>{
-        try {
-            
-        } catch (error) {
-            
+
         }
     },
-    fetchMyQuestions:async()=>{
+    vote: async () => {
         try {
-            
+
         } catch (error) {
-            
+
         }
     },
-    searchQuestions:async()=>{
+    commentAnswer: async () => {
         try {
-            
+
         } catch (error) {
-            
+
         }
     },
-    questionMostAnswers:async()=>{
+    fetchMyQuestions: async () => {
         try {
-            
+
         } catch (error) {
-            
+
+        }
+    },
+    searchQuestions: async () => {
+        try {
+
+        } catch (error) {
+
+        }
+    },
+    questionMostAnswers: async () => {
+        try {
+
+        } catch (error) {
+
         }
     }
 }
