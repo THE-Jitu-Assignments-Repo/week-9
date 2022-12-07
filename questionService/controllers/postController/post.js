@@ -7,11 +7,22 @@ const {v4:uuidv4} = require('uuid')
 dotenv.config()
 
 module.exports={
-    postQuestion:async()=>{
+    postQuestion:async(res,req)=>{
         try {
-            
+            const {question, category} = req.body
+            const id = uuidv4()
+
+            const pool = await mssql.connect(sqlConfig)
+
+            await pool.request()
+            .input("postID", id)
+            .input("question", question)
+            .input("category", category)
+            .execute('sp_postQuestion')
+
+            res.status(200).json({message: "Posted a question"})
         } catch (error) {
-            
+            res.status(402).json({message: error.message})
         }
     },
     getQuestions: async()=>{
