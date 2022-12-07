@@ -6,7 +6,7 @@ import Postquestion from "../../components/modals/postModal/Postquestion";
 
 function Profile() {
   const [filterQuestion, setFilterQuestion] = useState()
-  const [open, setOpen]= useState(false)
+  // const [open, setOpen]= useState(false)
   const myquestions =[
     {value: "votes", label: "Most votes"},
     {value: "answered", label: "Most answered"}
@@ -78,11 +78,10 @@ function Profile() {
           />
           <button
             className=" w-full p-1 bg-blue-500 rounded-md hover:bg-blue-300 text-white"
-            onClick={() => setOpen((prev) => !prev)}
           >
             Post Question
           </button>
-          {open && <Postquestion  setOpen={() => setOpen((prev) => !prev)}/>}
+          {/* {open && <Postquestion  setOpen={() => setOpen((prev) => !prev)}/>} */}
         </div>
       </div>
     </div>
