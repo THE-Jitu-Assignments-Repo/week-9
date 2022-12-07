@@ -76,14 +76,42 @@ module.exports = {
             };
 
         } catch (error) {
-            res.status(404).json({message: error.message})
+            res.status(404).json({
+                message: error.message
+            })
         }
     },
     deleteQuestion: async (req, res) => {
         try {
+            const {
+                id
+            } = req.params
+
+            console.log(id);
+            const pool = await mssql.connect(sqlConfig)
+            const post = await (await pool.request()
+                .input('postID', id)
+                .execute('sp_getSingleQuestion')).recordset
+
+
+            if (post.length) {
+                await pool.request()
+                    .input("postID", id)
+                    .execute('sp_deleteQuestion')
+                res.status(200).json({
+                    message: 'post Deleted!!'
+                })
+            } else {
+                res.status(404).json({
+                    message: `post with id ${id} does not exist`
+                })
+            }
 
         } catch (error) {
-
+            res.status(402).json({
+                message: 'ID not present',
+                Err: error.message
+            })
         }
     },
     postAnswer: async (req, res) => {

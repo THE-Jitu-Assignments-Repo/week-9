@@ -11,7 +11,7 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 
-app.use("/", questionRouters)
+app.use("/question", questionRouters)
 
 
 app.listen(process.env.PORT, ()=>{
