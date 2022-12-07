@@ -30,81 +30,105 @@ module.exports = {
             })
         } catch (error) {
             console.log(error);
-            res.status(401).json({message: error.message})
+            res.status(401).json({
+                message: error.message
+            })
         }
     },
-    getQuestions: async (req,res) => {
+    getQuestions: async (req, res) => {
         try {
             const pool = await mssql.connect(sqlConfig)
             const allQuestions = await (await pool.request().execute('sp_getQuestions')).recordset;
-            
-            if(allQuestions.length > 0){
-                return res.status(200).json({allPost: allQuestions})
-            }else{
-                return res.status(203).json({allPost: []})
+
+            if (allQuestions.length > 0) {
+                return res.status(200).json({
+                    allPost: allQuestions
+                })
+            } else {
+                return res.status(203).json({
+                    allPost: []
+                })
             }
 
         } catch (error) {
-                res.status(400).json({message: error.message})
+            res.status(400).json({
+                message: error.message
+            })
         }
     },
-    getSingleQuestion: async (req,res) => {
+    getSingleQuestion: async (req, res) => {
+        try {
+            const {
+                id
+            } = req.params;
+            console.log(id);
+
+            const pool = await mssql.connect(sqlConfig)
+            const singleQuestion = await (await pool.request().input("postID", id).execute('sp_getSingleQuestion')).recordset
+            if (singleQuestion.length) {
+                res.status(200).json({
+                    post: singleQuestion
+                })
+            } else {
+                return res.status(401).json({
+                    message: `post_ID ${id}  not found`
+                })
+            };
+
+        } catch (error) {
+            res.status(404).json({message: error.message})
+        }
+    },
+    deleteQuestion: async (req, res) => {
         try {
 
         } catch (error) {
 
         }
     },
-    deleteQuestion: async (req,res) => {
+    postAnswer: async (req, res) => {
         try {
 
         } catch (error) {
 
         }
     },
-    postAnswer: async (req,res) => {
+    markPreferred: async (req, res) => {
         try {
 
         } catch (error) {
 
         }
     },
-    markPreferred: async (req,res) => {
+    vote: async (req, res) => {
         try {
 
         } catch (error) {
 
         }
     },
-    vote: async (req,res) => {
+    commentAnswer: async (req, res) => {
         try {
 
         } catch (error) {
 
         }
     },
-    commentAnswer: async (req,res) => {
+    fetchMyQuestions: async (req, res) => {
         try {
 
         } catch (error) {
 
         }
     },
-    fetchMyQuestions: async (req,res) => {
+    searchQuestions: async (req, res) => {
         try {
 
         } catch (error) {
 
         }
     },
-    searchQuestions: async (req,res) => {
-        try {
-
-        } catch (error) {
-
-        }
-    },
-    questionMostAnswers: async (req,res) => {
+    questionMostAnswers: async (req, res) => {
         try {
 
         } catch (error) {
