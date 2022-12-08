@@ -119,15 +119,14 @@ module.exports = {
     fetchMyQuestions: async (req, res) => {
         try {
             const {
-                id
-            } = req.params;
-            console.log(id);
+                user_id
+            } = req.info;
 
             const pool = await mssql.connect(sqlConfig)
-            const myQuestion = await (await pool.request().input("userID", id).execute('sp_getMyQuestions')).recordset
+            const myQuestion = await (await pool.request().input("userID", user_id).execute('sp_getMyQuestions')).recordset
             if (myQuestion.length) {
                 res.status(200).json({
-                    post: myQuestion
+                    myPost: myQuestion
                 })
             } else {
                 return res.status(401).json({
