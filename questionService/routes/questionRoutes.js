@@ -5,10 +5,10 @@ const router = require('express').Router()
 
 
 
+router.get('/allquestions', getQuestions)
 router.post('/postquestion', verifyToken, postQuestion)
-router.get('/allquestions', verifyToken,getQuestions)
-router.get('/:id', getSingleQuestion)
-router.get('/delete/:id', deleteQuestion)
+router.get('/:id', verifyToken, getSingleQuestion)
+router.get('/delete/:id', verifyToken, deleteQuestion)
 
 
 
