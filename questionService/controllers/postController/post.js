@@ -114,34 +114,6 @@ module.exports = {
             })
         }
     },
-    postAnswer: async (req, res) => {
-        try {
-
-        } catch (error) {
-
-        }
-    },
-    markPreferred: async (req, res) => {
-        try {
-
-        } catch (error) {
-
-        }
-    },
-    vote: async (req, res) => {
-        try {
-
-        } catch (error) {
-
-        }
-    },
-    commentAnswer: async (req, res) => {
-        try {
-
-        } catch (error) {
-
-        }
-    },
     fetchMyQuestions: async (req, res) => {
         try {
 
