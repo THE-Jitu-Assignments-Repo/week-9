@@ -1,5 +1,5 @@
-const { postQuestion, getQuestions, getSingleQuestion, deleteQuestion } = require('../controllers/postController/post')
-const {verifyToken} = require('../middleware/verifyToken')
+const { postQuestion, getQuestions, getSingleQuestion, deleteQuestion } = require('../../controllers/postController/post')
+const {verifyToken} = require('../../middleware/verifyToken')
 
 const router = require('express').Router()
 

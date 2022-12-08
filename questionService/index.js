@@ -1,7 +1,7 @@
 const express = require('express')
 const dotenv = require('dotenv')
 const cors = require('cors')
-const questionRouters = require('./routes/questionRoutes')
+const questionRouters = require('./routes/question/questionRoutes')
 // const verify = require('./middleware/verifyToken')
 
 dotenv.config()

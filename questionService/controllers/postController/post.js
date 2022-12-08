@@ -16,11 +16,13 @@ module.exports = {
                 category
             } = req.body
             const id = uuidv4()
+            const {user_id} = req.info
 
             const pool = await mssql.connect(sqlConfig)
 
             await pool.request()
                 .input("postID", id)
+                .input("userID", user_id)
                 .input("question", question)
                 .input("category", category)
                 .execute('sp_postOrEditQuestion')
@@ -116,9 +118,27 @@ module.exports = {
     },
     fetchMyQuestions: async (req, res) => {
         try {
+            const {
+                id
+            } = req.params;
+            console.log(id);
+
+            const pool = await mssql.connect(sqlConfig)
+            const myQuestion = await (await pool.request().input("userID", id).execute('sp_getMyQuestions')).recordset
+            if (myQuestion.length) {
+                res.status(200).json({
+                    post: myQuestion
+                })
+            } else {
+                return res.status(401).json({
+                    message: `user of this id: ${id}  not found`
+                })
+            };
 
         } catch (error) {
-
+            res.status(404).json({
+                message: error.message
+            })
         }
     },
     searchQuestions: async (req, res) => {

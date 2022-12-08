@@ -66,7 +66,6 @@ module.exports = {
                 if (comparePass) {
                     const {
                         password,
-                        user_id,
                         ...rest
                     } = user;
                     const token = jwt.sign(rest, process.env.SECRET, {

@@ -15,7 +15,9 @@ module.exports={
                 }
 
                 const decodeTokenData= jwt.verify(token.split(" ")[1], process.env.SECRET)
-                req.info=decodeTokenData
+
+                 req.info=decodeTokenData
+                 
             } catch (error) {
                 return res.status(403).json({message: error.message})
             }
