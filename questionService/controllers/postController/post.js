@@ -16,7 +16,9 @@ module.exports = {
                 category
             } = req.body
             const id = uuidv4()
-            const {user_id} = req.info
+            const {
+                user_id
+            } = req.info
 
             const pool = await mssql.connect(sqlConfig)
 
@@ -142,9 +144,20 @@ module.exports = {
     },
     searchQuestions: async (req, res) => {
         try {
+            const {
+                text
+            } = req.query
+            const pool = await mssql.connect(sqlConfig)
+
+            const results = await (await pool.request()
+                .input("text", text)
+                .execute('sp_searchQuestions')
+            ).recordset
+
+            res.status(200).json(results)
 
         } catch (error) {
-
+            res.status(401).json({message: error.message})
         }
     },
     questionMostAnswers: async (req, res) => {
