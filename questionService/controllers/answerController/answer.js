@@ -58,9 +58,18 @@ module.exports={
     },
     markPreferred: async (req, res) => {
         try {
+            const { id } = req.params
+            const pool = await mssql.connect(sqlConfig)
+
+
+            await pool.request()
+            .input("answerID", id)
+            .execute('sp_markPreferred')
+
+            res.status(200).json({message: "marked as preferred"})
 
         } catch (error) {
-
+            res.status(401).json({message: error.message})
         }
     },
     vote: async (req, res) => {
