@@ -157,13 +157,33 @@ module.exports = {
             res.status(200).json(results)
 
         } catch (error) {
-            res.status(401).json({message: error.message})
+            res.status(401).json({
+                message: error.message
+            })
         }
     },
-    questionMostAnswers: async (req, res) => {
+    getQuestionMostAnswers: async (req, res) => {
         try {
-            
+            const pool = await mssql.connect(sqlConfig)
+
+            const posts = await (await pool.request().execute('sp_getQuestionMostAnswer')).recordset
+
+
+            if (posts.length > 0) {
+                const getAllIds = posts.map(id => {
+                    return id.post_id
+                })
+
+                const result = await (await pool.request().execute('sp_getQuestions')).recordset
+
+                const post = result.filter(item => item.post_id.includes(getAllIds))
+                res.status(200).json(post)
+            }
+
         } catch (error) {
+            res.status(401).json({
+                message: error.message
+            })
 
         }
     }
