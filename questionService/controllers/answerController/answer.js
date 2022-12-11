@@ -74,10 +74,18 @@ module.exports={
     },
     vote: async (req, res) => {
         try {
-            const {id} = req.params
+            const {answer_id, votes} = req.body
+            const { user_id }= req.info
+
+            const id = uuidv4()
             const pool = await mssql.connect(sqlConfig)
 
-            await pool.request().input("answerID", id).execute('sp_upvoteOrDownvote')
+            await pool.request()
+            .input("voteID", id)
+            .input("userID", user_id)
+            .input("answerID", answer_id)
+            .input("votes", votes)
+            .execute('sp_upvoteOrDownvote')
 
             res.status(200).json({message: "Succefully voted"})
 

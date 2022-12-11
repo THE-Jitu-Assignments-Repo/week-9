@@ -1,9 +1,13 @@
-CREATE OR ALTER PROC sp_upvoteOrDownvote(@answerID VARCHAR(255))
+CREATE OR ALTER PROC sp_upvoteOrDownvote(
+	@voteID VARCHAR(255),
+	@userID VARCHAR(255),
+	@answerID VARCHAR(255),
+	@votes INT)
 AS
 BEGIN
 SET NOCOUNT ON;
-IF EXISTS(SELECT * FROM Answer_tbl WHERE answer_id=@answerID AND vote=0 OR vote=-1)
-	UPDATE Answer_tbl SET vote=1 WHERE answer_id=@answerID;
+IF EXISTS(  WHERE answer_id=@answerID AND user_id=@userID)
+	UPDATE vote_tbl SET votes=@votes WHERE answer_id=@answerID AND user_id= @userID;
 ELSE
-	UPDATE Answer_tbl SET vote=-1 WHERE answer_id=@answerID;
+	INSERT INTO vote_tbl(vote_id,user_id,answer_id,votes) VALUES(@voteID, @userID,@answerID,@votes)
 END

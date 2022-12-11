@@ -8,7 +8,7 @@ const router = require('express').Router()
 router.post("/answer", verifyToken, postAnswer)
 router.post("/answerupdate", verifyToken, updateAnswer)
 router.post("/mark/:id", verifyToken, markPreferred)
-router.post("/vote/:id", verifyToken, vote)
+router.post("/vote", verifyToken, vote)
 
 
 
