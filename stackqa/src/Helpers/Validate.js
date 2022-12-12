@@ -3,7 +3,7 @@ import * as yup from 'yup'
 export const validateLoginSchema = (details)=>{
     const schema = yup.object().shape({
         email: yup.string().email('Must be a valid email').required('Email is required'),
-        password: yup.string().min(8, 'Password has to be longer than 8 characters!').required('Password is required!')
+        password: yup.string().min(5, 'Password has to be longer than 8 characters!').required('Password is required!')
     })
     return schema.validate(details)
 }

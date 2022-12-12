@@ -5,7 +5,7 @@ const router = require('express').Router()
 
 
 router.post("/comment",verifyToken, commentAnswer)
-router.get("/getcomment", getComments)
+router.get("/getcomment/:answer_id", getComments)
 
 
 

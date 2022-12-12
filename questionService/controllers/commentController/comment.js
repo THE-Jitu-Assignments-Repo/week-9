@@ -32,7 +32,7 @@ module.exports={
     },
     getComments:async (req, res) => {
         try {
-            const {answer_id} = req.query
+            const {answer_id} = req.params
             const pool = await mssql.connect(sqlConfig)
             
             const comments = await (await pool.request().input('answerID', answer_id).execute('sp_getComments')).recordset
