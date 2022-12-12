@@ -7,7 +7,7 @@ import { registerUser } from '../../features/Auth/UserSlice'
 function Register() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const [regUser, setRegUser]=useState({username: '', email: '', password:''})
+    const [regUser, setRegUser]=useState({username: '', imageUrl:'', email: '', password:''})
     const handleReg=(e)=>{
       const {name, value}= e.target
 
@@ -60,6 +60,17 @@ function Register() {
               />
             </div>
             <div className="flex flex-col space-y-1">
+            <label htmlFor="email" className="text-sm font-semibold text-gray-500">Profile Pic</label>
+              <input
+                type="url"
+                id="image"
+                name='imageurl'
+                value={regUser.imageUrl}
+                onChange={handleReg}
+                className="px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-blue-200"
+              />
+            </div>
+            <div className="flex flex-col space-y-1">
               <label htmlFor="email" className="text-sm font-semibold text-gray-500">Email address</label>
               <input
                 type="email"
@@ -72,6 +83,7 @@ function Register() {
               />
             </div>
             <div className="flex flex-col space-y-1">
+              <label htmlFor="email" className="text-sm font-semibold text-gray-500">Password</label>
               <input
                 type="password"
                 id="password"
@@ -81,24 +93,14 @@ function Register() {
                 className="px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-blue-200"
               />
             </div>
-            {/* <div className="flex flex-col space-y-1">
-              <input
-                type="image"
-                id="image"
-                name='imageurl'
-                value={regUser.imageUrl}
-                onChange={handleReg}
-                className="px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-blue-200"
-              />
-            </div> */}
-            <div className="flex items-center space-x-2">
+            {/* <div className="flex items-center space-x-2">
               <input
                 type="checkbox"
                 id="remember"
                 className="w-4 h-4 transition duration-300 rounded focus:ring-2 focus:ring-offset-0 focus:outline-none focus:ring-blue-200"
               />
               <label htmlFor="remember" className="text-sm font-semibold text-gray-500">Remember me</label>
-            </div>
+            </div> */}
             <div>
               <button
                 type="submit"
