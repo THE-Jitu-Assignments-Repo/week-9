@@ -7,9 +7,11 @@ import {
     toast
 } from "react-toastify";
 
+
 const initialState = {
     questions: [],
-    postOpen: false
+    postOpen: false,
+    commentOpen: false
 }
 
 const Token = localStorage.getItem('token')
@@ -46,6 +48,9 @@ export const QuestionSlice = createSlice({
     reducers: {
         G_modal: (state, action) => {
             state.postOpen = action.payload
+        },
+        C_modal: (state, action) => {
+            state.commentOpen = action.payload
         }
     },
     extraReducers: (builder) => {
@@ -59,7 +64,7 @@ export const QuestionSlice = createSlice({
 
 })
 export const {
-    G_modal
+    G_modal, C_modal
 } = QuestionSlice.actions
 
 export default QuestionSlice.reducer

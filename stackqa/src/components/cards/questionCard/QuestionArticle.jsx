@@ -17,7 +17,7 @@ import { useSelector } from "react-redux";
 function QuestionArticle() {
   const [isanswer, setIsAnswer] = useState(false);
   const [iscomment, setIsComment] = useState(false);
-  const { postOpen } = useSelector((state) => state.questions);
+  const { postOpen, commentOpen } = useSelector((state) => state.questions);
 
   return (
     <article className="border-b h-auto grid-col-1 grid-flow-row items-center from-sky-200 bg-white p-3">
@@ -100,7 +100,7 @@ function QuestionArticle() {
       {/* answer modal-content */}
       {isanswer && <Answers />}
 
-      {/* {postOpen && <CommentModal />} */}
+      {commentOpen && <CommentModal />}
     </article>
   );
 }
