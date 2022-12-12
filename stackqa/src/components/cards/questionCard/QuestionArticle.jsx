@@ -100,7 +100,7 @@ function QuestionArticle() {
       {/* answer modal-content */}
       {isanswer && <Answers />}
 
-      {postOpen && <CommentModal />}
+      {/* {postOpen && <CommentModal />} */}
     </article>
   );
 }

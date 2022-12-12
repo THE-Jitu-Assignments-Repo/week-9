@@ -5,12 +5,15 @@ import { MdPostAdd } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Select from "react-select";
-import { G_modal } from "../../../features/questions/QuestionSlice";
+import {
+  G_modal,
+  postQuestion,
+} from "../../../features/questions/QuestionSlice";
 
 function Postquestion() {
-  const {token} =  useSelector(state=>state.user)
-  const dispatch = useDispatch()
-  const navigate= useNavigate()
+  const { token } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const options = [
     { value: "nodejs", label: "nodejs" },
     { value: "programming", label: "programming" },
@@ -18,19 +21,41 @@ function Postquestion() {
     { value: "music", label: "music" },
     { value: "sports", label: "sports" },
     { value: "politics", label: "politics" },
-        { value: "General", label: "general" },
-
+    { value: "General", label: "general" },
   ];
+  const [question, setQuestion] = useState("");
+  const [selectedOption, setSelectedOption] = useState(null);
+  // const [post, setPost] = useState({question:'', category: ''})
 
-  const [selectedOption, setSelectedOption] = useState(null)
+  const handlePost = (e) => {
+    e.preventDefault();
+    // const {name, value}= e.target
+    //   setPost(prev=>({
+    //     ...prev,
+    //     [name]: value,
 
-  useEffect(()=>{
-    if(!token){
-      navigate('/login')
-    } 
+    //   }))
+    const { value } = e.target;
+    setQuestion(value);
+  };
 
-  },[])
-  
+  const handleSumbitPost = (e) => {
+    e.preventDefault();
+    const category = selectedOption.map((item) => item.value).toString();
+    // const {question} = question
+    // console.log(question);
+    //     console.log(category);
+
+    dispatch(postQuestion({ question, category }));
+    dispatch(G_modal(false))
+  };
+
+  useEffect(() => {
+    if (!token) {
+      navigate("/login");
+    }
+  }, []);
+
   return (
     <div className="fixed flex top-0 left-0 right-0 w-full h-full items-center  justify-center backdrop-blur-sm">
       <div className="absolute bg-white  w-2/6  top-40 shadow-md rounded-sm h-auto z-10  outline-none overflow-x-hidden overflow-y-auto">
@@ -41,21 +66,25 @@ function Postquestion() {
           </span>
           <AiFillCloseSquare
             className="text-blue-500 hover:text-red-500"
-            onClick={()=> dispatch(G_modal(false))}
+            onClick={() => dispatch(G_modal(false))}
             size={30}
           />
         </div>
         <article className="flex flex-col items-start p-5">
           <textarea
             name="question"
+            value={question}
             className="bg-slate-300 w-full p-5 outline-none "
             placeholder="whats on your mind that you need to share and get help?"
             autoFocus
             cols="30"
             rows="5"
+            onChange={handlePost}
           ></textarea>
-          <label htmlFor="category" className="mt-4">Select category</label>
-          <Select 
+          <label htmlFor="category" className="mt-4">
+            Select category
+          </label>
+          <Select
             defaultInputValue={selectedOption}
             onChange={setSelectedOption}
             isMulti
@@ -65,12 +94,15 @@ function Postquestion() {
         </article>
 
         <div className="flex items-center justify-end p-5  gap-3">
-          <button className="bg-blue-500 p-2 rounded-sm pl-5 pr-5 text-white hover:bg-blue-300">
+          <button
+            className="bg-blue-500 p-2 rounded-sm pl-5 pr-5 text-white hover:bg-blue-300"
+            onClick={handleSumbitPost}
+          >
             Post
           </button>
           <button
             className="bg-blue-500 p-2 rounded-sm pl-5 pr-5 text-white hover:bg-blue-300"
-            onClick={()=> dispatch(G_modal(false))}
+            onClick={() => dispatch(G_modal(false))}
           >
             cancel
           </button>
