@@ -67,7 +67,7 @@ function Profile() {
           </div>
         </div>
       </section>
-      <div className="pl-5  mt-2 flex items-center justify-between pr-5 p-2">
+      <div className="pl-5  mt-2 flex items-center justify-between pr-5 p-2 mb-2">
         <h1 className="text-xl">My Questions</h1>
         <div className="flex items-center gap-3 w-[30%]">
           <div className="flex items-center border">
