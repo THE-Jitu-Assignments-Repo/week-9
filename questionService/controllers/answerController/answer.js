@@ -50,10 +50,14 @@ module.exports={
     },
     getAnswers:  async (req, res) => {
         try {
+            const {postID} = req.params
             const pool = await mssql.connect(sqlConfig)
+            const Answers = await (await pool.request().input('postID', postID).execute('sp_getAnswers')).recordset
+
+            res.status(200).json(Answers)
 
         } catch (error) {
-
+            res.status(402).json({message: error.message})
         }
     },
     markPreferred: async (req, res) => {
