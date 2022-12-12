@@ -32,9 +32,15 @@ module.exports={
     },
     getComments:async (req, res) => {
         try {
+            const {answer_id} = req.query
+            const pool = await mssql.connect(sqlConfig)
+            
+            const comments = await (await pool.request().input('answerID', answer_id).execute('sp_getComments')).recordset
+            // console.log(answer_id);
 
+            res.status(200).json({comments})
         } catch (error) {
-
+            res.status(402).json({message: error.message})
         }
     },
     deleteComment: async (req, res) => {
