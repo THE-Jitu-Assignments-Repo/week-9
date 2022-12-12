@@ -1,10 +1,14 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import QuestionArticle from "../../components/cards/questionCard/QuestionArticle";
 import Postquestion from "../../components/modals/postModal/Postquestion";
+import { G_modal } from "../../features/questions/QuestionSlice";
 import './question.css'
 
 function Questions() {
-  const [post, setPost] = useState(false);
+  // const [post, setPost] = useState(false);
+  const {postOpen} = useSelector(state=>state.questions)
+const dispatch = useDispatch()
   const options = [
     { value: "nodejs", label: "nodejs" },
     { value: "programming", label: "programming" },
@@ -21,7 +25,7 @@ function Questions() {
         <div>
           <button
             className="border p-1 bg-blue-500 rounded-md hover:bg-blue-300 text-white"
-            onClick={() => setPost((prev) => !prev)}
+            onClick={() => dispatch(G_modal(true))}
           >
             Post Question
           </button>
@@ -29,7 +33,7 @@ function Questions() {
       </div>
 
       {/* question modal */}
-      {post && <Postquestion setPost={() => setPost((prev) => !prev)} />}
+      {postOpen && <Postquestion />}
 
       <hr />
       <div className="w-full grid grid-cols-2 gap-5 pl-40">

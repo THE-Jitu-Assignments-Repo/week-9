@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import {  AiOutlineFilter } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
 import Select from "react-select"
 import Postquestion from "../../components/modals/postModal/Postquestion";
+import { G_modal } from "../../features/questions/QuestionSlice";
 
 
 function Profile() {
+  const { postOpen } = useSelector(state=>state.questions)
   const [filterQuestion, setFilterQuestion] = useState()
-  // const [open, setOpen]= useState(false)
+  const dispatch = useDispatch()
   const myquestions =[
     {value: "votes", label: "Most votes"},
     {value: "answered", label: "Most answered"}
@@ -78,10 +81,11 @@ function Profile() {
           />
           <button
             className=" w-full p-1 bg-blue-500 rounded-md hover:bg-blue-300 text-white"
+            onClick={()=>dispatch(G_modal(true))}
           >
             Post Question
           </button>
-          {/* {open && <Postquestion  setOpen={() => setOpen((prev) => !prev)}/>} */}
+          {postOpen && <Postquestion />}
         </div>
       </div>
     </div>

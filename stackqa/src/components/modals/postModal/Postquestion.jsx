@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { AiFillCloseSquare } from "react-icons/ai";
 import { MdPostAdd } from "react-icons/md";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Select from "react-select";
+import { G_modal } from "../../../features/questions/QuestionSlice";
 
-function Postquestion({ setPost, setOpen }) {
+function Postquestion() {
   const {token} =  useSelector(state=>state.user)
+  const dispatch = useDispatch()
   const navigate= useNavigate()
   const options = [
     { value: "nodejs", label: "nodejs" },
@@ -39,7 +41,7 @@ function Postquestion({ setPost, setOpen }) {
           </span>
           <AiFillCloseSquare
             className="text-blue-500 hover:text-red-500"
-            onClick={setPost}
+            onClick={()=> dispatch(G_modal(false))}
             size={30}
           />
         </div>
@@ -68,7 +70,7 @@ function Postquestion({ setPost, setOpen }) {
           </button>
           <button
             className="bg-blue-500 p-2 rounded-sm pl-5 pr-5 text-white hover:bg-blue-300"
-            onClick={()=>{setPost(),setOpen()}}
+            onClick={()=> dispatch(G_modal(false))}
           >
             cancel
           </button>

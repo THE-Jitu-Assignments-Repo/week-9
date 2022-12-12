@@ -12,9 +12,11 @@ export const QuestionSlice = createSlice({
     name: 'questions',
     initialState,
         reducers: {
-            
+           G_modal: (state,action)=>{
+                state.postOpen= action.payload
+           }
         }
 
 })
-
+export const {G_modal}= QuestionSlice.actions
 export default QuestionSlice.reducer
