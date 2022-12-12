@@ -13,10 +13,13 @@ import {
   AiOutlineUser,
 } from "react-icons/ai";
 import { GrSend } from "react-icons/gr";
+import { useDispatch } from "react-redux";
+import { G_modal } from "../../../features/questions/QuestionSlice";
 import Comment from "../comment/Comment";
 
-function Answers({ setIsComment }) {
+function Answers() {
   const [showComment, setShowComment] = React.useState(false);
+  const dispatch = useDispatch()
 
   return (
     <div>
@@ -69,7 +72,7 @@ function Answers({ setIsComment }) {
             <ul className="h-auto hidden absolute peer-hover:flex hover:flex flex-col  drop-shadow-lg top-46 bg-white shadow-lg font-extralight w-[150px]  rounded-sm">
               <li
                 className="hover:bg-slate-200 cursor-pointer p-2 flex items-center gap-1 "
-                onClick={setIsComment}
+                onClick={()=>dispatch(G_modal(true))}
               >
                 <AiOutlineComment />
                 comment

@@ -8,6 +8,11 @@ const initialState={
 }
 
 
+
+
+
+
+
 export const QuestionSlice = createSlice({
     name: 'questions',
     initialState,
@@ -19,4 +24,5 @@ export const QuestionSlice = createSlice({
 
 })
 export const {G_modal}= QuestionSlice.actions
+
 export default QuestionSlice.reducer

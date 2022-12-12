@@ -9,14 +9,15 @@ import {
   AiOutlineEllipsis,
   AiOutlineSave,
   AiOutlineShareAlt,
-  AiOutlineUser,
 } from "react-icons/ai";
 import Answers from "../answers/Answers";
 import CommentModal from "../../modals/commentModal/CommentModal";
+import { useSelector } from "react-redux";
 
 function QuestionArticle() {
   const [isanswer, setIsAnswer] = useState(false);
   const [iscomment, setIsComment] = useState(false);
+  const { postOpen } = useSelector((state) => state.questions);
 
   return (
     <article className="border-b h-auto grid-col-1 grid-flow-row items-center from-sky-200 bg-white p-3">
@@ -92,19 +93,14 @@ function QuestionArticle() {
             <span className="pr-1 pl-1 flex items-center gap-1 ">
               <AiOutlineShareAlt /> share
             </span>
-            
           </div>
         </div>
       </div>
 
       {/* answer modal-content */}
-      {isanswer && (
-        <Answers setIsComment={() => setIsComment((prev) => !prev)} />
-      )}
+      {isanswer && <Answers />}
 
-      {iscomment && (
-        <CommentModal setIsComment={() => setIsComment((prev) => !prev)} />
-      )}
+      {postOpen && <CommentModal />}
     </article>
   );
 }

@@ -51,7 +51,6 @@ function Register() {
               <label htmlFor="username" className="text-sm font-semibold text-gray-500">UserName</label>
               <input
                 type="username"
-                id="username"
                 name='username'
                 value={regUser.username}
                 onChange={handleReg}
@@ -60,11 +59,10 @@ function Register() {
               />
             </div>
             <div className="flex flex-col space-y-1">
-            <label htmlFor="email" className="text-sm font-semibold text-gray-500">Profile Pic</label>
+            <label htmlFor="imageUrl" className="text-sm font-semibold text-gray-500">Profile Pic</label>
               <input
                 type="url"
-                id="image"
-                name='imageurl'
+                name='imageUrl'
                 value={regUser.imageUrl}
                 onChange={handleReg}
                 className="px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-blue-200"
@@ -74,7 +72,6 @@ function Register() {
               <label htmlFor="email" className="text-sm font-semibold text-gray-500">Email address</label>
               <input
                 type="email"
-                id="email"
                 name='email'
                 value={regUser.email}
                 onChange={handleReg}
@@ -86,21 +83,12 @@ function Register() {
               <label htmlFor="email" className="text-sm font-semibold text-gray-500">Password</label>
               <input
                 type="password"
-                id="password"
                 name='password'
                 value={regUser.password}
                 onChange={handleReg}
                 className="px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-blue-200"
               />
             </div>
-            {/* <div className="flex items-center space-x-2">
-              <input
-                type="checkbox"
-                id="remember"
-                className="w-4 h-4 transition duration-300 rounded focus:ring-2 focus:ring-offset-0 focus:outline-none focus:ring-blue-200"
-              />
-              <label htmlFor="remember" className="text-sm font-semibold text-gray-500">Remember me</label>
-            </div> */}
             <div>
               <button
                 type="submit"

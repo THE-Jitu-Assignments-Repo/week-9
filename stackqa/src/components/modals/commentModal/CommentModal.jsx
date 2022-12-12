@@ -1,7 +1,11 @@
 import React from 'react'
 import { AiFillCloseSquare, AiOutlineComment } from 'react-icons/ai'
+import { useDispatch, useSelector } from 'react-redux'
+import { G_modal } from '../../../features/questions/QuestionSlice'
 
-function CommentModal({setIsComment}) {
+function CommentModal() {
+  const {postOpen}=useSelector(state=>state.questions)
+  const dispatch=useDispatch()
   return (
     <div className="fixed flex top-0 left-0 right-0 w-full h-full items-center  justify-center backdrop-blur-sm">
       <div className="absolute bg-white  w-2/6  top-40 shadow-md rounded-sm  z-30  outline-none overflow-x-hidden overflow-y-auto">
@@ -9,7 +13,7 @@ function CommentModal({setIsComment}) {
           <span className="text-xl flex items-center gap-2"><AiOutlineComment size={40}/>Write your comment here ...</span>
           <AiFillCloseSquare
             className="text-blue-500 hover:text-red-500"
-            onClick={setIsComment}
+            onClick={()=>dispatch(G_modal(false))}
             size={30}
           />
         </div>
@@ -29,7 +33,7 @@ function CommentModal({setIsComment}) {
           </button>
           <button
             className="bg-blue-500 p-2 rounded-sm pl-5 pr-5 text-white hover:bg-blue-300"
-            onClick={setIsComment}
+            onClick={()=>dispatch(G_modal(false))}
           >
             cancel
           </button>
