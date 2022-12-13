@@ -13,14 +13,17 @@ import {
 import Answers from "../answers/Answers";
 import CommentModal from "../../modals/commentModal/CommentModal";
 import { useSelector } from "react-redux";
+import moment from 'moment'
 
-function QuestionArticle() {
+function QuestionArticle({item}) {
   const [isanswer, setIsAnswer] = useState(false);
   const [iscomment, setIsComment] = useState(false);
   const { postOpen, commentOpen } = useSelector((state) => state.questions);
 
+  // console.log("dsd",item);
+
   return (
-    <article className="border-b h-auto grid-col-1 grid-flow-row items-center from-sky-200 bg-white p-3">
+    <article className="border-b h-auto grid-col-1 grid-flow-row items-center from-sky-200 bg-white p-3" key={item.post_id}>
       <div className="flex flex-row">
         <div className="object-contain w-12 mt-4 flex items-start justify-center">
           <img src="/assets/pic.png" alt="profile" className="rounded-full" />
@@ -28,10 +31,10 @@ function QuestionArticle() {
         <div className="p-2 justify-between flex-grow flex-wrap">
           <div>Michael Jay</div>
           <span className="text-gray-300 text-ellipsis">
-            Asked March 07, 2022
+            Asked {moment(item.post_date).utc().format("MMMM Do YYYY")}
           </span>
           <h3 className="leading-relaxed max-w-md hover:text-blue-500">
-            How do native speakers tell I’m foreign based on my English alone?
+            {item.question}
           </h3>
         </div>
         <div>
@@ -98,7 +101,7 @@ function QuestionArticle() {
       </div>
 
       {/* answer modal-content */}
-      {isanswer && <Answers />}
+      {isanswer && <Answers dataID={data.post_id} />}
 
       {commentOpen && <CommentModal />}
     </article>

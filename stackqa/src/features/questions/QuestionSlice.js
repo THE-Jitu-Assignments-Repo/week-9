@@ -30,11 +30,27 @@ export const postQuestion = createAsyncThunk(
                 }
             })
 
-            console.log(response);
+            // console.log(response);
             toast.success("posted a question")
 
         } catch (error) {
-            toast.error(error.message)
+            toast.error(error.response.data.message ? error.response.data.message : error.message)
+        }
+    }
+)
+
+export const getAllQuestions = createAsyncThunk(
+    "questions/getAllQuestions",
+    async()=>{
+        try {
+            const response= await axios.get('http://localhost:3001/question/allquestions')
+
+            const Data = response.data 
+            // console.log(allPost);  
+            return Data        
+        } catch (error) {
+            console.log(error.message);
+            
         }
     }
 )
@@ -58,7 +74,10 @@ export const QuestionSlice = createSlice({
 
             }),
             builder.addCase(postQuestion.rejected, (state, action) => {
-                console.log(action.payload);
+                // console.log(action.payload);
+            }),
+            builder.addCase(getAllQuestions.fulfilled,(state,action)=>{
+                state.questions=action.payload
             })
     }
 

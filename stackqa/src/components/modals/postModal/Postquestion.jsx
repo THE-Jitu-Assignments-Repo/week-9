@@ -12,6 +12,7 @@ import {
 
 function Postquestion() {
   const { token } = useSelector((state) => state.user);
+  
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const options = [
@@ -24,7 +25,7 @@ function Postquestion() {
     { value: "General", label: "general" },
   ];
   const [question, setQuestion] = useState("");
-  const [selectedOption, setSelectedOption] = useState(null);
+  const [selectedOption, setSelectedOption] = useState('');
   // const [post, setPost] = useState({question:'', category: ''})
 
   const handlePost = (e) => {
