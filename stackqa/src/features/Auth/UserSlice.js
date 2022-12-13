@@ -28,16 +28,9 @@ export const registerUser = createAsyncThunk(
             await validateSignUpSchema(userDetails)
 
             const response = await axios.post("http://localhost:3000/user", userDetails)
-
-
-            // console.log(response.data);
             toast.success("Account created succesfully")
 
         } catch (error) {
-            // console.log({
-            //     "Registration Error": error.message
-            // })
-            // toast.error(error.message)
             return rejectWithValue(error.response ? error.response.data.message : error.message)
 
         }
@@ -57,11 +50,6 @@ export const signUser = createAsyncThunk(
 
             return response.data
         } catch (error) {
-            // toast.error(error.message)
-            // console.log(error.response.data.message);
-            // toast.error(error.response.data.message)
-            // state.error=error.response.data.message
-            // return rejectWithValue(error.message ? error.message : error.response.data.message)
             return rejectWithValue(error.response ? error.response.data.message : error.message)
         }
     }
@@ -86,7 +74,7 @@ export const UserSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.addCase(registerUser.fulfilled, (state, action) => {
-                console.log(action.payload)
+                // console.log(action.payload)
             }),
             builder.addCase(registerUser.rejected, (state, action) => {
                 // console.log({
