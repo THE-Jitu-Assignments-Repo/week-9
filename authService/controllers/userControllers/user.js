@@ -69,7 +69,7 @@ module.exports = {
                         ...rest
                     } = user;
                     const token = jwt.sign(rest, process.env.SECRET, {
-                        expiresIn: "10mins"
+                        expiresIn: "20mins"
                     })
                     res.status(200).json({
                         Token: token,
@@ -77,7 +77,7 @@ module.exports = {
                     })
                 } else {
                     res.status(401).json({
-                        message: "Password entered is wrong"
+                        message: "Invalid credentials"
                     })
                 }
             } else {

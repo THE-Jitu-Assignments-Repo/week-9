@@ -13,7 +13,8 @@ import {
 
 const initialState = {
     user: false,
-    token: null
+    token: null,
+    error: null
 }
 
 
@@ -21,7 +22,7 @@ const initialState = {
 export const registerUser = createAsyncThunk(
     'user/registerUser',
     async (userDetails, {
-        dispatch
+        rejectWithValue
     }) => {
         try {
             await validateSignUpSchema(userDetails)
@@ -33,17 +34,21 @@ export const registerUser = createAsyncThunk(
             toast.success("Account created succesfully")
 
         } catch (error) {
-            console.log({
-                "Registration Error": error.message
-            })
-            toast.error(error.message)
+            // console.log({
+            //     "Registration Error": error.message
+            // })
+            // toast.error(error.message)
+            return rejectWithValue(error.response ? error.response.data.message : error.message)
+
         }
     }
 )
 
 export const signUser = createAsyncThunk(
     'user/signUser',
-    async (details) => {
+    async (details, {
+        rejectWithValue
+    }) => {
         try {
             await validateLoginSchema(details)
             const response = await axios.post('http://localhost:3000/user/login', details)
@@ -52,9 +57,12 @@ export const signUser = createAsyncThunk(
 
             return response.data
         } catch (error) {
-            toast.error(error.message)
-            toast.error(error.response.data.message)
-            console.log('jknjnjk', error.message);
+            // toast.error(error.message)
+            // console.log(error.response.data.message);
+            // toast.error(error.response.data.message)
+            // state.error=error.response.data.message
+            // return rejectWithValue(error.message ? error.message : error.response.data.message)
+            return rejectWithValue(error.response ? error.response.data.message : error.message)
         }
     }
 )
@@ -70,6 +78,9 @@ export const UserSlice = createSlice({
         logout: (state, action) => {
             state.token = localStorage.removeItem('token')
             toast.success("User Logout successfully")
+        },
+        setError: (state, action) => {
+            state.error = null
         }
 
     },
@@ -78,17 +89,22 @@ export const UserSlice = createSlice({
                 console.log(action.payload)
             }),
             builder.addCase(registerUser.rejected, (state, action) => {
-                console.log({
-                    "Rejaected": action.payload
-                })
+                // console.log({
+                //     "Rejaected": action.payload
+                // })
+                state.error = action.payload
+
             }),
             builder.addCase(signUser.fulfilled, (state, action) => {
                 localStorage.setItem('token', action.payload.Token)
                 state.token = localStorage.getItem('token')
+                state.error = null
 
             }),
             builder.addCase(signUser.rejected, (state, action) => {
-                console.log(action.payload)
+                // console.log()
+                state.token = null
+                state.error = action.payload
             })
     }
 })
@@ -96,7 +112,8 @@ export const UserSlice = createSlice({
 
 export const {
     userLogin,
-    logout
+    logout,
+    setError
 } = UserSlice.actions
 
 // console.log(userLogin())

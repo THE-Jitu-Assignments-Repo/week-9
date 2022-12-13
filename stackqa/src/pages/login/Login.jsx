@@ -1,17 +1,20 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 // import { userLogin } from '../../features/Auth/UserSlice'
-import { signUser, userLogin } from '../../features/Auth/UserSlice'
+import { setError, signUser, userLogin } from '../../features/Auth/UserSlice'
+import {AiFillWarning} from 'react-icons/ai'
 
 
 function Login() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
+  const {token, error} = useSelector(state=>state.user)
 
     const [login, setLogin] = useState({ email: '', password: '' })
     const handleLog=(e)=>{
       const {name, value}= e.target
+      dispatch(setError())
       setLogin(prev=>({
         ...prev,
         [name]: value
@@ -20,10 +23,14 @@ function Login() {
 
     const loginSubmit=(e)=>{
       e.preventDefault()
-
       dispatch(signUser(login))
-      navigate('/')
+      if(token){
+        return navigate('/')
+      }else{
+        return navigate('/login')
+      }
     }
+    
   return (
     <div className="flex items-center min-h-screen p-4 bg-gray-100 lg:justify-center">
       <div
@@ -48,6 +55,7 @@ function Login() {
         </div>
         <div className="p-5 bg-white md:flex-1">
           <h3 className="my-4 text-2xl font-semibold text-gray-700">Account Login</h3>
+          {error && <div className="text-sm p-2 text-red-500 flex items-center gap-2"><AiFillWarning size={20} /> {error}</div>}
           <form className="flex flex-col space-y-5">
             <div className="flex flex-col space-y-1">
               <label htmlFor="email" className="text-sm font-semibold text-gray-500">Email address</label>
