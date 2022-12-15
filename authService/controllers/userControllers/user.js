@@ -32,7 +32,7 @@ module.exports = {
 
                 if(email===record.toString()){
                     res.status(401).json({
-                            message: "Email already exist"
+                            message: "User credentials already exist"
                         })
                 }else{
 
@@ -58,8 +58,8 @@ module.exports = {
                     })
                 }
             } else {
-                res.status(403).json({
-                    message: 'Connot register empty fields'
+                res.status(400).json({
+                    message: 'Please fill in the required fields'
                 })
             }
 
