@@ -2,6 +2,5 @@ CREATE OR ALTER PROC sp_getQuestions
 AS
 BEGIN
 SET NOCOUNT ON;
-  SELECT * FROM post_tbl
+  SELECT * FROM post_tbl WHERE isDeleted = 0;
 END;
-
