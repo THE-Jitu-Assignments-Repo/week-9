@@ -25,8 +25,8 @@ function Answers({data,dataID}) {
   const dispatch = useDispatch()
 
   // useEffect(() => {
-  //  dispatch(getAnswers(dataID))
-  // }, [dataID])
+  //  dispatch(getAnswers(data.post_id))
+  // }, [data.post_id])
 
   // console.log(answers);
   // console.log(dataID);
@@ -34,16 +34,6 @@ function Answers({data,dataID}) {
   return (
     <div>
       <div className="border-t h-auto p-5" >
-        {/* <div className="flex flex-row  bg-slate-300 p-2 mb-1">
-          <input
-            type="text"
-            className="outline-none font-extralight p-1 pl-2 w-full rounded-l-md caret-slate-400"
-            placeholder="Write your answer ..."
-          />
-          <button className="bg-blue-500 rounded-r-md w-20 hover:bg-blue-300 hover:text-white flex-row flex items-center justify-center">
-            <GrSend size={20} />
-          </button>
-        </div> */}
         <div className="flex flex-row  bg-slate-300 p-2 rounded-lg">
           <div className="flex flex-col justify-start gap-2">
             <div className="w-8 mt-4 flex items-center justify-center ">

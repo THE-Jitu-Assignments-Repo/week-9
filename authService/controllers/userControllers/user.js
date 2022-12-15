@@ -21,28 +21,33 @@ module.exports = {
                 password,
                 imageUrl
             } = req.body
-            const id = uuidv4()
-            const pool = await mssql.connect(sqlConfig)
-            const hash = await bcrypt.hash(password, 10)
+            if (username && email && password){
 
-            const newUser = {
-                username,
-                email,
-                password: hash,
-                imageUrl
+                const id = uuidv4()
+                const pool = await mssql.connect(sqlConfig)
+                const hash = await bcrypt.hash(password, 10)
+    
+                const newUser = {
+                    username,
+                    email,
+                    password: hash,
+                    imageUrl
+                }
+    
+    
+                await pool.request()
+                    .input("userID", id)
+                    .input("username", newUser.username)
+                    .input("email", newUser.email)
+                    .input("password", newUser.password)
+                    .input("imageUrl", newUser.imageUrl)
+                    .execute('sp_registerUser');
+                res.status(200).json({
+                    message: 'Reqistered succefully'
+                })
+            }else{
+                res.status(402).json({message: 'Connot register empty fields'})
             }
-
-
-            await pool.request()
-                .input("userID", id)
-                .input("username", newUser.username)
-                .input("email", newUser.email)
-                .input("password", newUser.password)
-                .input("imageUrl", newUser.imageUrl)
-                .execute('sp_registerUser');
-            res.status(200).json({
-                message: 'Reqistered succefully'
-            })
 
         } catch (error) {
             res.status(500).json({
@@ -58,32 +63,36 @@ module.exports = {
                 password
             } = req.body
             const pool = await mssql.connect(sqlConfig)
+            if(email && password){
 
-            const user = await (await pool.request().input("email", email).execute('sp_loginUser')).recordset[0];
-
-            if (user) {
-                const comparePass = await bcrypt.compare(password, user.password)
-                if (comparePass) {
-                    const {
-                        password,
-                        ...rest
-                    } = user;
-                    const token = jwt.sign(rest, process.env.SECRET, {
-                        expiresIn: "20mins"
-                    })
-                    res.status(200).json({
-                        Token: token,
-                        message: "login successfully"
-                    })
+                const user = await (await pool.request().input("email", email).execute('sp_loginUser')).recordset[0];
+    
+                if (user) {
+                    const comparePass = await bcrypt.compare(password, user.password)
+                    if (comparePass) {
+                        const {
+                            password,
+                            ...rest
+                        } = user;
+                        const token = jwt.sign(rest, process.env.SECRET, {
+                            expiresIn: "20mins"
+                        })
+                        res.status(200).json({
+                            Token: token,
+                            message: "login successfully"
+                        })
+                    } else {
+                        res.status(401).json({
+                            message: "Invalid credentials"
+                        })
+                    }
                 } else {
-                    res.status(401).json({
-                        message: "Invalid credentials"
+                    res.status(402).json({
+                        message: "User not found"
                     })
                 }
-            } else {
-                res.status(402).json({
-                    message: "User not found"
-                })
+            }else{
+                res.status(402).json({message: "cannot enter empty details"})
             }
 
         } catch (error) {

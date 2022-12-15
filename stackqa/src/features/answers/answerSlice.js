@@ -17,6 +17,7 @@ export const getAnswers = createAsyncThunk(
     async (postID) => {
         try {
             const reponse = await axios.get(`http://localhost:3001/getanswers/${postID}`)
+            console.log(reponse.data);
             return reponse.data
         } catch (error) {
             toast.error(error.message)

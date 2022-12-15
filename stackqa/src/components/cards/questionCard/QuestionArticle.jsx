@@ -28,7 +28,8 @@ function QuestionArticle({ item }) {
   console.log("dsd",answers);
   useEffect(() => {
   dispatch(getAnswers(item.post_id))
-  }, [])
+  setIsAnswer(false)
+  }, [item.post_id])
 
   return (
     <article
@@ -99,11 +100,11 @@ function QuestionArticle({ item }) {
           <div
             className="p-1 flex items-center bg-white rounded-md  hover:text-white hover:bg-blue-300 cursor-pointer"
             onClick={() =>
-             setIsAnswer((prev) => !prev)
+             {setIsAnswer(true),dispatch(getAnswers(item.post_id))}
             }
           >
             <AiFillSchedule className="text-blue-500" size={20} />
-            <span className="pr-1 pl-1">{answers?.length} Answers</span>
+            <span className="pr-1 pl-1">2 Answers</span>
           </div>
           <div className="p-1  flex items-center bg-white rounded-md hover:text-white hover:bg-blue-300 cursor-pointer">
             <span className="pr-1 pl-1 flex items-center gap-1 ">
