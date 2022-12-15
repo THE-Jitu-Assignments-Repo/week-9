@@ -21,32 +21,44 @@ module.exports = {
                 password,
                 imageUrl
             } = req.body
-            if (username && email && password){
+            if (username && email && password) {
 
                 const id = uuidv4()
                 const pool = await mssql.connect(sqlConfig)
-                const hash = await bcrypt.hash(password, 10)
+                const emailExist = await (await pool.request().input("email", email).execute('sp_loginUser')).recordset
+                emailExist.map(item =>item.email);
+
+                if(emailExist){
+                    res.status(401).json({
+                            message: "Email already exist"
+                        })
+                }else{
+
+                    const hash = await bcrypt.hash(password, 10)
     
-                const newUser = {
-                    username,
-                    email,
-                    password: hash,
-                    imageUrl
+                    const newUser = {
+                        username,
+                        email,
+                        password: hash,
+                        imageUrl
+                    }
+    
+    
+                    await pool.request()
+                        .input("userID", id)
+                        .input("username", newUser.username)
+                        .input("email", newUser.email)
+                        .input("password", newUser.password)
+                        .input("imageUrl", newUser.imageUrl)
+                        .execute('sp_registerUser');
+                    res.status(200).json({
+                        message: 'Reqistered succefully'
+                    })
                 }
-    
-    
-                await pool.request()
-                    .input("userID", id)
-                    .input("username", newUser.username)
-                    .input("email", newUser.email)
-                    .input("password", newUser.password)
-                    .input("imageUrl", newUser.imageUrl)
-                    .execute('sp_registerUser');
-                res.status(200).json({
-                    message: 'Reqistered succefully'
+            } else {
+                res.status(403).json({
+                    message: 'Connot register empty fields'
                 })
-            }else{
-                res.status(402).json({message: 'Connot register empty fields'})
             }
 
         } catch (error) {
@@ -63,10 +75,10 @@ module.exports = {
                 password
             } = req.body
             const pool = await mssql.connect(sqlConfig)
-            if(email && password){
+            if (email && password) {
 
                 const user = await (await pool.request().input("email", email).execute('sp_loginUser')).recordset[0];
-    
+
                 if (user) {
                     const comparePass = await bcrypt.compare(password, user.password)
                     if (comparePass) {
@@ -91,8 +103,10 @@ module.exports = {
                         message: "User not found"
                     })
                 }
-            }else{
-                res.status(402).json({message: "cannot enter empty details"})
+            } else {
+                res.status(402).json({
+                    message: "cannot enter empty details"
+                })
             }
 
         } catch (error) {
