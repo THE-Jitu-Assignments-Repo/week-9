@@ -48,7 +48,7 @@ function Questions() {
         <section className="border mt-5 min-h-screen bg-slate-50 mb-4 rounded-md flex-col flex">
           {/* map post here */}
           {questions?.allPost?.map((qst) => {
-            return <QuestionArticle key={qst.post_id} item={qst} />;
+            return <QuestionArticle  item={qst} />;
           })}
         </section>
         <section className="w-[300px] p-4 mt-5 bg-slate-50 h-[500px] mb-10">

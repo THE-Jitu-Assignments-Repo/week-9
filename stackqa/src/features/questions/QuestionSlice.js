@@ -29,12 +29,13 @@ export const postQuestion = createAsyncThunk(
                     Authorization : `Bearer ${Token}`,
                 }
             })
-
+                dispatch(getAllQuestions())
             // console.log(response);
             toast.success("posted a question")
 
         } catch (error) {
-            toast.error(error.response.data.message ? error.response.data.message : error.message)
+            toast.error(error.message)
+            // toast.error(error.response.data.message ? error.response.data.message : error.message)
         }
     }
 )

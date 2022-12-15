@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import {
   AiFillCaretDown,
   AiFillCaretUp,
@@ -12,18 +12,29 @@ import {
 } from "react-icons/ai";
 import Answers from "../answers/Answers";
 import CommentModal from "../../modals/commentModal/CommentModal";
-import { useSelector } from "react-redux";
-import moment from 'moment'
+import { useDispatch, useSelector } from "react-redux";
+import moment from "moment";
+import { getAnswers } from "../../../features/answers/answerSlice";
+import { GrSend } from "react-icons/gr";
 
-function QuestionArticle({item}) {
+
+function QuestionArticle({ item }) {
+  const dispatch = useDispatch()
   const [isanswer, setIsAnswer] = useState(false);
   const [iscomment, setIsComment] = useState(false);
   const { postOpen, commentOpen } = useSelector((state) => state.questions);
+  const { answers } = useSelector((state) => state.answers);
 
-  // console.log("dsd",item);
+  console.log("dsd",answers);
+  useEffect(() => {
+  dispatch(getAnswers(item.post_id))
+  }, [])
 
   return (
-    <article className="border-b h-auto grid-col-1 grid-flow-row items-center from-sky-200 bg-white p-3" key={item.post_id}>
+    <article
+      className="border-b h-auto grid-col-1 grid-flow-row items-center from-sky-200 bg-white p-3"
+      key={item.post_id}
+    >
       <div className="flex flex-row">
         <div className="object-contain w-12 mt-4 flex items-start justify-center">
           <img src="/assets/pic.png" alt="profile" className="rounded-full" />
@@ -87,10 +98,12 @@ function QuestionArticle({item}) {
         <div className="items-center justify-between flex flow-row w-full ">
           <div
             className="p-1 flex items-center bg-white rounded-md  hover:text-white hover:bg-blue-300 cursor-pointer"
-            onClick={() => setIsAnswer((prev) => !prev)}
+            onClick={() =>
+             setIsAnswer((prev) => !prev)
+            }
           >
             <AiFillSchedule className="text-blue-500" size={20} />
-            <span className="pr-1 pl-1">15 Answers</span>
+            <span className="pr-1 pl-1">{answers?.length} Answers</span>
           </div>
           <div className="p-1  flex items-center bg-white rounded-md hover:text-white hover:bg-blue-300 cursor-pointer">
             <span className="pr-1 pl-1 flex items-center gap-1 ">
@@ -99,9 +112,22 @@ function QuestionArticle({item}) {
           </div>
         </div>
       </div>
-
+        <div className="flex flex-row  bg-slate-300 p-3 mb-2">
+          <input
+            type="text"
+            className="outline-none font-extralight p-1 pl-2 w-full rounded-l-md caret-slate-400"
+            placeholder="Write your answer ..."
+          />
+          <button className="bg-blue-500 rounded-r-md w-20 hover:bg-blue-300 hover:text-white flex-row flex items-center justify-center">
+            <GrSend size={20} />
+          </button>
+        </div>
+      
       {/* answer modal-content */}
-      {isanswer && <Answers dataID={data.post_id} />}
+      {isanswer && answers?.map((answ) => {
+        // console.log(answ);
+        return <Answers data={answ} dataID={item.post_id} />;
+      })}
 
       {commentOpen && <CommentModal />}
     </article>

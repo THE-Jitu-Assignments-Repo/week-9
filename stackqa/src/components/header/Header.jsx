@@ -43,12 +43,12 @@ function Header({ close }) {
       <div className="max-w-screen-sm w-80">
         <div className="text-sm lg:flex-grow justify-end flex pr-5 items-center gap-3">
           {token && (
-            <a
+            
+              <Link to="profile"><a
               href="#"
               className="block mt-4 lg:inline-block lg:mt-0 text-blue-400 hover:text-blue-900"
-            >
-              <Link to="profile">My Profile</Link>
-            </a>
+            >My Profile</a></Link>
+            
           )}
           {!token && (
             <div className="items-center gap-3 flex">
