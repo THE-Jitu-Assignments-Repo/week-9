@@ -26,9 +26,11 @@ module.exports = {
                 const id = uuidv4()
                 const pool = await mssql.connect(sqlConfig)
                 const emailExist = await (await pool.request().input("email", email).execute('sp_loginUser')).recordset
-                emailExist.map(item =>item.email);
 
-                if(emailExist){
+                const record = emailExist.map(userRecord =>userRecord.email);
+                // console.log(record.toString());
+
+                if(email===record.toString()){
                     res.status(401).json({
                             message: "Email already exist"
                         })
