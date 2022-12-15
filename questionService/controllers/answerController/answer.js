@@ -78,7 +78,7 @@ module.exports={
     },
     vote: async (req, res) => {
         try {
-            const {answer_id, votes} = req.body
+            const {answer_id} = req.body
             const { user_id }= req.info
 
             const id = uuidv4()
@@ -88,7 +88,6 @@ module.exports={
             .input("voteID", id)
             .input("userID", user_id)
             .input("answerID", answer_id)
-            .input("votes", votes)
             .execute('sp_upvoteOrDownvote')
 
             res.status(200).json({message: "Succefully voted"})
