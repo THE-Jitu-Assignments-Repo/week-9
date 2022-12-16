@@ -6,10 +6,10 @@ const router = require('express').Router()
 
 
 router.post("/answer", verifyToken,postAnswer)
-router.post("/answerupdate", verifyToken, updateAnswer)
+router.put("/answerupdate", verifyToken, updateAnswer)
 router.get("/getanswers/:postID", getAnswers)
-router.post("/mark/:id", verifyToken, markPreferred)
-router.post("/vote", verifyToken, vote)
+router.patch("/mark/:id", verifyToken, markPreferred)
+router.patch("/vote", verifyToken, vote)
 
 
 

@@ -96,14 +96,14 @@ module.exports = {
             const {
                 user_id
             } = req.info
-            const recordID = await (await pool.request().input("answerID", id).execute('sp_getTheAnswer')).recordset
+            const recordID = await (await pool.request().input("answerID", id).execute('sp_getTheAnswer')).recordset[0]
             // console.log(recordID);
 
-            if(!recordID[0]){
+            if(!recordID){
                 res.status(400).json({message: "Invalid credetials"})
             }else{
 
-                if (user_id === recordID[0].user_id) {
+                if (user_id === recordID.user_id) {
     
                     await pool.request()
                         .input("answerID", id)
