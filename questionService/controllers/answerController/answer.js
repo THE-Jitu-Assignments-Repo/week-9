@@ -20,17 +20,21 @@ module.exports = {
             const id = uuidv4()
 
             const pool = await mssql.connect(sqlConfig)
+            if(post_id && answer ){
 
-            await pool.request()
-                .input("answerID", id)
-                .input("userID", user_id)
-                .input("postID", post_id)
-                .input("answer", answer)
-                .execute('sp_postOrEditAnswer')
-
-            res.status(200).json({
-                message: "Question answered succesfully"
-            })
+                await pool.request()
+                    .input("answerID", id)
+                    .input("userID", user_id)
+                    .input("postID", post_id)
+                    .input("answer", answer)
+                    .execute('sp_postOrEditAnswer')
+    
+                res.status(200).json({
+                    message: "Question answered succesfully"
+                })
+            }else{
+                res.status(402).json({message: "Please fill in the empty fields"})
+            }
         } catch (error) {
             res.status(401).json({
                 message: error.message

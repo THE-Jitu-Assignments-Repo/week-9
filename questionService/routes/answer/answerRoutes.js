@@ -5,7 +5,7 @@ const router = require('express').Router()
 
 
 
-router.post("/answer", verifyToken, postAnswer)
+router.post("/answer", verifyToken,postAnswer)
 router.post("/answerupdate", verifyToken, updateAnswer)
 router.get("/getanswers/:postID", getAnswers)
 router.post("/mark/:id", verifyToken, markPreferred)

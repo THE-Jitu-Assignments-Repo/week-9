@@ -3,7 +3,9 @@ import {
     createSlice
 } from "@reduxjs/toolkit"
 import axios from "axios";
-import { toast } from "react-toastify";
+import {
+    toast
+} from "react-toastify";
 
 
 const initialState = {
@@ -11,6 +13,27 @@ const initialState = {
 }
 
 const Token = localStorage.getItem('token')
+
+export const postAnswer = createAsyncThunk(
+    "answer/postAnswer",
+    async (answerDetails, {
+        rejectWithValue
+    }) => {
+        try {
+            const response = await axios.post('http://localhost:3001/answer/', answerDetails, {
+                headers: {
+                    Authorization: `Bearer ${Token}`,
+                }
+            })
+
+            // console.log(response.data);
+            return response.data
+        } catch (error) {
+            return rejectWithValue(error.response ? error.response.data.message : error.message)
+
+        }
+    }
+)
 
 export const getAnswers = createAsyncThunk(
     'answer/getAnswers',
@@ -36,8 +59,14 @@ export const answerSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.addCase(getAnswers.fulfilled, (state, action) => {
-            state.answers = action.payload
-        })
+                state.answers = action.payload
+            }),
+            builder.addCase(postAnswer.fulfilled, (state, action) => {
+                toast.success(action.payload.message)
+            }),
+            builder.addCase(postAnswer.rejected, (state,action)=>{
+                toast.error(action.payload)
+            })
     }
 })
 

@@ -14,7 +14,7 @@ import Answers from "../answers/Answers";
 import CommentModal from "../../modals/commentModal/CommentModal";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
-import { getAnswers } from "../../../features/answers/answerSlice";
+import { getAnswers, postAnswer } from "../../../features/answers/answerSlice";
 import { GrSend } from "react-icons/gr";
 
 
@@ -22,14 +22,22 @@ function QuestionArticle({ item }) {
   const dispatch = useDispatch()
   const [isanswer, setIsAnswer] = useState(false);
   const [iscomment, setIsComment] = useState(false);
+  const [answer, setAnswer] = useState('')
   const { postOpen, commentOpen } = useSelector((state) => state.questions);
   const { answers } = useSelector((state) => state.answers);
 
-  console.log("dsd",answers);
+  // console.log("dsd",answers);
   useEffect(() => {
   dispatch(getAnswers(item.post_id))
   setIsAnswer(false)
   }, [item.post_id])
+
+  const handleSend =()=>{
+    let post_id =item.post_id
+    // console.log("jnjsdnn", ans, item.post_id);
+    dispatch(postAnswer({post_id,answer}))
+    setAnswer('')
+  }
 
   return (
     <article
@@ -118,8 +126,11 @@ function QuestionArticle({ item }) {
             type="text"
             className="outline-none font-extralight p-1 pl-2 w-full rounded-l-md caret-slate-400"
             placeholder="Write your answer ..."
+            value={answer}
+            onChange={(e)=> setAnswer(e.target.value)}
           />
-          <button className="bg-blue-500 rounded-r-md w-20 hover:bg-blue-300 hover:text-white flex-row flex items-center justify-center">
+          <button className="bg-blue-500 rounded-r-md w-20 hover:bg-blue-300 hover:text-white flex-row flex items-center justify-center"
+          onClick={handleSend}>
             <GrSend size={20} />
           </button>
         </div>
