@@ -34,7 +34,7 @@ module.exports = {
             })
         } catch (error) {
             console.log(error);
-            res.status(401).json({
+            res.status(400).json({
                 message: error.message
             })
         }
@@ -49,7 +49,7 @@ module.exports = {
                     allPost: allQuestions
                 })
             } else {
-                return res.status(203).json({
+                return res.status(404).json({
                     allPost: []
                 })
             }
@@ -112,7 +112,7 @@ module.exports = {
             }
 
         } catch (error) {
-            res.status(402).json({
+            res.status(400).json({
                 message: 'ID not present',
                 Err: error.message
             })
@@ -131,13 +131,13 @@ module.exports = {
                     myPost: myQuestion
                 })
             } else {
-                return res.status(401).json({
+                return res.status(404).json({
                     message: `user has no questions`
                 })
             };
 
         } catch (error) {
-            res.status(404).json({
+            res.status(400).json({
                 message: error.message
             })
         }
@@ -157,7 +157,7 @@ module.exports = {
             res.status(200).json(results)
 
         } catch (error) {
-            res.status(401).json({
+            res.status(400).json({
                 message: error.message
             })
         }
@@ -181,7 +181,7 @@ module.exports = {
             }
 
         } catch (error) {
-            res.status(401).json({
+            res.status(400).json({
                 message: error.message
             })
 

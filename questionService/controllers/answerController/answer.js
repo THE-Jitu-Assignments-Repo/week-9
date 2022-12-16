@@ -33,10 +33,10 @@ module.exports = {
                     message: "Question answered succesfully"
                 })
             }else{
-                res.status(402).json({message: "Please fill in the empty fields"})
+                res.status(204).json({message: "Please fill in the empty fields"})
             }
         } catch (error) {
-            res.status(401).json({
+            res.status(400).json({
                 message: error.message
             })
         }
@@ -81,7 +81,7 @@ module.exports = {
             res.status(200).json(Answers)
 
         } catch (error) {
-            res.status(402).json({
+            res.status(400).json({
                 message: error.message
             })
         }
@@ -100,7 +100,7 @@ module.exports = {
             // console.log(recordID);
 
             if(!recordID){
-                res.status(400).json({message: "Invalid credetials"})
+                res.status(404).json({message: "Invalid credetials"})
             }else{
 
                 if (user_id === recordID.user_id) {
@@ -113,7 +113,7 @@ module.exports = {
                         message: "marked as preferred"
                     })
                 }else{
-                    res.status(400).json({messgae: "Not authorized"})
+                    res.status(401).json({messgae: "Not authorized"})
                 }
             }
 
@@ -146,7 +146,7 @@ module.exports = {
             })
 
         } catch (error) {
-            res.status(401).json({
+            res.status(400).json({
                 message: error.message
             })
         }

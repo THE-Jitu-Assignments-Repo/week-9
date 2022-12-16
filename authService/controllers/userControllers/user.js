@@ -31,7 +31,7 @@ module.exports = {
                 // console.log(record.toString());
 
                 if(email===record.toString()){
-                    res.status(401).json({
+                    res.status(205).json({
                             message: "User credentials already exist"
                         })
                 }else{
@@ -58,13 +58,13 @@ module.exports = {
                     })
                 }
             } else {
-                res.status(400).json({
+                res.status(204).json({
                     message: 'Please fill in the required fields'
                 })
             }
 
         } catch (error) {
-            res.status(500).json({
+            res.status(400).json({
                 message: error.message
             })
         }
@@ -101,7 +101,7 @@ module.exports = {
                         })
                     }
                 } else {
-                    res.status(401).json({
+                    res.status(404).json({
                         message: "User not found"
                     })
                 }
@@ -112,7 +112,7 @@ module.exports = {
             }
 
         } catch (error) {
-            res.status(500).json({
+            res.status(400).json({
                 message: error.message
             })
         }
