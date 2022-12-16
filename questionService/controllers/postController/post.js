@@ -65,7 +65,7 @@ module.exports = {
             const {
                 id
             } = req.params;
-            console.log(id);
+            // console.log(id);
 
             const pool = await mssql.connect(sqlConfig)
             const singleQuestion = await (await pool.request().input("postID", id).execute('sp_getSingleQuestion')).recordset
@@ -132,7 +132,7 @@ module.exports = {
                 })
             } else {
                 return res.status(401).json({
-                    message: `user of this id: ${id}  not found`
+                    message: `user has no questions`
                 })
             };
 

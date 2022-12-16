@@ -10,8 +10,8 @@ router.post('/postquestion', verifyToken, postQuestion)
 router.get('/mostanswers', getQuestionMostAnswers)
 router.get('/:id', verifyToken, getSingleQuestion)
 router.get('/qst/search', verifyToken, searchQuestions)
-router.get('/myquestion/:id', verifyToken, fetchMyQuestions)
-router.get('/delete/:id', verifyToken, deleteQuestion)
+router.get('/myquestion/find', verifyToken, fetchMyQuestions)
+router.delete('/delete/:id', verifyToken, deleteQuestion)
 
 
 

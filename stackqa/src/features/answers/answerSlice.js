@@ -16,7 +16,7 @@ const Token = localStorage.getItem('token')
 
 export const postAnswer = createAsyncThunk(
     "answer/postAnswer",
-    async (answerDetails, {
+    async (answerDetails, { dispatch,
         rejectWithValue
     }) => {
         try {
@@ -25,7 +25,7 @@ export const postAnswer = createAsyncThunk(
                     Authorization: `Bearer ${Token}`,
                 }
             })
-
+            dispatch(getAnswers())
             // console.log(response.data);
             return response.data
         } catch (error) {

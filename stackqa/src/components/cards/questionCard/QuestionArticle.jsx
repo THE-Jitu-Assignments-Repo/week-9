@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 import { getAnswers, postAnswer } from "../../../features/answers/answerSlice";
 import { GrSend } from "react-icons/gr";
+import jwt_decode from 'jwt-decode'
 
 
 function QuestionArticle({ item }) {
@@ -26,7 +27,8 @@ function QuestionArticle({ item }) {
   const { postOpen, commentOpen } = useSelector((state) => state.questions);
   const { answers } = useSelector((state) => state.answers);
 
-  // console.log("dsd",answers);
+  const decoded = jwt_decode(localStorage.getItem('token'))
+  // console.log("dsd",decoded);
   useEffect(() => {
   dispatch(getAnswers(item.post_id))
   setIsAnswer(false)
@@ -49,7 +51,7 @@ function QuestionArticle({ item }) {
           <img src="/assets/pic.png" alt="profile" className="rounded-full" />
         </div>
         <div className="p-2 justify-between flex-grow flex-wrap">
-          <div>Michael Jay</div>
+          <div>{decoded.username}</div>
           <span className="text-gray-300 text-ellipsis">
             Asked {moment(item.post_date).utc().format("MMMM Do YYYY")}
           </span>

@@ -101,12 +101,12 @@ module.exports = {
                         })
                     }
                 } else {
-                    res.status(402).json({
+                    res.status(401).json({
                         message: "User not found"
                     })
                 }
             } else {
-                res.status(402).json({
+                res.status(401).json({
                     message: "cannot enter empty details"
                 })
             }

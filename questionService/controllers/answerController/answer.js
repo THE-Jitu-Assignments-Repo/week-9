@@ -97,22 +97,28 @@ module.exports = {
                 user_id
             } = req.info
             const recordID = await (await pool.request().input("answerID", id).execute('sp_getTheAnswer')).recordset
-            // console.log(recordID[0].user_id);
-            if (user_id === recordID[0].user_id) {
+            // console.log(recordID);
 
-                await pool.request()
-                    .input("answerID", id)
-                    .execute('sp_markPreferred')
-
-                res.status(200).json({
-                    message: "marked as preferred"
-                })
+            if(!recordID[0]){
+                res.status(400).json({message: "Invalid credetials"})
             }else{
-                res.status(400).json({messgae: "Not authorized"})
+
+                if (user_id === recordID[0].user_id) {
+    
+                    await pool.request()
+                        .input("answerID", id)
+                        .execute('sp_markPreferred')
+    
+                    res.status(200).json({
+                        message: "marked as preferred"
+                    })
+                }else{
+                    res.status(400).json({messgae: "Not authorized"})
+                }
             }
 
         } catch (error) {
-            res.status(401).json({
+            res.status(400).json({
                 message: error.message
             })
         }
