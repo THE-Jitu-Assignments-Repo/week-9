@@ -50,6 +50,21 @@ export const getComment = createAsyncThunk(
         }
     }
 )
+
+export const deleteComment=createAsyncThunk(
+    "comment/deleteComment",
+    async(commentID,{dispatch, rejectWithValue})=>{
+        try {
+            const response = await axios.delete()
+            dispatch(getComment())
+            return response.data            
+        } catch (error) {
+            return rejectWithValue(error.message)
+        }
+    }
+)
+
+
 export const commentSlice = createSlice({
         name: 'comment',
         initialState,

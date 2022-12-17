@@ -1,11 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { AiFillCloseSquare, AiOutlineComment } from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
+import { addComment } from '../../../features/comments/commentSlice'
 import { C_modal, G_modal } from '../../../features/questions/QuestionSlice'
 
 function CommentModal() {
   const {postOpen}=useSelector(state=>state.questions)
+  const [comment, setComment]=useState('')
   const dispatch=useDispatch()
+
+  const handleComment=(e)=>{
+    e.preventDefault()
+    if(comment){
+      dispatch(addComment(comment))
+      setComment('')
+      dispatch(C_modal(false))
+    }
+  }
+
   return (
     <div className="fixed flex top-0 left-0 right-0 w-full h-full items-center  justify-center backdrop-blur-sm">
       <div className="absolute bg-white  w-2/6  top-40 shadow-md rounded-sm  z-30  outline-none overflow-x-hidden overflow-y-auto">
@@ -24,11 +36,13 @@ function CommentModal() {
             autoFocus
             cols="30"
             rows="5"
+            value={comment}
+            onChange={(e)=>setComment(e.target.value)}
           ></textarea>
         </article>
 
         <div className="flex items-center justify-end p-5  gap-3">
-          <button className="bg-blue-500 p-2 rounded-sm pl-5 pr-5 text-white hover:bg-blue-300">
+          <button className="bg-blue-500 p-2 rounded-sm pl-5 pr-5 text-white hover:bg-blue-300" onClick={handleComment}>
             comment
           </button>
           <button
