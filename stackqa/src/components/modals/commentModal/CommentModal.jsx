@@ -4,15 +4,17 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addComment } from '../../../features/comments/commentSlice'
 import { C_modal, G_modal } from '../../../features/questions/QuestionSlice'
 
-function CommentModal() {
+function CommentModal({ansId}) {
   const {postOpen}=useSelector(state=>state.questions)
   const [comment, setComment]=useState('')
   const dispatch=useDispatch()
 
   const handleComment=(e)=>{
     e.preventDefault()
+    let answer_id=ansId
     if(comment){
-      dispatch(addComment(comment))
+      dispatch(addComment({answer_id,comment}))
+      // console.log({answer_id,comment});
       setComment('')
       dispatch(C_modal(false))
     }

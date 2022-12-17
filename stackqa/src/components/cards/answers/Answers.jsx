@@ -105,7 +105,7 @@ function Answers({data,dataID}) {
           <AiFillCheckCircle className="font-extralight text-green-500" /></div> }
         </div>
       </div>
-      {commentOpen && <CommentModal />}
+      {commentOpen && <CommentModal ansId={data.answer_id}/>}
       {showComment && <Comment />}
     </div>
   );
