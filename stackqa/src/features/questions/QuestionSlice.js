@@ -56,6 +56,23 @@ export const getAllQuestions = createAsyncThunk(
     }
 )
 
+export const deleteQuestion = createAsyncThunk(
+    "questions/deleteQuestion",
+    async(qstID,{dispatch, rejectWithValue})=>{
+        try {
+            const reponse = await axios.delete('http://localhost:3001/question/delete/', qstID,{
+                headers: {
+                    Authorization : `Bearer ${Token}`,
+                }
+            })
+            dispatch(getAllQuestions())
+            return reponse.data
+        } catch (error) {
+            console.log(error);
+            return rejectWithValue(error.message? error.message : response.data.message)
+        }
+    }
+)
 
 
 
@@ -79,6 +96,12 @@ export const QuestionSlice = createSlice({
             }),
             builder.addCase(getAllQuestions.fulfilled,(state,action)=>{
                 state.questions=action.payload
+            }),
+            builder.addCase(deleteQuestion.fulfilled, (state,action)=>{
+                toast.success(action.payload.message)
+            }),
+            builder.addCase(deleteQuestion.rejected, (state,action)=>{
+                toast.error(action.payload)
             })
     }
 

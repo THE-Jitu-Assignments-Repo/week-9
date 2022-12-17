@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 import { getAnswers, postAnswer } from "../../../features/answers/answerSlice";
 import { GrSend } from "react-icons/gr";
+import { deleteQuestion } from "../../../features/questions/QuestionSlice";
 
 
 function QuestionArticle({ item }) {
@@ -66,7 +67,7 @@ function QuestionArticle({ item }) {
               <AiOutlineEdit />
               Edit post
             </li>
-            <li className="hover:bg-slate-200 cursor-pointer p-2 flex items-center gap-1 ">
+            <li className="hover:bg-slate-200 cursor-pointer p-2 flex items-center gap-1 " onClick={()=> dispatch(deleteQuestion(item.post_id))}>
               <AiOutlineDelete />
               Delete post
             </li>
