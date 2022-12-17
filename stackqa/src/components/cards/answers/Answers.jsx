@@ -94,8 +94,8 @@ function Answers({data,dataID}) {
             {" "}
             1 comment
           </span>{" "}
-          | <span className="font-extralight text-green-500">Prefered </span>
-          <AiFillCheckCircle className="font-extralight text-green-500" />
+         {data.preferred && <div>| <span className="font-extralight text-green-500">Prefered </span>
+          <AiFillCheckCircle className="font-extralight text-green-500" /></div> }
         </div>
       </div>
       {showComment && <Comment />}
