@@ -48,7 +48,7 @@ function Questions() {
         <section className="border mt-5 min-h-screen bg-slate-50 mb-4 rounded-md flex-col flex">
           {/* map post here */}
           {questions?.allPost?.map((qst) => {
-            return <QuestionArticle  item={qst} />;
+            return <QuestionArticle key={qst.post_id} item={qst} />;
           })}
         </section>
         <section className="w-[300px] p-4 mt-5 bg-slate-50 h-[500px] mb-10">
@@ -56,8 +56,8 @@ function Questions() {
             <span className="leading-relaxed pl-5">Top suggested topics</span>
           </div>
           <div className="grid border-t h-auto grid-rows-3 grid-cols-2 gap-2 pt-4">
-            {options?.map((opt) => (
-              <button className="text-black  font-extralight  bg-slate-300 pr-1 pl-1 rounded-sm outline-none hover:bg-blue-200 hover:text-white">
+            {options?.map((opt, index) => (
+              <button className="text-black  font-extralight  bg-slate-300 pr-1 pl-1 rounded-sm outline-none hover:bg-blue-200 hover:text-white" key={index}>
                 {opt.value}
               </button>
             ))}

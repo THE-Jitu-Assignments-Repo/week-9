@@ -16,7 +16,6 @@ import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 import { getAnswers, postAnswer } from "../../../features/answers/answerSlice";
 import { GrSend } from "react-icons/gr";
-import jwt_decode from 'jwt-decode'
 
 
 function QuestionArticle({ item }) {
@@ -27,8 +26,7 @@ function QuestionArticle({ item }) {
   const { postOpen, commentOpen } = useSelector((state) => state.questions);
   const { answers } = useSelector((state) => state.answers);
 
-  const decoded = jwt_decode(localStorage.getItem('token'))
-  // console.log("dsd",decoded);
+
   useEffect(() => {
   dispatch(getAnswers(item.post_id))
   setIsAnswer(false)
@@ -36,22 +34,22 @@ function QuestionArticle({ item }) {
 
   const handleSend =()=>{
     let post_id =item.post_id
-    // console.log("jnjsdnn", ans, item.post_id);
-    dispatch(postAnswer({post_id,answer}))
-    setAnswer('')
+    if(answer){
+      dispatch(postAnswer({post_id,answer}))
+      setAnswer('')
+    }
   }
 
   return (
     <article
       className="border-b h-auto grid-col-1 grid-flow-row items-center from-sky-200 bg-white p-3"
-      key={item.post_id}
-    >
+      key={item.post_id}>
       <div className="flex flex-row">
         <div className="object-contain w-12 mt-4 flex items-start justify-center">
           <img src="/assets/pic.png" alt="profile" className="rounded-full" />
         </div>
         <div className="p-2 justify-between flex-grow flex-wrap">
-          <div>{decoded.username}</div>
+          <div>Michael kamau</div>
           <span className="text-gray-300 text-ellipsis">
             Asked {moment(item.post_date).utc().format("MMMM Do YYYY")}
           </span>
@@ -110,7 +108,7 @@ function QuestionArticle({ item }) {
           <div
             className="p-1 flex items-center bg-white rounded-md  hover:text-white hover:bg-blue-300 cursor-pointer"
             onClick={() =>
-             {setIsAnswer(true),dispatch(getAnswers(item.post_id))}
+             {setIsAnswer(prev=>!prev),dispatch(getAnswers(item.post_id))}
             }
           >
             <AiFillSchedule className="text-blue-500" size={20} />
@@ -140,7 +138,7 @@ function QuestionArticle({ item }) {
       {/* answer modal-content */}
       {isanswer && answers?.map((answ) => {
         // console.log(answ);
-        return <Answers data={answ} dataID={item.post_id} />;
+        return <Answers data={answ} key={item.post_id} />;
       })}
 
       {commentOpen && <CommentModal />}
