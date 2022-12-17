@@ -141,8 +141,6 @@ function QuestionArticle({ item }) {
         // console.log(answ);
         return <Answers data={answ} key={item.post_id} />;
       })}
-
-      {commentOpen && <CommentModal />}
     </article>
   );
 }

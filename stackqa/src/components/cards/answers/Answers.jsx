@@ -18,9 +18,12 @@ import { getAnswers, markPreferred } from "../../../features/answers/answerSlice
 import { C_modal, G_modal } from "../../../features/questions/QuestionSlice";
 import Comment from "../comment/Comment";
 import moment from 'moment'
+import { getComment } from "../../../features/comments/commentSlice";
+import CommentModal from "../../modals/commentModal/CommentModal";
 
 function Answers({data,dataID}) {
   const [showComment, setShowComment] = React.useState(false);
+  const {commentOpen}= useSelector(state=>state.questions)
   // const {answers} = useSelector(state=>state.answers)
   const dispatch = useDispatch()
 
@@ -30,6 +33,10 @@ function Answers({data,dataID}) {
 
   // console.log(answers);
   // console.log(dataID);
+  useEffect(()=>{
+    dispatch(getComment(data.answer_id))
+    setShowComment(false)
+  },[data.answer_id])
 
   return (
     <div>
@@ -89,7 +96,7 @@ function Answers({data,dataID}) {
         <div className="pt-1 flex items-center gap-1 ">
           <span
             className="font-extralight cursor-pointer hover:bg-slate-300 hover:rounded-md pr-1 pl-1"
-            onClick={() => setShowComment((prev) => !prev)}
+            onClick={() => {setShowComment((prev) => !prev), dispatch(getComment(data.answer_id))}}
           >
             {" "}
             1 comment
@@ -98,6 +105,7 @@ function Answers({data,dataID}) {
           <AiFillCheckCircle className="font-extralight text-green-500" /></div> }
         </div>
       </div>
+      {commentOpen && <CommentModal />}
       {showComment && <Comment />}
     </div>
   );
