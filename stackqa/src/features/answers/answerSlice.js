@@ -9,7 +9,8 @@ import {
 
 
 const initialState = {
-    answers: []
+    answers: [],
+    total: 0
 }
 
 const Token = localStorage.getItem('token')
@@ -31,6 +32,23 @@ export const postAnswer = createAsyncThunk(
         } catch (error) {
             return rejectWithValue(error.response ? error.response.data.message : error.message)
 
+        }
+    }
+)
+
+export const markPreferred = createAsyncThunk(
+    "answer/markPreferred",
+    async(ansID, {dispatch, rejectWithValue})=>{
+        try {
+            const response = await axios.patch('http://localhost:3001/mark/', ansID, {
+                headers: {
+                    Authorization: `Bearer ${Token}`,
+                }
+            })
+            dispatch(getAnswers())
+            return response.data
+        } catch (error) {
+            return rejectWithValue(error.message)
         }
     }
 )
@@ -65,6 +83,12 @@ export const answerSlice = createSlice({
                 toast.success(action.payload.message)
             }),
             builder.addCase(postAnswer.rejected, (state,action)=>{
+                toast.error(action.payload)
+            }),
+            builder.addCase(markPreferred.fulfilled, (state,action)=>{
+                toast.success(action.payload.message)
+            }),
+            builder.addCase(markPreferred.rejected, (state,action)=>{
                 toast.error(action.payload)
             })
     }

@@ -14,7 +14,7 @@ import {
 } from "react-icons/ai";
 import { GrSend } from "react-icons/gr";
 import { useDispatch, useSelector } from "react-redux";
-import { getAnswers } from "../../../features/answers/answerSlice";
+import { getAnswers, markPreferred } from "../../../features/answers/answerSlice";
 import { C_modal, G_modal } from "../../../features/questions/QuestionSlice";
 import Comment from "../comment/Comment";
 import moment from 'moment'
@@ -76,7 +76,7 @@ function Answers({data,dataID}) {
                 <AiOutlineComment />
                 comment
               </li>
-              <li className="hover:bg-slate-200 cursor-pointer p-2 flex items-center gap-1  ">
+              <li className="hover:bg-slate-200 cursor-pointer p-2 flex items-center gap-1  " onClick={()=>dispatch(markPreferred(data.answer_id))}>
                 <AiOutlineCheckCircle /> Accept
               </li>
               <li className="hover:bg-slate-200 cursor-pointer p-2 flex items-center gap-1 ">
