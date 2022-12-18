@@ -11,9 +11,9 @@ function CommentModal({ansId}) {
 
   const handleComment=(e)=>{
     e.preventDefault()
-    let answer_id=ansId
+    let answerID=ansId
     if(comment){
-      dispatch(addComment({answer_id,comment}))
+      dispatch(addComment({answerID,comment}))
       // console.log({answer_id,comment});
       setComment('')
       dispatch(C_modal(false))

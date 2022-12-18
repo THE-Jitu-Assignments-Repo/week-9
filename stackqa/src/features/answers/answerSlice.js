@@ -40,7 +40,7 @@ export const markPreferred = createAsyncThunk(
     "answer/markPreferred",
     async(ansID, {dispatch, rejectWithValue})=>{
         try {
-            const response = await axios.patch('http://localhost:3001/mark/', ansID, {
+            const response = await axios.patch(`http://localhost:3001/mark/${ansID}`, {
                 headers: {
                     Authorization: `Bearer ${Token}`,
                 }
@@ -48,6 +48,7 @@ export const markPreferred = createAsyncThunk(
             dispatch(getAnswers())
             return response.data
         } catch (error) {
+            // console.log("as",error);
             return rejectWithValue(error.message)
         }
     }

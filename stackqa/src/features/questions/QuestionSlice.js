@@ -10,8 +10,10 @@ import {
 
 const initialState = {
     questions: [],
+    selectedPost: '',
     postOpen: false,
-    commentOpen: false
+    commentOpen: false,
+
 }
 
 const Token = localStorage.getItem('token')
@@ -52,6 +54,18 @@ export const getAllQuestions = createAsyncThunk(
         } catch (error) {
             console.log(error.message);
             
+        }
+    }
+)
+
+export const getQuestion=createAsyncThunk(
+    "questions/getQuestion",
+    async(postID, {rejectWithValue})=>{
+        try {
+            const response = await axios.get(`http://localhost:3001/question/${postID}`)
+            return response.data
+        } catch (error) {
+            return rejectWithValue(error.message)
         }
     }
 )
@@ -102,6 +116,10 @@ export const QuestionSlice = createSlice({
             }),
             builder.addCase(deleteQuestion.rejected, (state,action)=>{
                 toast.error(action.payload)
+            }),
+            builder.addCase(getQuestion.fulfilled,(state,action)=>{
+                state.selectedPost=action.payload
+                // console.log(action.payload);
             })
     }
 

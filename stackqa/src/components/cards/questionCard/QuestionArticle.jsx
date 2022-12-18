@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import {
   AiFillCaretDown,
   AiFillCaretUp,
@@ -16,35 +16,52 @@ import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 import { getAnswers, postAnswer } from "../../../features/answers/answerSlice";
 import { GrSend } from "react-icons/gr";
-import { deleteQuestion } from "../../../features/questions/QuestionSlice";
-
+import {
+  deleteQuestion,
+  getQuestion,
+} from "../../../features/questions/QuestionSlice";
 
 function QuestionArticle({ item }) {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [isanswer, setIsAnswer] = useState(false);
   const [iscomment, setIsComment] = useState(false);
-  const [answer, setAnswer] = useState('')
-  const { postOpen, commentOpen } = useSelector((state) => state.questions);
+  const [answer, setAnswer] = useState("");
+  const { postOpen, commentOpen, selectedPost } = useSelector(
+    (state) => state.questions
+  );
   const { answers } = useSelector((state) => state.answers);
 
-
   useEffect(() => {
-  dispatch(getAnswers(item.post_id))
-  setIsAnswer(false)
-  }, [item.post_id])
+    dispatch(getAnswers(item.post_id));
 
-  const handleSend =()=>{
-    let post_id =item.post_id
-    if(answer){
-      dispatch(postAnswer({post_id,answer}))
-      setAnswer('')
+    // console.log("reer",selectedPost.post?.post_id);
+    let post = selectedPost.post?.post_id;
+
+    // dispatch(getQuestion(item.post_id));
+
+    if (post !== item.post_id) {
+      setIsAnswer(false);
     }
-  }
+  }, [item.post_id, selectedPost]);
+
+  const handleSend = () => {
+    let post_id = item.post_id;
+    if (answer) {
+      dispatch(postAnswer({ post_id, answer }));
+      setAnswer("");
+    }
+  };
+  const handleOpenAns = () => {
+    // dispatch(getAnswers(item.post_id));
+    dispatch(getQuestion(item.post_id));
+    setIsAnswer((prev) => !prev);
+  };
 
   return (
     <article
       className="border-b h-auto grid-col-1 grid-flow-row items-center from-sky-200 bg-white p-3"
-      key={item.post_id}>
+      key={item.post_id}
+    >
       <div className="flex flex-row">
         <div className="object-contain w-12 mt-4 flex items-start justify-center">
           <img src="/assets/pic.png" alt="profile" className="rounded-full" />
@@ -67,7 +84,10 @@ function QuestionArticle({ item }) {
               <AiOutlineEdit />
               Edit post
             </li>
-            <li className="hover:bg-slate-200 cursor-pointer p-2 flex items-center gap-1 " onClick={()=> dispatch(deleteQuestion(item.post_id))}>
+            <li
+              className="hover:bg-slate-200 cursor-pointer p-2 flex items-center gap-1 "
+              onClick={() => dispatch(deleteQuestion(item.post_id))}
+            >
               <AiOutlineDelete />
               Delete post
             </li>
@@ -108,9 +128,7 @@ function QuestionArticle({ item }) {
         <div className="items-center justify-between flex flow-row w-full ">
           <div
             className="p-1 flex items-center bg-white rounded-md  hover:text-white hover:bg-blue-300 cursor-pointer"
-            onClick={() =>
-             {setIsAnswer(prev=>!prev),dispatch(getAnswers(item.post_id))}
-            }
+            onClick={handleOpenAns}
           >
             <AiFillSchedule className="text-blue-500" size={20} />
             <span className="pr-1 pl-1">2 Answers</span>
@@ -122,25 +140,28 @@ function QuestionArticle({ item }) {
           </div>
         </div>
       </div>
-        <div className="flex flex-row  bg-slate-300 p-3 mb-2">
-          <input
-            type="text"
-            className="outline-none font-extralight p-1 pl-2 w-full rounded-l-md caret-slate-400"
-            placeholder="Write your answer ..."
-            value={answer}
-            onChange={(e)=> setAnswer(e.target.value)}
-          />
-          <button className="bg-blue-500 rounded-r-md w-20 hover:bg-blue-300 hover:text-white flex-row flex items-center justify-center"
-          onClick={handleSend}>
-            <GrSend size={20} />
-          </button>
-        </div>
-      
+      <div className="flex flex-row  bg-slate-300 p-3 mb-2">
+        <input
+          type="text"
+          className="outline-none font-extralight p-1 pl-2 w-full rounded-l-md caret-slate-400"
+          placeholder="Write your answer ..."
+          value={answer}
+          onChange={(e) => setAnswer(e.target.value)}
+        />
+        <button
+          className="bg-blue-500 rounded-r-md w-20 hover:bg-blue-300 hover:text-white flex-row flex items-center justify-center"
+          onClick={handleSend}
+        >
+          <GrSend size={20} />
+        </button>
+      </div>
+
       {/* answer modal-content */}
-      {isanswer && answers?.map((answ) => {
-        // console.log(answ);
-        return <Answers data={answ} key={item.post_id} />;
-      })}
+      {isanswer &&
+        answers?.map((answ) => {
+          // console.log(answ);
+          return <Answers data={answ} />;
+        })}
     </article>
   );
 }

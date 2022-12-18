@@ -26,6 +26,7 @@ export const addComment = createAsyncThunk(
                 }
             })
             dispatch(getComment())
+            toast.success("posted")
             return response.data
         } catch (error) {
             return rejectWithValue(error.message)
@@ -34,15 +35,11 @@ export const addComment = createAsyncThunk(
 )
 export const getComment = createAsyncThunk(
     "comment/getComment",
-    async (ansID, {
+    async (answer_id, {
         rejectWithValue
     }) => {
         try {
-            const response = await axios.get('http://localhost:3001/getcomment/', ansID, {
-                headers: {
-                    Authorization: `Bearer ${Token}`,
-                }
-            })
+            const response = await axios.get(`http://localhost:3001/getcomment/${answer_id}`)
             return response.data
 
         } catch (error) {
