@@ -11,6 +11,7 @@ import {
 const initialState = {
     questions: [],
     selectedPost: '',
+    askedBy:null,
     postOpen: false,
     commentOpen: false,
 
@@ -70,6 +71,18 @@ export const getQuestion=createAsyncThunk(
     }
 )
 
+export const postDetails=createAsyncThunk(
+    "questions/postDetails",
+    async(postID, {rejectWithValue})=>{
+        try {
+            const response = await axios.get(`http://localhost:3001/question/getdetails/${postID}`)
+            return response.data
+        } catch (error) {
+            return rejectWithValue(error.message)            
+        }
+    }
+)
+
 export const deleteQuestion = createAsyncThunk(
     "questions/deleteQuestion",
     async(qstID,{dispatch, rejectWithValue})=>{
@@ -120,6 +133,9 @@ export const QuestionSlice = createSlice({
             builder.addCase(getQuestion.fulfilled,(state,action)=>{
                 state.selectedPost=action.payload
                 // console.log(action.payload);
+            }),
+            builder.addCase(postDetails.fulfilled,(state,action)=>{
+                state.askedBy=action.payload.details
             })
     }
 

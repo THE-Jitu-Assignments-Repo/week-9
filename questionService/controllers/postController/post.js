@@ -118,6 +118,18 @@ module.exports = {
             })
         }
     },
+    getPostDetails: async(req, res)=>{
+        try {
+            const {id}=req.params
+            const pool = await mssql.connect(sqlConfig)
+
+            const details = await (await pool.request().input("postID", id).execute('sp_getPostDetails')).recordset[0]
+            
+            res.status(200).json({details})
+        } catch (error) {
+            res.status(401).json({message: error.message})
+        }
+    },
     fetchMyQuestions: async (req, res) => {
         try {
             const {

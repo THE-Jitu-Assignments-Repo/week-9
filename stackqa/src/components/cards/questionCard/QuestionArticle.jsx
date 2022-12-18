@@ -19,6 +19,7 @@ import { GrSend } from "react-icons/gr";
 import {
   deleteQuestion,
   getQuestion,
+  postDetails,
 } from "../../../features/questions/QuestionSlice";
 
 function QuestionArticle({ item }) {
@@ -26,19 +27,15 @@ function QuestionArticle({ item }) {
   const [isanswer, setIsAnswer] = useState(false);
   const [iscomment, setIsComment] = useState(false);
   const [answer, setAnswer] = useState("");
-  const { postOpen, commentOpen, selectedPost } = useSelector(
+  const { postOpen, commentOpen, selectedPost, askedBy } = useSelector(
     (state) => state.questions
   );
   const { answers } = useSelector((state) => state.answers);
 
   useEffect(() => {
     dispatch(getAnswers(item.post_id));
-
-    // console.log("reer",selectedPost.post?.post_id);
+    dispatch(postDetails(item.post_id))
     let post = selectedPost.post?.post_id;
-
-    // dispatch(getQuestion(item.post_id));
-
     if (post !== item.post_id) {
       setIsAnswer(false);
     }
@@ -52,7 +49,6 @@ function QuestionArticle({ item }) {
     }
   };
   const handleOpenAns = () => {
-    // dispatch(getAnswers(item.post_id));
     dispatch(getQuestion(item.post_id));
     setIsAnswer((prev) => !prev);
   };
@@ -67,7 +63,7 @@ function QuestionArticle({ item }) {
           <img src="/assets/pic.png" alt="profile" className="rounded-full" />
         </div>
         <div className="p-2 justify-between flex-grow flex-wrap">
-          <div>Michael kamau</div>
+          <div>{askedBy.username}</div>
           <span className="text-gray-300 text-ellipsis">
             Asked {moment(item.post_date).utc().format("MMMM Do YYYY")}
           </span>
