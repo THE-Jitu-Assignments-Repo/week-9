@@ -122,6 +122,18 @@ module.exports = {
                 message: error.message
             })
         }
+    }, 
+    getAnswerDetails: async(req, res)=>{
+        try {
+            const {id}=req.params
+            const pool = await mssql.connect(sqlConfig)
+
+            const details = await (await pool.request().input("answerID", id).execute('sp_getAnswerDetails')).recordset[0]
+            
+            res.status(200).json({details})
+        } catch (error) {
+            res.status(401).json({message: error.message})
+        }
     },
     vote: async (req, res) => {
         try {

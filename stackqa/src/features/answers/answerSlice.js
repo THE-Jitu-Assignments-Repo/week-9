@@ -10,6 +10,7 @@ import {
 
 const initialState = {
     answers: [],
+    answeredBy: '',
     total: 0
 }
 
@@ -67,7 +68,17 @@ export const getAnswers = createAsyncThunk(
         }
     }
 )
-
+export const answerDetails=createAsyncThunk(
+    "answer/answerDetails",
+    async(answerID, {rejectWithValue})=>{
+        try {
+            const response = await axios.get(`http://localhost:3001/answerdetails/${answerID}`)
+            return response.data
+        } catch (error) {
+            return rejectWithValue(error.message)            
+        }
+    }
+)
 
 
 export const answerSlice = createSlice({
@@ -91,6 +102,9 @@ export const answerSlice = createSlice({
             }),
             builder.addCase(markPreferred.rejected, (state,action)=>{
                 toast.error(action.payload)
+            }),
+            builder.addCase(answerDetails.fulfilled, (state, action)=>{
+                state.answeredBy=action.payload.details
             })
     }
 })

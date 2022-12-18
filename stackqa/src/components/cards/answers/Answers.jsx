@@ -14,7 +14,7 @@ import {
 } from "react-icons/ai";
 import { GrSend } from "react-icons/gr";
 import { useDispatch, useSelector } from "react-redux";
-import { getAnswers, markPreferred } from "../../../features/answers/answerSlice";
+import { answerDetails, getAnswers, markPreferred } from "../../../features/answers/answerSlice";
 import { C_modal, G_modal } from "../../../features/questions/QuestionSlice";
 import Comment from "../comment/Comment";
 import moment from 'moment'
@@ -24,7 +24,7 @@ import CommentModal from "../../modals/commentModal/CommentModal";
 function Answers({data,dataID}) {
   const [showComment, setShowComment] = React.useState(false);
   const {commentOpen}= useSelector(state=>state.questions)
-  // const {answers} = useSelector(state=>state.answers)
+  const {answeredBy} = useSelector(state=>state.answers)
   const dispatch = useDispatch()
 
   // useEffect(() => {
@@ -36,6 +36,7 @@ function Answers({data,dataID}) {
   useEffect(()=>{
     dispatch(getComment(data.answer_id))
     setShowComment(false)
+    dispatch(answerDetails(data.answer_id))
   },[data.answer_id])
 
   return (
@@ -63,7 +64,7 @@ function Answers({data,dataID}) {
             </div>
           </div>
           <div className="p-2 justify-between flex-grow flex-wrap">
-            <div>John Doe</div>
+            <div>{answeredBy.username}</div>
             <span className="text-gray-500 text-ellipsis">
               Answered {moment(data.answer_date).utc().format("MMMM Do YYYY")}
             </span>

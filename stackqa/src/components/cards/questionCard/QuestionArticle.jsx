@@ -34,13 +34,12 @@ function QuestionArticle({ item }) {
 
   useEffect(() => {
     dispatch(getAnswers(item.post_id));
-    dispatch(postDetails(item.post_id))
     let post = selectedPost.post?.post_id;
     if (post !== item.post_id) {
       setIsAnswer(false);
     }
   }, [item.post_id, selectedPost]);
-
+  
   const handleSend = () => {
     let post_id = item.post_id;
     if (answer) {
@@ -50,6 +49,7 @@ function QuestionArticle({ item }) {
   };
   const handleOpenAns = () => {
     dispatch(getQuestion(item.post_id));
+    dispatch(postDetails(item.post_id))
     setIsAnswer((prev) => !prev);
   };
 
@@ -63,7 +63,7 @@ function QuestionArticle({ item }) {
           <img src="/assets/pic.png" alt="profile" className="rounded-full" />
         </div>
         <div className="p-2 justify-between flex-grow flex-wrap">
-          <div>{askedBy.username}</div>
+          <div>{askedBy?.username}</div>
           <span className="text-gray-300 text-ellipsis">
             Asked {moment(item.post_date).utc().format("MMMM Do YYYY")}
           </span>
