@@ -39,9 +39,11 @@ export const markPreferred = createAsyncThunk(
     "answer/markPreferred",
     async(ansID, {rejectWithValue})=>{
         try {
-            const response = await axios.post(`http://localhost:3001/mark/${ansID}`,{
+            const Tokenm = localStorage.getItem('token')
+
+            const response = await axios.patch(`http://localhost:3001/mark/${ansID}`, {
                 headers: {
-                    Authorization: `Bearer ${Token}`,
+                    Authorization: `Bearer ${Tokenm}`,
                 }
             })
             dispatch(getAnswers())
@@ -66,14 +68,20 @@ export const getAnswers = createAsyncThunk(
         }
     }
 )
-export const answerDetails=createAsyncThunk(
-    "answer/answerDetails",
-    async(answerID, {rejectWithValue})=>{
+export const vote =createAsyncThunk(
+    "answer/vote",
+    async(IDanswer, {rejectWithValue})=>{
         try {
-            const response = await axios.get(`http://localhost:3001/answerdetails/${answerID}`)
+            const response = await axios.patch(`http://localhost:3001/vote/${IDanswer}`,{
+                headers: {
+                    Authorization: `Bearer ${Token}`,
+                }
+            })
+            // console.log(IDanswer);
+            // dispatch(getAnswers(postID))
             return response.data
         } catch (error) {
-            return rejectWithValue(error.message)            
+            return rejectWithValue(error.message)
         }
     }
 )
@@ -100,9 +108,8 @@ export const answerSlice = createSlice({
             }),
             builder.addCase(markPreferred.rejected, (state,action)=>{
                 toast.error(action.payload)
-            }),
-            builder.addCase(answerDetails.fulfilled, (state, action)=>{
-                state.answeredBy=action.payload.details
+            }),builder.addCase(vote.fulfilled, (state,action)=>{
+                toast.success(action.payload.message)
             })
     }
 })

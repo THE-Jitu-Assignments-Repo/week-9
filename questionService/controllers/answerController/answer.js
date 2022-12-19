@@ -138,8 +138,8 @@ module.exports = {
     vote: async (req, res) => {
         try {
             const {
-                answer_id
-            } = req.body
+                ID
+            } = req.params
             const {
                 user_id
             } = req.info
@@ -150,7 +150,7 @@ module.exports = {
             await pool.request()
                 .input("voteID", id)
                 .input("userID", user_id)
-                .input("answerID", answer_id)
+                .input("answerID", ID)
                 .execute('sp_upvoteOrDownvote')
 
             res.status(200).json({

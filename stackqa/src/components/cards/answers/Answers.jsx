@@ -15,9 +15,9 @@ import {
 import { GrSend } from "react-icons/gr";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  answerDetails,
   getAnswers,
   markPreferred,
+  vote,
 } from "../../../features/answers/answerSlice";
 import { C_modal, G_modal } from "../../../features/questions/QuestionSlice";
 import moment from "moment";
@@ -59,6 +59,7 @@ function Answers({ data }) {
               <AiFillCaretUp
                 className="hover:text-blue-500 cursor-pointer"
                 size={20}
+                onClick={() => dispatch(vote(data.answer_id))}
               />
               <span className="text-xl">
                 {data.totalvotes ? data.totalvotes : 0}
@@ -66,6 +67,7 @@ function Answers({ data }) {
               <AiFillCaretDown
                 className="hover:text-blue-500 cursor-pointer"
                 size={20}
+                onClick={() => dispatch(vote(data.answer_id))}
               />
             </div>
           </div>

@@ -159,7 +159,7 @@ module.exports = {
                 .execute('sp_searchQuestions')
             ).recordset
 
-            res.status(200).json(results)
+            res.status(200).json({allPost:results})
 
         } catch (error) {
             res.status(400).json({

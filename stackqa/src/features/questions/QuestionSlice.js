@@ -101,6 +101,23 @@ export const deleteQuestion = createAsyncThunk(
     }
 )
 
+export const searchQuestions=createAsyncThunk(
+    "questions/searchQuestions",
+    async(texts)=>{
+        try {
+            const response = await axios.get('http://localhost:3001/question/qst/search', {
+                params:{
+                    text: texts
+                }
+            })
+
+            return response.data
+        } catch (error) {
+            return error.message
+        }
+    }
+)
+
 
 
 export const QuestionSlice = createSlice({
@@ -136,6 +153,9 @@ export const QuestionSlice = createSlice({
             }),
             builder.addCase(postDetails.fulfilled,(state,action)=>{
                 state.askedBy=action.payload.details
+            }),
+            builder.addCase(searchQuestions.fulfilled,(state,action)=>{
+                state.questions=action.payload
             })
     }
 
