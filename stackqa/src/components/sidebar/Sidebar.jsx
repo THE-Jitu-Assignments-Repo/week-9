@@ -53,21 +53,21 @@ function Sidebar({ isOpen }) {
          flex-col text-white drop-shadow-lg pl-10 font-extralight"
           >
             <Link
-              // to="question"
+              to="question"
               onClick={() => dispatch(getAllQuestions())}
               className="items-center flex-row flex p-1 gap-1 justify-start hover:bg-gray-300 hover:text-blue-500"
             >
               All Questions
             </Link>
             <Link
-              // to="question"
+              to="question"
               onClick={()=>dispatch(getRecentlyPosted())}
               className="items-center flex-row flex p-1 gap-1 justify-start hover:bg-gray-300 hover:text-blue-500"
             >
               Recently asked
             </Link>
             <Link
-              // to="question"
+              to="question"
               className="items-center flex-row flex p-1 gap-1 justify-start hover:bg-gray-300 hover:text-blue-500"
               onClick={() => dispatch(getQuestionMostAns())}
             >

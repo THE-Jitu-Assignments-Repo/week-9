@@ -218,5 +218,16 @@ module.exports = {
             })
 
         }
+    },
+    topSuggested: async(req,res)=>{
+        try {
+            const {category}=req.params
+            const pool = await mssql.connect(sqlConfig)
+            const result= await (await pool.request().input("value", category).execute('sp_topSuggested')).recordset
+
+            res.status(200).json({allPost: result})
+        } catch (error) {
+            res.status(401).json({message: error.message})
+        }
     }
 }

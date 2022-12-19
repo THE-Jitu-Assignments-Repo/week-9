@@ -46,7 +46,7 @@ function Header({ close }) {
               value={text}
               onChange={handleSearch}
             />
-            <button type="submit" className="bg-blue-500 p-1 rounded-r-md text-white" onClick={()=>dispatch(searchQuestions(text))}>Search</button>
+            <button type="submit" className="bg-blue-500 p-1 rounded-r-md text-white" onClick={()=>{dispatch(searchQuestions(text)), navigate('/question')}}>Search</button>
           </label>
         </section>
       </div>

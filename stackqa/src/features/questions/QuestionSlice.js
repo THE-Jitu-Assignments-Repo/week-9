@@ -150,7 +150,17 @@ export const searchQuestions = createAsyncThunk(
     }
 )
 
-
+export const topSuggested=createAsyncThunk(
+    "questions/topSuggested",
+    async(category)=>{
+        try {
+            const response = await axios.get(`http://localhost:3001/question/topsuggested/${category}`)
+            return response.data
+        } catch (error) {
+            return error.message
+        }
+    }
+)
 
 export const QuestionSlice = createSlice({
     name: 'questions',
@@ -194,6 +204,9 @@ export const QuestionSlice = createSlice({
             }),
             builder.addCase(getRecentlyPosted.fulfilled, (state, action) => {
                 state.questions = action.payload
+            }),
+            builder.addCase(topSuggested.fulfilled, (state,action)=>{
+                state.questions=action.payload
             })
     }
 
