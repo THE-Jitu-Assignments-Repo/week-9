@@ -10,7 +10,7 @@ import moment from "moment";
 function Comment({item}) {
   return (
     <div className="border w-[85%] mr-4 mb-2 mx-auto rounded-lg">
-      <article className="border-b h-auto grid-col-1  grid-flow-row rounded-lg items-center from-sky-200 bg-white p-3">
+      <article className="border-b h-auto grid-col-1  grid-flow-row rounded-lg items-center from-sky-200 bg-white p-3" key={item.comment_id}>
         <div className="flex flex-row">
           <div className="p-2 justify-between flex-grow flex-wrap">
             <div>{item.username}</div>

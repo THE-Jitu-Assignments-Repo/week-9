@@ -11,6 +11,7 @@ import {
   AiOutlineShareAlt,
 } from "react-icons/ai";
 import Answers from "../answers/Answers";
+import { useNavigate } from "react-router-dom";
 import CommentModal from "../../modals/commentModal/CommentModal";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
@@ -30,23 +31,28 @@ function QuestionArticle({ item }) {
   const { postOpen, commentOpen, selectedPost, askedBy } = useSelector(
     (state) => state.questions
   );
+  const { token } = useSelector((state) => state.user);
   const { answers } = useSelector((state) => state.answers);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // dispatch(getAnswers(item.post_id));
     // console.log(selectedPost);
     let post = selectedPost.post?.post_id;
     if (post !== item.post_id) {
-      // console.log('working');
       setIsAnswer(false);
     }
   }, [item.post_id, selectedPost]);
 
   const handleSend = () => {
     let post_id = item.post_id;
-    if (answer) {
-      dispatch(postAnswer({ post_id, answer }));
-      setAnswer("");
+    if (token) {
+      if (answer) {
+        dispatch(postAnswer({ post_id, answer }));
+        setAnswer("");
+      }
+    } else {
+      navigate('/login');
     }
   };
   const handleOpenAns = () => {
