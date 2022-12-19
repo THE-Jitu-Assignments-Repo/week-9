@@ -35,7 +35,7 @@ module.exports={
             const {answer_id} = req.params
             const pool = await mssql.connect(sqlConfig)
             
-            const comments = await (await pool.request().input('answerID', answer_id).execute('sp_getComments')).recordset
+            const comments = await (await pool.request().input('answerID', answer_id).execute('sp_getComments')).recordset[0]
             // console.log(answer_id);
 
             res.status(200).json({comments})

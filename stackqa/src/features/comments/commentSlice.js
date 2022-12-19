@@ -40,6 +40,7 @@ export const getComment = createAsyncThunk(
     }) => {
         try {
             const response = await axios.get(`http://localhost:3001/getcomment/${answer_id}`)
+            // console.log(response.data.comments);
             return response.data
 
         } catch (error) {
@@ -68,6 +69,10 @@ export const commentSlice = createSlice({
         extraReducers: (builder) => {
             builder.addCase(addComment.fulfilled,(state,action)=>{
                 toast.success(action.payload)
+                // state.Comment=action.payload
+            }),
+            builder.addCase(addComment.rejected,(state, action)=>{
+                toast.error(action.payload)
             }),
             builder.addCase(getComment.fulfilled,(state,action)=>{
                 state.Comment=action.payload

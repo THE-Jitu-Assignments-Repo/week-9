@@ -16,16 +16,19 @@ import { GrSend } from "react-icons/gr";
 import { useDispatch, useSelector } from "react-redux";
 import { answerDetails, getAnswers, markPreferred } from "../../../features/answers/answerSlice";
 import { C_modal, G_modal } from "../../../features/questions/QuestionSlice";
-import Comment from "../comment/Comment";
 import moment from 'moment'
 import { getComment } from "../../../features/comments/commentSlice";
 import CommentModal from "../../modals/commentModal/CommentModal";
+import Comment from "../comment/Comment";
 
-function Answers({data,dataID}) {
+function Answers({data}) {
   const [showComment, setShowComment] = React.useState(false);
   const {commentOpen}= useSelector(state=>state.questions)
   const {answeredBy} = useSelector(state=>state.answers)
+  // const {total}= useSelector(state=>state.comments)
   const dispatch = useDispatch()
+
+  // console.log(Comment);
 
   // useEffect(() => {
   //  dispatch(getAnswers(data.post_id))
