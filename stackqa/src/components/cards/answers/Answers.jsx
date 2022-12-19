@@ -24,6 +24,7 @@ import moment from "moment";
 import { getComment } from "../../../features/comments/commentSlice";
 import CommentModal from "../../modals/commentModal/CommentModal";
 import Comment from "../comment/Comment";
+import { createAvatar } from "../../../Helpers/userImage/userImage";
 
 function Answers({ data }) {
   const [showComment, setShowComment] = React.useState(false);
@@ -43,17 +44,25 @@ function Answers({ data }) {
     setShowComment((prev) => !prev);
   };
 
+  const avatar = createAvatar(data.username);
+
   return (
     <div>
       <div className="border-t h-auto p-5">
         <div className="flex flex-row  bg-slate-300 p-2 rounded-lg">
           <div className="flex flex-col justify-start gap-2">
             <div className="w-8 mt-4 flex items-center justify-center ">
-              <img
-                src="/assets/pic.png"
-                alt="anspic"
-                className="rounded-full"
-              />
+              {data.imageUrl ? (
+                <img
+                  src={data.imageUrl}
+                  alt="anspic"
+                  className="rounded-full"
+                />
+              ) : (
+                <div className="bg-blue-500 rounded-full w-8 h-8 items-center flex justify-center text-white">
+                  {avatar}
+                </div>
+              )}
             </div>
             <div className="flex flex-col items-center justify-center">
               <AiFillCaretUp

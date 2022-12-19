@@ -25,7 +25,7 @@ function Profile() {
             <img
               src="/assets/pic.png"
               alt="pic"
-              className="rounded-full w-full"
+              className="rounded-full w-full relative "
             />
           </div>
         </div>
