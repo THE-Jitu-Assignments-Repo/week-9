@@ -173,20 +173,21 @@ module.exports = {
 
             const posts = await (await pool.request().execute('sp_getQuestionMostAnswer')).recordset
 
+            //   res.status(200).json({allPost: posts})
 
             if (posts.length > 0) {
                 const getAllIds = posts.map(id => {
                     return id.post_id
                 })
-
                 const result = await (await pool.request().execute('sp_getQuestions')).recordset
-
-                const post = result.filter(item => item.post_id.includes(getAllIds))
-                res.status(200).json(post)
+                // console.log(result);
+                
+                const post = result.filter(item => getAllIds.includes(item.post_id))
+                res.status(200).json({allPost: post})
             }
 
         } catch (error) {
-            res.status(400).json({
+            res.status(401).json({
                 message: error.message
             })
 

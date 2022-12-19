@@ -10,6 +10,7 @@ import {
 } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../features/Auth/UserSlice";
+import { getQuestionMostAns } from "../../features/questions/QuestionSlice";
 
 function Sidebar({ isOpen }) {
   const {token} = useSelector(state=>state.user)
@@ -59,8 +60,9 @@ function Sidebar({ isOpen }) {
               Recently asked
             </Link>
             <Link
-              to="question"
+              // to="question"
               className="items-center flex-row flex p-1 gap-1 justify-start hover:bg-gray-300 hover:text-blue-500"
+              onClick={()=>dispatch(getQuestionMostAns())}
               >
               Most answered
             </Link>
