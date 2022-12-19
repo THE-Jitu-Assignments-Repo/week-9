@@ -90,8 +90,10 @@ module.exports = {
             const {
                 id
             } = req.params
+            const {
+                user_id
+            } = req.info
 
-            console.log(id);
             const pool = await mssql.connect(sqlConfig)
             const post = await (await pool.request()
                 .input('postID', id)
@@ -99,12 +101,15 @@ module.exports = {
 
 
             if (post.length) {
-                await pool.request()
-                    .input("postID", id)
-                    .execute('sp_deleteQuestion')
-                res.status(200).json({
-                    message: 'post Deleted!!'
-                })
+                if (post.user_id === user_id) {
+                    await pool.request()
+                        .input("postID", id)
+                        .execute('sp_deleteQuestion')
+                    res.status(200).json({
+                        message: 'post Deleted!!'
+                    })
+                }
+
             } else {
                 res.status(404).json({
                     message: `post with id ${id} does not exist`
@@ -116,18 +121,6 @@ module.exports = {
                 message: 'ID not present',
                 Err: error.message
             })
-        }
-    },
-    getPostDetails: async(req, res)=>{
-        try {
-            const {id}=req.params
-            const pool = await mssql.connect(sqlConfig)
-
-            const details = await (await pool.request().input("postID", id).execute('sp_getPostDetails')).recordset[0]
-            
-            res.status(200).json({details})
-        } catch (error) {
-            res.status(401).json({message: error.message})
         }
     },
     fetchMyQuestions: async (req, res) => {
