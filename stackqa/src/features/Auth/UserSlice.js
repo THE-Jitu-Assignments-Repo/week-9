@@ -6,7 +6,7 @@ import axios from "axios"
 import {
     validateLoginSchema,
     validateSignUpSchema
-} from "../../Helpers/Validate";
+} from "../../Helpers/auth/Validate";
 import {
     toast
 } from "react-toastify";

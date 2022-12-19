@@ -22,6 +22,7 @@ import {
   getQuestion,
   postDetails,
 } from "../../../features/questions/QuestionSlice";
+import { createAvatar } from "../../../Helpers/userImage/userImage";
 
 function QuestionArticle({ item }) {
   const dispatch = useDispatch();
@@ -55,13 +56,18 @@ function QuestionArticle({ item }) {
       navigate("/login");
     }
   };
+
+  // const userAvatar = userImage(item?.username);
+    const avatar = createAvatar(item.username);
+
+ 
+
   const handleOpenAns = () => {
     dispatch(getQuestion(item.post_id));
     dispatch(getAnswers(item.post_id));
     setIsAnswer((prev) => !prev);
   };
 
- 
   return (
     <article
       className="border-b h-auto grid-col-1 grid-flow-row items-center from-sky-200 bg-white p-3"
@@ -69,7 +75,12 @@ function QuestionArticle({ item }) {
     >
       <div className="flex flex-row">
         <div className="object-contain w-12 mt-4 flex items-start justify-center">
-          <img src="/assets/pic.png" alt="profile" className="rounded-full" />
+          {item?.imageUrl ? (
+            <img src={item.imageUrl} alt="profile" className="rounded-full" />
+            ) 
+            : (
+              <div className="bg-blue-500 rounded-full w-10 h-10 items-center flex justify-center text-white">{avatar}</div>
+            )}
         </div>
         <div className="p-2 justify-between flex-grow flex-wrap">
           <div>{item.username}</div>
