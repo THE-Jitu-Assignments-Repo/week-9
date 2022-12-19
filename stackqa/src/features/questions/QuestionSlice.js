@@ -87,7 +87,7 @@ export const deleteQuestion = createAsyncThunk(
     "questions/deleteQuestion",
     async(qstID,{dispatch, rejectWithValue})=>{
         try {
-            const reponse = await axios.delete('http://localhost:3001/question/delete/', qstID,{
+            const reponse = await axios.delete(`http://localhost:3001/question/delete/${qstID}`,{
                 headers: {
                     Authorization : `Bearer ${Token}`,
                 }

@@ -7,7 +7,7 @@ import { toast } from "react-toastify"
 
 
 const initialState = {
-    Comment: [],
+    AllComment: [],
     total: 0
 }
 
@@ -75,7 +75,7 @@ export const commentSlice = createSlice({
                 toast.error(action.payload)
             }),
             builder.addCase(getComment.fulfilled,(state,action)=>{
-                state.Comment=action.payload
+                state.AllComment=action.payload.comments
             })
         }
     }

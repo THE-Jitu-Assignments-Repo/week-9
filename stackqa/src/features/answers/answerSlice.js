@@ -9,9 +9,8 @@ import {
 
 
 const initialState = {
-    answers: [],
-    answeredBy: '',
-    total: 0
+    answers: []
+   
 }
 
 const Token = localStorage.getItem('token')
@@ -28,7 +27,6 @@ export const postAnswer = createAsyncThunk(
                 }
             })
             dispatch(getAnswers())
-            // console.log(response.data);
             return response.data
         } catch (error) {
             return rejectWithValue(error.response ? error.response.data.message : error.message)
@@ -39,9 +37,9 @@ export const postAnswer = createAsyncThunk(
 
 export const markPreferred = createAsyncThunk(
     "answer/markPreferred",
-    async(ansID, {dispatch, rejectWithValue})=>{
+    async(ansID, {rejectWithValue})=>{
         try {
-            const response = await axios.patch(`http://localhost:3001/mark/${ansID}`, {
+            const response = await axios.post(`http://localhost:3001/mark/${ansID}`,{
                 headers: {
                     Authorization: `Bearer ${Token}`,
                 }

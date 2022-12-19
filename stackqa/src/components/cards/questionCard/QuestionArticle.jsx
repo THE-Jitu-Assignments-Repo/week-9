@@ -23,7 +23,6 @@ import {
 } from "../../../features/questions/QuestionSlice";
 
 function QuestionArticle({ item }) {
-  console.log(item);
   const dispatch = useDispatch();
   const [isanswer, setIsAnswer] = useState(false);
   const [iscomment, setIsComment] = useState(false);
@@ -34,13 +33,15 @@ function QuestionArticle({ item }) {
   const { answers } = useSelector((state) => state.answers);
 
   useEffect(() => {
-    dispatch(getAnswers(item.post_id));
+    // dispatch(getAnswers(item.post_id));
+    // console.log(selectedPost);
     let post = selectedPost.post?.post_id;
     if (post !== item.post_id) {
+      // console.log('working');
       setIsAnswer(false);
     }
-  }, [selectedPost]);
-  
+  }, [item.post_id, selectedPost]);
+
   const handleSend = () => {
     let post_id = item.post_id;
     if (answer) {
@@ -49,9 +50,8 @@ function QuestionArticle({ item }) {
     }
   };
   const handleOpenAns = () => {
-    // dispatch(getQuestion(item.post_id));
-        dispatch(getAnswers(item.post_id));
-
+    dispatch(getQuestion(item.post_id));
+    dispatch(getAnswers(item.post_id));
     setIsAnswer((prev) => !prev);
   };
 
@@ -129,7 +129,10 @@ function QuestionArticle({ item }) {
             onClick={handleOpenAns}
           >
             <AiFillSchedule className="text-blue-500" size={20} />
-            <span className="pr-1 pl-1">{item.totalAns} Answers</span>
+            <span className="pr-1 pl-1">
+              {item.totalAns ? item.totalAns : ""} Answer
+              {item.totalAns > 1 ? "s" : ""}{" "}
+            </span>
           </div>
           <div className="p-1  flex items-center bg-white rounded-md hover:text-white hover:bg-blue-300 cursor-pointer">
             <span className="pr-1 pl-1 flex items-center gap-1 ">

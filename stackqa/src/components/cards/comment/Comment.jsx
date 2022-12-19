@@ -5,20 +5,20 @@ import {
   AiOutlineEllipsis,
   AiOutlineWarning,
 } from "react-icons/ai";
+import moment from "moment";
 
-function Comment() {
+function Comment({item}) {
   return (
     <div className="border w-[85%] mr-4 mb-2 mx-auto rounded-lg">
       <article className="border-b h-auto grid-col-1  grid-flow-row rounded-lg items-center from-sky-200 bg-white p-3">
         <div className="flex flex-row">
           <div className="p-2 justify-between flex-grow flex-wrap">
-            <div>Russel Jay</div>
+            <div>{item.username}</div>
             <span className="text-gray-300 text-ellipsis">
-              December 01, 2022
+              {moment(item.comment_date).utc().format("MMMM Do YYYY")}
             </span>
             <h5 className="leading-relaxed max-w-md hover:text-blue-500">
-              How can one be good at programming. How can one be good at
-              programming. How can one be good at programming
+              {item.comment}
             </h5>
           </div>
           <div>
