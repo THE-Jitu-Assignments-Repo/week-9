@@ -23,6 +23,7 @@ import {
 } from "../../../features/questions/QuestionSlice";
 
 function QuestionArticle({ item }) {
+  console.log(item);
   const dispatch = useDispatch();
   const [isanswer, setIsAnswer] = useState(false);
   const [iscomment, setIsComment] = useState(false);
@@ -63,7 +64,7 @@ function QuestionArticle({ item }) {
           <img src="/assets/pic.png" alt="profile" className="rounded-full" />
         </div>
         <div className="p-2 justify-between flex-grow flex-wrap">
-          <div>{askedBy?.username}</div>
+          <div>{item.username}</div>
           <span className="text-gray-300 text-ellipsis">
             Asked {moment(item.post_date).utc().format("MMMM Do YYYY")}
           </span>
