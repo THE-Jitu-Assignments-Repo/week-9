@@ -39,7 +39,7 @@ function QuestionArticle({ item }) {
     if (post !== item.post_id) {
       setIsAnswer(false);
     }
-  }, [item.post_id, selectedPost]);
+  }, [selectedPost]);
   
   const handleSend = () => {
     let post_id = item.post_id;
@@ -49,8 +49,9 @@ function QuestionArticle({ item }) {
     }
   };
   const handleOpenAns = () => {
-    dispatch(getQuestion(item.post_id));
-    dispatch(postDetails(item.post_id))
+    // dispatch(getQuestion(item.post_id));
+        dispatch(getAnswers(item.post_id));
+
     setIsAnswer((prev) => !prev);
   };
 
@@ -128,7 +129,7 @@ function QuestionArticle({ item }) {
             onClick={handleOpenAns}
           >
             <AiFillSchedule className="text-blue-500" size={20} />
-            <span className="pr-1 pl-1">2 Answers</span>
+            <span className="pr-1 pl-1">{item.totalAns} Answers</span>
           </div>
           <div className="p-1  flex items-center bg-white rounded-md hover:text-white hover:bg-blue-300 cursor-pointer">
             <span className="pr-1 pl-1 flex items-center gap-1 ">
@@ -156,7 +157,6 @@ function QuestionArticle({ item }) {
       {/* answer modal-content */}
       {isanswer &&
         answers?.map((answ) => {
-          // console.log(answ);
           return <Answers data={answ} />;
         })}
     </article>

@@ -24,7 +24,6 @@ import Comment from "../comment/Comment";
 function Answers({data}) {
   const [showComment, setShowComment] = React.useState(false);
   const {commentOpen}= useSelector(state=>state.questions)
-  const {answeredBy} = useSelector(state=>state.answers)
   // const {total}= useSelector(state=>state.comments)
   const dispatch = useDispatch()
 
@@ -39,7 +38,6 @@ function Answers({data}) {
   useEffect(()=>{
     dispatch(getComment(data.answer_id))
     setShowComment(false)
-    dispatch(answerDetails(data.answer_id))
   },[data.answer_id])
 
   return (
@@ -59,7 +57,7 @@ function Answers({data}) {
                 className="hover:text-blue-500 cursor-pointer"
                 size={20}
               />
-              <span className="text-xl">12</span>
+              <span className="text-xl">{data.totalvotes? data.totalvotes: 0}</span>
               <AiFillCaretDown
                 className="hover:text-blue-500 cursor-pointer"
                 size={20}
@@ -67,7 +65,7 @@ function Answers({data}) {
             </div>
           </div>
           <div className="p-2 justify-between flex-grow flex-wrap">
-            <div>{answeredBy.username}</div>
+            <div>{data.username}</div>
             <span className="text-gray-500 text-ellipsis">
               Answered {moment(data.answer_date).utc().format("MMMM Do YYYY")}
             </span>
@@ -100,7 +98,7 @@ function Answers({data}) {
         <div className="pt-1 flex items-center gap-1 ">
           <span
             className="font-extralight cursor-pointer hover:bg-slate-300 hover:rounded-md pr-1 pl-1"
-            onClick={() => {setShowComment((prev) => !prev), dispatch(getComment(data.answer_id))}}
+            onClick={() => {setShowComment((prev) => !prev)}}
           >
             {" "}
             1 comment
