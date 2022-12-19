@@ -78,7 +78,7 @@ export const getQuestionMostAns = createAsyncThunk(
     async () => {
         try {
             const response = await axios.get('http://localhost:3001/question/mostanswers')
-            console.log("worked");
+            // console.log("worked");
             return response.data
         } catch (error) {
             return error.message
