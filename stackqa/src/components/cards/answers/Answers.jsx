@@ -59,7 +59,7 @@ function Answers({ data }) {
                   className="rounded-full"
                 />
               ) : (
-                <div className="bg-blue-500 rounded-full w-8 h-8 items-center flex justify-center text-white">
+                <div className="bg-blue-500 rounded-full w-8 h-8 items-center flex justify-center text-white font-sans capitalize">
                   {avatar}
                 </div>
               )}
@@ -120,7 +120,7 @@ function Answers({ data }) {
             onClick={handleComment}
           >
             {" "}
-            {data.totalComments ? data.totalComments : ""} comment{" "}
+            {data.totalComments ? data.totalComments : ""} comment
             {data.totalComments > 1 ? "s" : ""}
           </span>{" "}
           {data.preferred && (

@@ -79,7 +79,7 @@ function QuestionArticle({ item }) {
             <img src={item.imageUrl} alt="profile" className="rounded-full" />
             ) 
             : (
-              <div className="bg-blue-500 rounded-full w-10 h-10 items-center flex justify-center text-white">{avatar}</div>
+              <div className="bg-blue-500 rounded-full w-10 h-10 items-center flex justify-center text-white capitalize text-xl">{avatar}</div>
             )}
         </div>
         <div className="p-2 justify-between flex-grow flex-wrap">
