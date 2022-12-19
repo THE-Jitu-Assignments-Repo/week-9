@@ -85,6 +85,19 @@ export const getQuestionMostAns = createAsyncThunk(
         }
     }
 )
+
+export const getRecentlyPosted = createAsyncThunk(
+    "questions/getRecentlyPosted",
+    async () => {
+        try {
+            const response = await axios.get('http://localhost:3001/question/recentlyposted')
+            // console.log("worked");
+            return response.data
+        } catch (error) {
+            return error.message
+        }
+    }
+)
 export const postDetails = createAsyncThunk(
     "questions/postDetails",
     async (postID, {
@@ -177,6 +190,9 @@ export const QuestionSlice = createSlice({
                 state.questions = action.payload
             }),
             builder.addCase(getQuestionMostAns.fulfilled, (state, action) => {
+                state.questions = action.payload
+            }),
+            builder.addCase(getRecentlyPosted.fulfilled, (state, action) => {
                 state.questions = action.payload
             })
     }

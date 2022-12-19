@@ -10,12 +10,17 @@ import {
 } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../features/Auth/UserSlice";
-import { getQuestionMostAns } from "../../features/questions/QuestionSlice";
+import {
+  getAllQuestions,
+  getQuestion,
+  getQuestionMostAns,
+  getRecentlyPosted,
+} from "../../features/questions/QuestionSlice";
 
 function Sidebar({ isOpen }) {
-  const {token} = useSelector(state=>state.user)
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const { token } = useSelector((state) => state.user);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   return (
     <div
       className={`bg-[#06152D] p-1 pt-10 min-h-screen h-screen  fixed top-[60px] left-0  flex-col flex justify-between pb-20 transition-all duration-100 ease-linear overflow-x-hidden
@@ -48,22 +53,24 @@ function Sidebar({ isOpen }) {
          flex-col text-white drop-shadow-lg pl-10 font-extralight"
           >
             <Link
-              to="question"
+              // to="question"
+              onClick={() => dispatch(getAllQuestions())}
               className="items-center flex-row flex p-1 gap-1 justify-start hover:bg-gray-300 hover:text-blue-500"
             >
-            All Questions
+              All Questions
             </Link>
             <Link
-              to="question"
+              // to="question"
+              onClick={()=>dispatch(getRecentlyPosted())}
               className="items-center flex-row flex p-1 gap-1 justify-start hover:bg-gray-300 hover:text-blue-500"
-              >
+            >
               Recently asked
             </Link>
             <Link
               // to="question"
               className="items-center flex-row flex p-1 gap-1 justify-start hover:bg-gray-300 hover:text-blue-500"
-              onClick={()=>dispatch(getQuestionMostAns())}
-              >
+              onClick={() => dispatch(getQuestionMostAns())}
+            >
               Most answered
             </Link>
           </div>
@@ -87,17 +94,18 @@ function Sidebar({ isOpen }) {
           </Link>
         </div>
       </div>
-      {token && <div className="w-full grid  text-xl text-white">
-        <span
-          
-          className="flex items-center cursor-pointer justify-center gap-3 my-5 hover:text-blue-500"
-          onClick={()=>dispatch(logout())}
-        >
-          {" "}
-          <AiFillLock />
-          Log out
-        </span>
-      </div>}
+      {token && (
+        <div className="w-full grid  text-xl text-white">
+          <span
+            className="flex items-center cursor-pointer justify-center gap-3 my-5 hover:text-blue-500"
+            onClick={() => dispatch(logout())}
+          >
+            {" "}
+            <AiFillLock />
+            Log out
+          </span>
+        </div>
+      )}
     </div>
   );
 }
