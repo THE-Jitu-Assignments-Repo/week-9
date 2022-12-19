@@ -4,6 +4,7 @@ const cors = require('cors')
 const questionRouters = require('./routes/question/questionRoutes')
 const answerRouters = require('./routes/answer/answerRoutes')
 const  commentRouters  = require('./routes/comment/commentRoutes')
+const profileRouters = require('./routes/profile/profileroutes')
 // const verify = require('./middleware/verifyToken')
 
 dotenv.config()
@@ -16,6 +17,7 @@ app.use(cors())
 app.use("/question", questionRouters)
 app.use("/", answerRouters)
 app.use('/', commentRouters)
+app.use('/', profileRouters)
 
 
 app.listen(process.env.PORT, ()=>{

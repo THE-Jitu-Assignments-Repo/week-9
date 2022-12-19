@@ -2,8 +2,8 @@ import React from "react";
 import { AiOutlineMenu, AiOutlineSearch } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../../features/Auth/UserSlice";
-import { searchQuestions } from "../../features/questions/QuestionSlice";
+import { getuserdetails, logout } from "../../features/Auth/UserSlice";
+import { getmyquestions, searchQuestions } from "../../features/questions/QuestionSlice";
 import { useState } from "react";
 // import { useEffect } from "react";
 
@@ -53,14 +53,15 @@ function Header({ close }) {
       <div className="max-w-screen-sm w-80">
         <div className="text-sm lg:flex-grow justify-end flex pr-5 items-center gap-3">
           {token && (
-            <Link to="profile">
-              <a
+            <a
                 href="#"
+                onClick={()=>{dispatch(getmyquestions()), dispatch(getuserdetails())}}
                 className="block mt-4 lg:inline-block lg:mt-0 text-blue-400 hover:text-blue-900"
               >
+            <Link to="profile">
                 My Profile
-              </a>
             </Link>
+              </a>
           )}
           {!token && (
             <div className="items-center gap-3 flex">

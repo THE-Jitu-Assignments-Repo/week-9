@@ -52,7 +52,7 @@ function QuestionArticle({ item }) {
         setAnswer("");
       }
     } else {
-      navigate('/login');
+      navigate("/login");
     }
   };
   const handleOpenAns = () => {
@@ -61,6 +61,7 @@ function QuestionArticle({ item }) {
     setIsAnswer((prev) => !prev);
   };
 
+ 
   return (
     <article
       className="border-b h-auto grid-col-1 grid-flow-row items-center from-sky-200 bg-white p-3"

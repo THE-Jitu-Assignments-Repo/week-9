@@ -150,11 +150,27 @@ export const searchQuestions = createAsyncThunk(
     }
 )
 
-export const topSuggested=createAsyncThunk(
+export const topSuggested = createAsyncThunk(
     "questions/topSuggested",
-    async(category)=>{
+    async (category) => {
         try {
             const response = await axios.get(`http://localhost:3001/question/topsuggested/${category}`)
+            return response.data
+        } catch (error) {
+            return error.message
+        }
+    }
+)
+
+export const getmyquestions = createAsyncThunk(
+    "questions/getmyquestions",
+    async () => {
+        try {
+            const response = await axios.get('http://localhost:3001/question/myquestion/find', {
+                headers: {
+                    Authorization: `Bearer ${Token}`,
+                }
+            })
             return response.data
         } catch (error) {
             return error.message
@@ -205,7 +221,10 @@ export const QuestionSlice = createSlice({
             builder.addCase(getRecentlyPosted.fulfilled, (state, action) => {
                 state.questions = action.payload
             }),
-            builder.addCase(topSuggested.fulfilled, (state,action)=>{
+            builder.addCase(topSuggested.fulfilled, (state, action) => {
+                state.questions = action.payload
+            }),
+            builder.addCase(getmyquestions.fulfilled, (state,action)=>{
                 state.questions=action.payload
             })
     }

@@ -12,7 +12,7 @@ import {
 } from "react-toastify";
 
 const initialState = {
-    user: false,
+    user: '',
     token: localStorage.getItem('token'),
     error: null
 }
@@ -55,6 +55,23 @@ export const signUser = createAsyncThunk(
     }
 )
 
+export const getuserdetails=createAsyncThunk(
+    "user/getuserdetails",
+    async()=>{
+        try {
+            const Token= localStorage.getItem('token')
+            const response = await axios.get('http://localhost:3001/userdetails',{
+                headers: {
+                    Authorization: `Bearer ${Token}`,
+                }
+            })
+            return response.data
+        } catch (error) {
+            return error.message
+        }
+    }
+)
+
 
 export const UserSlice = createSlice({
     name: "user",
@@ -93,6 +110,9 @@ export const UserSlice = createSlice({
                 // console.log()
                 state.token = null
                 state.error = action.payload
+            }),
+            builder.addCase(getuserdetails.fulfilled, (state,action)=>{
+                state.user=action.payload.userDetails
             })
     }
 })

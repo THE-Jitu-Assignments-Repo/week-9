@@ -133,7 +133,7 @@ module.exports = {
             const myQuestion = await (await pool.request().input("userID", user_id).execute('sp_getMyQuestions')).recordset
             if (myQuestion.length) {
                 res.status(200).json({
-                    myPost: myQuestion
+                    allPost: myQuestion
                 })
             } else {
                 return res.status(404).json({
