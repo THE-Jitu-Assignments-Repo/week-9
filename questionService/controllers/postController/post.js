@@ -101,7 +101,7 @@ module.exports = {
 
 
             if (post.length) {
-                if (post.user_id === user_id) {
+                if (post[0].user_id === user_id) {
                     await pool.request()
                         .input("postID", id)
                         .execute('sp_deleteQuestion')
