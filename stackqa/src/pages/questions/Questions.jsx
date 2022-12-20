@@ -12,7 +12,8 @@ import "./question.css";
 function Questions() {
   // const [post, setPost] = useState(false);
   const { questions, postOpen } = useSelector((state) => state.questions);
-  
+  const [page, setPage] = useState(1)
+  const [max, setMax]= useState(6)
   const dispatch = useDispatch();
   const options = [
     { value: "nodejs", label: "nodejs" },
@@ -23,10 +24,11 @@ function Questions() {
     { value: "politics", label: "politics" },
   ];
   useEffect(() => {
-    dispatch(getAllQuestions());
+    dispatch(getAllQuestions({pageNumber: page , rowsPerPage: max}));
   }, []);
 
   // console.log("csdc",data);
+
 
   return (
     <div>
@@ -51,7 +53,7 @@ function Questions() {
           {/* map post here */}
           {questions?.allPost?(questions?.allPost?.map((qst) => {
             return <QuestionArticle key={qst.post_id} item={qst} />;
-          })) : (<div className="bg-black m-auto text-center">not possible for now</div>)}
+          })) : (<div className="m-auto text-center"><img src="https://imgs.search.brave.com/cvX6WWfjSjHAPgWt1QtqB8NV0Crx7OM3Uo34lU4pvps/rs:fit:675:450:1/g:ce/aHR0cHM6Ly9jZG5p/Lmljb25zY291dC5j/b20vaWxsdXN0cmF0/aW9uL3ByZW1pdW0v/dGh1bWIvbm8tc2Vh/cmNoLWZvdW5kLTI1/MTE2MDgtMjEzMzY5/Ni5wbmc"/></div>)}
         </section>
         <section className="w-[300px] p-4 mt-5 bg-slate-50 h-[500px] mb-10">
           <div className="text-xl font-extralight">

@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
 import { AiOutlineFilter } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import Select from "react-select";
 import QuestionArticle from "../../components/cards/questionCard/QuestionArticle";
 import Postquestion from "../../components/modals/postModal/Postquestion";
-import { G_modal } from "../../features/questions/QuestionSlice";
+import { getuserdetails } from "../../features/Auth/UserSlice";
+import { getmyquestions, G_modal } from "../../features/questions/QuestionSlice";
 
 function Profile() {
   const { questions, postOpen } = useSelector((state) => state.questions);
@@ -16,6 +18,10 @@ function Profile() {
     { value: "answered", label: "Most answered" },
   ];
 
+  useEffect(()=>{
+    dispatch(getuserdetails())
+    dispatch(getmyquestions())
+  }, [])
   // console.log(user);
   return (
     <div>

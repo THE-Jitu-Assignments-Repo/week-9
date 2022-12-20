@@ -37,11 +37,11 @@ export const postAnswer = createAsyncThunk(
 
 export const markPreferred = createAsyncThunk(
     "answer/markPreferred",
-    async(ansID, {rejectWithValue})=>{
+    async(ansID, {dispatch,rejectWithValue})=>{
         try {
             const Tokenm = localStorage.getItem('token')
-
-            const response = await axios.patch(`http://localhost:3001/mark/${ansID}`, {
+                console.log(ansID);
+            const response = await axios.post('http://localhost:3001/mark/', ansID, {
                 headers: {
                     Authorization: `Bearer ${Tokenm}`,
                 }

@@ -45,9 +45,14 @@ export const postQuestion = createAsyncThunk(
 
 export const getAllQuestions = createAsyncThunk(
     "questions/getAllQuestions",
-    async (limits) => {
+    async (dataL) => {
         try {
-            const response = await axios.get('http://localhost:3001/question/allquestions', limits)
+            const response = await axios.get('http://localhost:3001/question/allquestions', {
+                params: {
+                    pageNumber: dataL.pageNumber,
+                    rowsPerPage: dataL.rowsPerPage
+                }
+            })
 
             const Data = response.data
             // console.log(allPost);  
@@ -75,9 +80,14 @@ export const getQuestion = createAsyncThunk(
 
 export const getQuestionMostAns = createAsyncThunk(
     "questions/getQuestionMostAns",
-    async () => {
+    async (most) => {
         try {
-            const response = await axios.get('http://localhost:3001/question/mostanswers')
+            const response = await axios.get('http://localhost:3001/question/mostanswers', {
+                params: {
+                    pageNumber: most.pageNumber,
+                    rowsPerPage: most.rowsPerPage
+                }
+            })
             // console.log("worked");
             return response.data
         } catch (error) {
@@ -88,9 +98,14 @@ export const getQuestionMostAns = createAsyncThunk(
 
 export const getRecentlyPosted = createAsyncThunk(
     "questions/getRecentlyPosted",
-    async () => {
+    async (recent) => {
         try {
-            const response = await axios.get('http://localhost:3001/question/recentlyposted')
+            const response = await axios.get('http://localhost:3001/question/recentlyposted', {
+                params: {
+                    pageNumber: recent.pageNumber,
+                    rowsPerPage: recent.rowsPerPage
+                }
+            })
             // console.log("worked");
             return response.data
         } catch (error) {
@@ -224,8 +239,8 @@ export const QuestionSlice = createSlice({
             builder.addCase(topSuggested.fulfilled, (state, action) => {
                 state.questions = action.payload
             }),
-            builder.addCase(getmyquestions.fulfilled, (state,action)=>{
-                state.questions=action.payload
+            builder.addCase(getmyquestions.fulfilled, (state, action) => {
+                state.questions = action.payload
             })
     }
 

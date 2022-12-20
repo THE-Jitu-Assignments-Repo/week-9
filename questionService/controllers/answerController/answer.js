@@ -89,14 +89,15 @@ module.exports = {
     markPreferred: async (req, res) => {
         try {
             const {
-                id
-            } = req.params
+                post_id,
+                answer_id
+            } = req.body
             const pool = await mssql.connect(sqlConfig)
 
             const {
                 user_id
             } = req.info
-            const recordID = await (await pool.request().input("answerID", id).execute('sp_getTheAnswer')).recordset[0]
+            const recordID = await (await pool.request().input("postID", post_id).execute('sp_getSingleQuestion')).recordset[0]
             // console.log(recordID);
 
             if(!recordID){
@@ -106,7 +107,7 @@ module.exports = {
                 if (user_id === recordID.user_id) {
     
                     await pool.request()
-                        .input("answerID", id)
+                        .input("answerID", answer_id)
                         .execute('sp_markPreferred')
     
                     res.status(200).json({

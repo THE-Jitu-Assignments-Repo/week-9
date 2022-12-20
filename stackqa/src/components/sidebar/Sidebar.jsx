@@ -16,11 +16,14 @@ import {
   getQuestionMostAns,
   getRecentlyPosted,
 } from "../../features/questions/QuestionSlice";
+import { useState } from "react";
 
 function Sidebar({ isOpen }) {
   const { token } = useSelector((state) => state.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [page, setPage] = useState(1)
+  const [max, setMax]= useState(6)
   return (
     <div
       className={`bg-[#06152D] p-1 pt-10 min-h-screen h-screen  fixed top-[60px] left-0  flex-col flex justify-between pb-20 transition-all duration-100 ease-linear overflow-x-hidden
@@ -54,14 +57,14 @@ function Sidebar({ isOpen }) {
           >
             <Link
               to="question"
-              onClick={() => dispatch(getAllQuestions())}
+              onClick={() => dispatch(getAllQuestions({pageNumber: page , rowsPerPage: max}))}
               className="items-center flex-row flex p-1 gap-1 justify-start hover:bg-gray-300 hover:text-blue-500"
             >
               All Questions
             </Link>
             <Link
               to="question"
-              onClick={()=>dispatch(getRecentlyPosted())}
+              onClick={()=>dispatch(getRecentlyPosted({pageNumber: page , rowsPerPage: max}))}
               className="items-center flex-row flex p-1 gap-1 justify-start hover:bg-gray-300 hover:text-blue-500"
             >
               Recently asked
@@ -69,7 +72,7 @@ function Sidebar({ isOpen }) {
             <Link
               to="question"
               className="items-center flex-row flex p-1 gap-1 justify-start hover:bg-gray-300 hover:text-blue-500"
-              onClick={() => dispatch(getQuestionMostAns())}
+              onClick={() => dispatch(getQuestionMostAns({pageNumber: page , rowsPerPage: max}))}
             >
               Most answered
             </Link>

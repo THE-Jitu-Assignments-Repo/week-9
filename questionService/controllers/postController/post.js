@@ -44,7 +44,7 @@ module.exports = {
             const {
                 pageNumber,
                 rowsPerPage
-            } = req.body
+            } = req.query
             const pool = await mssql.connect(sqlConfig)
             const allQuestions = await (await pool.request().input("PageNumber", pageNumber).input("RowsPerPage", rowsPerPage).execute('sp_getQuestions')).recordset;
 
@@ -180,15 +180,19 @@ module.exports = {
             const posts = await (await pool.request().execute('sp_getQuestionMostAnswer')).recordset
 
             //   res.status(200).json({allPost: posts})
+            const {
+                pageNumber,
+                rowsPerPage
+            } = req.query
 
             if (posts.length > 0) {
                 const getAllIds = posts.map(id => {
                     return id.post_id
                 })
-                const result = await (await pool.request().execute('sp_getQuestions')).recordset
+                const result = await (await pool.request().input("PageNumber", pageNumber).input("RowsPerPage", rowsPerPage).execute('sp_getQuestions')).recordset
                 // console.log(result);
 
-                const post = result.filter(item => getAllIds.includes(item.post_id))
+                const post = result?.filter(item => getAllIds.includes(item.post_id))
                 res.status(200).json({
                     allPost: post
                 })
@@ -208,12 +212,16 @@ module.exports = {
             const posts = await (await pool.request().execute('sp_getQuestionRecently')).recordset
 
             //   res.status(200).json({allPost: posts})
+              const {
+                pageNumber,
+                rowsPerPage
+            } = req.query
 
             if (posts.length > 0) {
                 const getAllIds = posts.map(id => {
                     return id.post_id
                 })
-                const result = await (await pool.request().execute('sp_getQuestions')).recordset
+                const result = await (await pool.request().input("PageNumber", pageNumber).input("RowsPerPage", rowsPerPage).execute('sp_getQuestions')).recordset
                 // console.log(result);
 
                 const recent = result.filter(item => getAllIds.includes(item.post_id))
