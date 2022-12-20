@@ -45,9 +45,9 @@ export const postQuestion = createAsyncThunk(
 
 export const getAllQuestions = createAsyncThunk(
     "questions/getAllQuestions",
-    async () => {
+    async (limits) => {
         try {
-            const response = await axios.get('http://localhost:3001/question/allquestions')
+            const response = await axios.get('http://localhost:3001/question/allquestions', limits)
 
             const Data = response.data
             // console.log(allPost);  

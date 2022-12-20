@@ -12,6 +12,7 @@ import "./question.css";
 function Questions() {
   // const [post, setPost] = useState(false);
   const { questions, postOpen } = useSelector((state) => state.questions);
+  
   const dispatch = useDispatch();
   const options = [
     { value: "nodejs", label: "nodejs" },
