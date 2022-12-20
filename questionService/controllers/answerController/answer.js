@@ -4,6 +4,7 @@ const dotenv = require('dotenv')
 const {
     v4: uuidv4
 } = require('uuid')
+const { json } = require('express')
 
 dotenv.config()
 
@@ -108,6 +109,7 @@ module.exports = {
     
                     await pool.request()
                         .input("answerID", answer_id)
+                        .input("postID", post_id)
                         .execute('sp_markPreferred')
     
                     res.status(200).json({
@@ -139,20 +141,25 @@ module.exports = {
     vote: async (req, res) => {
         try {
             const {
-                ID
+                ID, direction
             } = req.params
             const {
                 user_id
             } = req.info
 
+            console.log({ direction });
+
             const id = uuidv4()
             const pool = await mssql.connect(sqlConfig)
 
-            await pool.request()
+            const data = await pool.request()
                 .input("voteID", id)
                 .input("userID", user_id)
                 .input("answerID", ID)
-                .execute('sp_upvoteOrDownvote')
+                .input("direction", direction)
+                .execute('sp_upvoteOrDownvote');
+
+                console.log({data: JSON.stringify(data.recordset)});
 
             res.status(200).json({
                 message: "Succefully voted"

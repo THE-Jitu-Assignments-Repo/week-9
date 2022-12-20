@@ -10,7 +10,7 @@ router.put("/answerupdate", verifyToken, updateAnswer)
 router.get("/getanswers/:postID", getAnswers)
 router.post('/mark', verifyToken, markPreferred)
 // router.get('/answerdetails/:id', getAnswerDetails)
-router.patch("/vote/:ID", verifyToken, vote)
+router.post("/vote/:ID/:direction", verifyToken, vote)
 
 
 

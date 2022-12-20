@@ -32,7 +32,7 @@ function Answers({ data }) {
   const { AllComment } = useSelector((state) => state.comments);
   const dispatch = useDispatch();
 
-  // console.log(data);
+  // console.log(data );
 
   useEffect(() => {
     dispatch(getComment(data.answer_id));
@@ -68,15 +68,15 @@ function Answers({ data }) {
               <AiFillCaretUp
                 className="hover:text-blue-500 cursor-pointer"
                 size={20}
-                onClick={() => dispatch(vote(data.answer_id))}
+                onClick={() => dispatch(vote({direction: "up", IDanswer: data.answer_id}))}
               />
               <span className="text-xl">
-                {data.totalvotes ? data.totalvotes : 0}
+                {data.totalVotes ? data.totalVotes : 0}
               </span>
               <AiFillCaretDown
                 className="hover:text-blue-500 cursor-pointer"
                 size={20}
-                onClick={() => dispatch(vote(data.answer_id))}
+                onClick={() => dispatch(vote({direction: "down", IDanswer: data.answer_id}))}
               />
             </div>
           </div>
@@ -123,13 +123,13 @@ function Answers({ data }) {
             {data.totalComments ? data.totalComments : ""} comment
             {data.totalComments > 1 ? "s" : ""}
           </span>{" "}
-          {data.preferred && (
-            <div>
+          {data.preferred ? (
+            <div className="flex items-center gap-2">
               |{" "}
               <span className="font-extralight text-green-500">Prefered </span>
               <AiFillCheckCircle className="font-extralight text-green-500" />
             </div>
-          )}
+          ): (<div></div>)}
         </div>
       </div>
       {commentOpen && <CommentModal ansId={data.answer_id} />}

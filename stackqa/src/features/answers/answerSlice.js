@@ -10,14 +10,15 @@ import {
 
 const initialState = {
     answers: []
-   
+
 }
 
 const Token = localStorage.getItem('token')
 
 export const postAnswer = createAsyncThunk(
     "answer/postAnswer",
-    async (answerDetails, { dispatch,
+    async (answerDetails, {
+        dispatch,
         rejectWithValue
     }) => {
         try {
@@ -37,10 +38,13 @@ export const postAnswer = createAsyncThunk(
 
 export const markPreferred = createAsyncThunk(
     "answer/markPreferred",
-    async(ansID, {dispatch,rejectWithValue})=>{
+    async (ansID, {
+        dispatch,
+        rejectWithValue
+    }) => {
         try {
             const Tokenm = localStorage.getItem('token')
-                console.log(ansID);
+            // console.log(ansID);
             const response = await axios.post('http://localhost:3001/mark/', ansID, {
                 headers: {
                     Authorization: `Bearer ${Tokenm}`,
@@ -49,8 +53,8 @@ export const markPreferred = createAsyncThunk(
             dispatch(getAnswers())
             return response.data
         } catch (error) {
-            // console.log("as",error);
-            return rejectWithValue(error.message)
+            console.log("as", error);
+            // return rejectWithValue(error.message.response.data.message)
         }
     }
 )
@@ -68,17 +72,23 @@ export const getAnswers = createAsyncThunk(
         }
     }
 )
-export const vote =createAsyncThunk(
+export const vote = createAsyncThunk(
     "answer/vote",
-    async(IDanswer, {rejectWithValue})=>{
+    async ({
+        direction,
+        IDanswer
+    }, {
+        rejectWithValue
+    }) => {
         try {
-            const response = await axios.patch(`http://localhost:3001/vote/${IDanswer}`,{
+            const response = await axios.post(`http://localhost:3001/vote/${IDanswer}/${direction}`, null, {
                 headers: {
                     Authorization: `Bearer ${Token}`,
                 }
             })
             // console.log(IDanswer);
             // dispatch(getAnswers(postID))
+            // console.log({ response: response.data });
             return response.data
         } catch (error) {
             return rejectWithValue(error.message)
@@ -100,15 +110,15 @@ export const answerSlice = createSlice({
             builder.addCase(postAnswer.fulfilled, (state, action) => {
                 toast.success(action.payload.message)
             }),
-            builder.addCase(postAnswer.rejected, (state,action)=>{
+            builder.addCase(postAnswer.rejected, (state, action) => {
                 toast.error(action.payload)
             }),
-            builder.addCase(markPreferred.fulfilled, (state,action)=>{
+            builder.addCase(markPreferred.fulfilled, (state, action) => {
                 toast.success(action.payload.message)
             }),
-            builder.addCase(markPreferred.rejected, (state,action)=>{
+            builder.addCase(markPreferred.rejected, (state, action) => {
                 toast.error(action.payload)
-            }),builder.addCase(vote.fulfilled, (state,action)=>{
+            }), builder.addCase(vote.fulfilled, (state, action) => {
                 toast.success(action.payload.message)
             })
     }

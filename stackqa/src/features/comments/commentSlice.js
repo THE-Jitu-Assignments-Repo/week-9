@@ -8,7 +8,7 @@ import { toast } from "react-toastify"
 
 const initialState = {
     AllComment: [],
-    total: 0
+    selectedComment: ''
 }
 
 const Token = localStorage.getItem('token')
