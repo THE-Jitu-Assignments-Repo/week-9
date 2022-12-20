@@ -83,7 +83,7 @@ function Answers({ data }) {
           <div className="p-2 justify-between flex-grow flex-wrap">
             <div>{data.username}</div>
             <span className="text-gray-500 text-ellipsis">
-              Answered {moment().toNow(data.answer_date)} ago
+              Answered {moment(data.answer_date).toNow(true)} ago
             </span>
             <h3 className="leading-relaxed max-w-md font-semi">
               {data.answer}

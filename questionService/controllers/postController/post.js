@@ -41,8 +41,12 @@ module.exports = {
     },
     getQuestions: async (req, res) => {
         try {
+            const {
+                pageNumber,
+                rowsPerPage
+            } = req.body
             const pool = await mssql.connect(sqlConfig)
-            const allQuestions = await (await pool.request().execute('sp_getQuestions')).recordset;
+            const allQuestions = await (await pool.request().input("PageNumber", pageNumber).input("RowsPerPage", rowsPerPage).execute('sp_getQuestions')).recordset;
 
             if (allQuestions.length > 0) {
                 return res.status(200).json({
@@ -159,7 +163,9 @@ module.exports = {
                 .execute('sp_searchQuestions')
             ).recordset
 
-            res.status(200).json({allPost:results})
+            res.status(200).json({
+                allPost: results
+            })
 
         } catch (error) {
             res.status(400).json({
@@ -181,9 +187,11 @@ module.exports = {
                 })
                 const result = await (await pool.request().execute('sp_getQuestions')).recordset
                 // console.log(result);
-                
+
                 const post = result.filter(item => getAllIds.includes(item.post_id))
-                res.status(200).json({allPost: post})
+                res.status(200).json({
+                    allPost: post
+                })
             }
 
         } catch (error) {
@@ -193,7 +201,7 @@ module.exports = {
 
         }
     },
-    recentlyPosted: async(req,res)=>{
+    recentlyPosted: async (req, res) => {
         try {
             const pool = await mssql.connect(sqlConfig)
 
@@ -207,9 +215,11 @@ module.exports = {
                 })
                 const result = await (await pool.request().execute('sp_getQuestions')).recordset
                 // console.log(result);
-                
+
                 const recent = result.filter(item => getAllIds.includes(item.post_id))
-                res.status(200).json({allPost: recent})
+                res.status(200).json({
+                    allPost: recent
+                })
             }
 
         } catch (error) {
@@ -219,15 +229,21 @@ module.exports = {
 
         }
     },
-    topSuggested: async(req,res)=>{
+    topSuggested: async (req, res) => {
         try {
-            const {category}=req.params
+            const {
+                category
+            } = req.params
             const pool = await mssql.connect(sqlConfig)
-            const result= await (await pool.request().input("value", category).execute('sp_topSuggested')).recordset
+            const result = await (await pool.request().input("value", category).execute('sp_topSuggested')).recordset
 
-            res.status(200).json({allPost: result})
+            res.status(200).json({
+                allPost: result
+            })
         } catch (error) {
-            res.status(401).json({message: error.message})
+            res.status(401).json({
+                message: error.message
+            })
         }
     }
 }
