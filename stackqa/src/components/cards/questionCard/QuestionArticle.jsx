@@ -20,6 +20,7 @@ import { GrSend } from "react-icons/gr";
 import {
   deleteQuestion,
   getQuestion,
+  G_modal,
   postDetails,
 } from "../../../features/questions/QuestionSlice";
 import { createAvatar } from "../../../Helpers/userImage/userImage";
@@ -68,6 +69,11 @@ function QuestionArticle({ item }) {
     setIsAnswer((prev) => !prev);
   };
 
+  const handleEdit=()=>{
+    dispatch(G_modal(true))
+    
+  }
+
   return (
     <article
       className="border-b h-auto grid-col-1 grid-flow-row items-center from-sky-200 bg-white p-3"
@@ -96,7 +102,9 @@ function QuestionArticle({ item }) {
             <AiOutlineEllipsis className="" size={30} />
           </div>
           <ul className="h-auto hidden absolute peer-hover:flex hover:flex flex-col  drop-shadow-lg top-46 bg-white shadow-lg font-extralight w-[150px] z-20 rounded-sm">
-            <li className="hover:bg-slate-200 cursor-pointer p-2 flex items-center gap-1 ">
+            <li className="hover:bg-slate-200 cursor-pointer p-2 flex items-center gap-1 "
+            onClick={handleEdit}
+            >
               <AiOutlineEdit />
               Edit post
             </li>

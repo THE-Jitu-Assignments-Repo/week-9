@@ -48,9 +48,9 @@ function Questions() {
       <div className="w-full grid grid-cols-2 gap-5 pl-40">
         <section className="border mt-5 min-h-screen bg-slate-50 mb-4 rounded-md flex-col flex">
           {/* map post here */}
-          {questions?.allPost?.map((qst) => {
+          {questions?.allPost?(questions?.allPost?.map((qst) => {
             return <QuestionArticle key={qst.post_id} item={qst} />;
-          })}
+          })) : (<div className="bg-black m-auto text-center">not possible for now</div>)}
         </section>
         <section className="w-[300px] p-4 mt-5 bg-slate-50 h-[500px] mb-10">
           <div className="text-xl font-extralight">

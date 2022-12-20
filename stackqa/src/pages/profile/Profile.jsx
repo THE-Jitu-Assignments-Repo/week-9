@@ -56,7 +56,7 @@ function Profile() {
               </h1>
               {/* <AiFillFileText className="m-5"  size={30}/> */}
               <span className="text-xl font-extralight leading-relaxed ">
-                Questions
+                Question{user.totalQst > 1 ? "s" : ""}
               </span>
             </div>
             <div className="border  flex shadow-lg flex-col justify-center items-center p-8 hover:shadow-blue-300">
@@ -65,7 +65,7 @@ function Profile() {
               </h1>
               {/* <AiFillFileText  className="m-5"  size={30} /> */}
               <span className="text-xl font-extralight leading-relaxed">
-                Answers
+                Answer{user.totalAns > 1 ? "s" : ""}
               </span>
             </div>
             <div className="border  flex shadow-lg flex-col justify-center items-center p-8 hover:shadow-blue-300">

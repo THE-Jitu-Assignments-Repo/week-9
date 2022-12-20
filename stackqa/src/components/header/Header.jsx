@@ -82,7 +82,7 @@ function Header({ close }) {
           {token && (
             <button
               className="p-1 bg-blue-500 text-white rounded-md pr-4 pl-4 hover:bg-blue-400"
-              onClick={() => dispatch(logout())}
+              onClick={() =>{ dispatch(logout()), navigate('/')}}
             >
               Logout
             </button>
