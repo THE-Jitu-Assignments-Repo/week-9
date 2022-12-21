@@ -78,7 +78,7 @@ function Sidebar({ isOpen }) {
             </Link>
           </div>
         </div>
-        <div className="text-xl font-extralight text-white py-1">
+        {token && <div className="text-xl font-extralight text-white py-1">
           <Link
             to="users"
             className="items-center flex-row flex p-1 gap-1 pl-5 hover:bg-gray-800 hover:text-blue-500"
@@ -86,7 +86,7 @@ function Sidebar({ isOpen }) {
             <AiOutlineUser />
             Users
           </Link>
-        </div>
+        </div>}
         <div className="text-xl font-extralight text-white py-1">
           <Link
             to="aboutus"
