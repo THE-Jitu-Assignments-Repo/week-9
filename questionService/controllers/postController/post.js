@@ -34,7 +34,7 @@ module.exports = {
             })
         } catch (error) {
             console.log(error);
-            res.status(400).json({
+            res.status(401).json({
                 message: error.message
             })
         }
@@ -49,6 +49,8 @@ module.exports = {
             const allQuestions = await (await pool.request().input("PageNumber", pageNumber).input("RowsPerPage", rowsPerPage).execute('sp_getQuestions')).recordset;
 
             if (allQuestions.length > 0) {
+
+                // console.log(json.stringfy(allQuestions));
                 return res.status(200).json({
                     allPost: allQuestions
                 })
@@ -59,7 +61,7 @@ module.exports = {
             }
 
         } catch (error) {
-            res.status(400).json({
+            res.status(401).json({
                 message: error.message
             })
         }

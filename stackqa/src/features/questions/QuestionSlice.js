@@ -55,7 +55,7 @@ export const getAllQuestions = createAsyncThunk(
             })
 
             const Data = response.data
-            // console.log(allPost);  
+            console.log(Data.allPost);  
             return Data
         } catch (error) {
             console.log(error.message);

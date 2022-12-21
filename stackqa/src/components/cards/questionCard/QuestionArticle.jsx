@@ -15,7 +15,11 @@ import { useNavigate } from "react-router-dom";
 import CommentModal from "../../modals/commentModal/CommentModal";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
-import { getAnswers, postAnswer } from "../../../features/answers/answerSlice";
+import {
+  getAnswers,
+  markPreferred,
+  postAnswer,
+} from "../../../features/answers/answerSlice";
 import { GrSend } from "react-icons/gr";
 import {
   deleteQuestion,
@@ -59,9 +63,7 @@ function QuestionArticle({ item }) {
   };
 
   // const userAvatar = userImage(item?.username);
-    const avatar = createAvatar(item.username);
-
- 
+  const avatar = createAvatar(item.username);
 
   const handleOpenAns = () => {
     dispatch(getQuestion(item.post_id));
@@ -69,10 +71,9 @@ function QuestionArticle({ item }) {
     setIsAnswer((prev) => !prev);
   };
 
-  const handleEdit=()=>{
-    dispatch(G_modal(true))
-    
-  }
+  const handleEdit = () => {
+    dispatch(G_modal(true));
+  };
 
   return (
     <article
@@ -83,10 +84,11 @@ function QuestionArticle({ item }) {
         <div className="object-contain w-12 mt-4 flex items-start justify-center">
           {item?.imageUrl ? (
             <img src={item.imageUrl} alt="profile" className="rounded-full" />
-            ) 
-            : (
-              <div className="bg-blue-500 rounded-full w-10 h-10 items-center flex justify-center text-white capitalize text-xl">{avatar}</div>
-            )}
+          ) : (
+            <div className="bg-blue-500 rounded-full w-10 h-10 items-center flex justify-center text-white capitalize text-xl">
+              {avatar}
+            </div>
+          )}
         </div>
         <div className="p-2 justify-between flex-grow flex-wrap">
           <div>{item.username}</div>
@@ -102,8 +104,9 @@ function QuestionArticle({ item }) {
             <AiOutlineEllipsis className="" size={30} />
           </div>
           <ul className="h-auto hidden absolute peer-hover:flex hover:flex flex-col  drop-shadow-lg top-46 bg-white shadow-lg font-extralight w-[150px] z-20 rounded-sm">
-            <li className="hover:bg-slate-200 cursor-pointer p-2 flex items-center gap-1 "
-            onClick={handleEdit}
+            <li
+              className="hover:bg-slate-200 cursor-pointer p-2 flex items-center gap-1 "
+              onClick={handleEdit}
             >
               <AiOutlineEdit />
               Edit post
@@ -126,28 +129,34 @@ function QuestionArticle({ item }) {
           </ul>
         </div>
       </div>
-      <div className="flex flex-row items-center mb-4">
+      {item.preferredAns && <div className="flex flex-row items-center mb-4">
         <div className="flex flex-col items-center justify-center pr-2">
           <AiFillCaretUp
             className="hover:text-blue-500 cursor-pointer"
+            onClick={() =>
+              dispatch(
+                markPreferred({ direction: "up", answerID: item.answer_id })
+              )
+            }
             size={20}
           />
-          <span className="text-xl">32</span>
+          <span className="text-xl">{item.totalVotes}</span>
           <AiFillCaretDown
             className="hover:text-blue-500 cursor-pointer"
+            onClick={() =>
+              dispatch(
+                markPreferred({ direction: "down", answerID: item.answer_id })
+              )
+            }
             size={20}
           />
         </div>
         <div className="p-2 justify-between flex-grow flex-wrap">
           <h3 className="leading-relaxed max-w-md font-extralight line-clamp-none">
-            I’m a 19-year-old student from Nairobi, kenya. I’ve been introduced
-            to the language at a very young age and I’m capable of conducting
-            any type of conversation. However, some of my English-speaking
-            friends on the internet didn’t take too long to figure I’m not a
-            native speaker. Why is that?
+            {item.preferredAns}
           </h3>
         </div>
-      </div>
+      </div>}
       <div className="flex flex-row items-center rounded-sm justify-between bg-slate-300 m-8  p-2">
         <div className="items-center justify-between flex flow-row w-full ">
           <div
