@@ -27,7 +27,11 @@ function Profile() {
     dispatch(getuserdetails());
     dispatch(getmyquestions());
   }, []);
-  // const avataR = createAvatar(user.username);
+
+  let avatar = ''
+  if(user.username !== undefined){
+     avatar = createAvatar(user.username);
+  }
   // console.log(user);
   // let str2= user.username
   // const createAvatar = (str2 = '') => {
@@ -50,7 +54,7 @@ function Profile() {
               />
             ) : (
               <div className="bg-blue-600 rounded-full w-24 h-24 items-center flex justify-center text-white capitalize text-3xl">
-                {/* {avatar} */}
+                {avatar}
               </div>
             )}
           </div>
