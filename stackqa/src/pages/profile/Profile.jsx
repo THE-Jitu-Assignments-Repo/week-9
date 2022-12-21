@@ -6,7 +6,11 @@ import Select from "react-select";
 import QuestionArticle from "../../components/cards/questionCard/QuestionArticle";
 import Postquestion from "../../components/modals/postModal/Postquestion";
 import { getuserdetails } from "../../features/Auth/UserSlice";
-import { getmyquestions, G_modal } from "../../features/questions/QuestionSlice";
+import {
+  getmyquestions,
+  G_modal,
+} from "../../features/questions/QuestionSlice";
+import { createAvatar } from "../../Helpers/userImage/userImage";
 
 function Profile() {
   const { questions, postOpen } = useSelector((state) => state.questions);
@@ -18,21 +22,28 @@ function Profile() {
     { value: "answered", label: "Most answered" },
   ];
 
-  useEffect(()=>{
-    dispatch(getuserdetails())
-    dispatch(getmyquestions())
-  }, [])
+  useEffect(() => {
+    dispatch(getuserdetails());
+    dispatch(getmyquestions());
+  }, []);
   // console.log(user);
+  const avatar = createAvatar(user.username);
   return (
     <div>
       <div className="w-full mx-auto my-auto bg-blue-500 p-18">
-        <div className="rounded-full  w-[10%]  top-28 ml-12 flex items-center justify-center relative shadow-lg hover:shadow-blue-300">
+        <div className="rounded-full  w-32 h-32  top-28 ml-12 flex items-center justify-center relative shadow-lg hover:shadow-blue-300">
           <div className="grid place-items-center">
-            <img
-              src="/assets/pic.png"
-              alt="pic"
-              className="rounded-full w-full relative "
-            />
+            {user.imageUrl ? (
+              <img
+                src="/assets/pic.png"
+                alt="pic"
+                className="rounded-full w-full relative "
+              />
+            ) : (
+              <div className="bg-blue-400 rounded-full w-24 h-24   items-center flex justify-center text-white capitalize text-3xl">
+                {avatar}
+              </div>
+            )}
           </div>
         </div>
         <div className="flex pl-44">
