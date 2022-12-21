@@ -13,8 +13,12 @@ import {
   AiOutlineSafety,
   AiTwotoneMessage,
 } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
+// import { Navigate } from "react-router-dom";
 
 function Home() {
+
+  const navigate = useNavigate()
   return (
     <div className="w-full">
       <section className="text-gray-700 body-font">
@@ -32,7 +36,7 @@ function Home() {
               share their knowledge.
             </p>
             <div className="flex justify-center">
-              <button className="inline-flex text-white bg-green-400 font-semibold border-0 py-2 px-6 focus:outline-none hover:bg-green-300 rounded text-lg">
+              <button className="inline-flex text-white bg-green-400 font-semibold border-0 py-2 px-6 focus:outline-none hover:bg-green-300 rounded text-lg" onClick={()=>navigate('/question')}>
                 ASK QUESTION
               </button>
               <button className="ml-4 inline-flex font-semibold text-black bg-white border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">
