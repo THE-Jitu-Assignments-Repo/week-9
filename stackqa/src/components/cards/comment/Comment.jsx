@@ -21,11 +21,11 @@ function Comment({item}) {
               {item.comment}
             </h5>
           </div>
-          <div>
+          <div className="relative">
             <div className="peer hover:bg-blue-500 peer cursor-pointer hover:rounded-full hover:text-white">
               <AiOutlineEllipsis className="" size={30} />
             </div>
-            <ul className="h-auto hidden absolute peer-hover:flex hover:flex flex-col  drop-shadow-lg top-46 bg-white shadow-lg font-extralight w-[150px] z-10 rounded-sm">
+            <ul className="h-auto hidden absolute peer-hover:flex right-0 lg:left-0 hover:flex flex-col  drop-shadow-lg top-46 bg-white shadow-lg font-extralight w-[150px] z-10 rounded-sm">
               <li className="hover:bg-slate-200 cursor-pointer p-2 flex items-center gap-1 ">
                 <AiOutlineEdit />
                 Edit comment

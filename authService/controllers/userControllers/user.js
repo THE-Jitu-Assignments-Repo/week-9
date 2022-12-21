@@ -31,7 +31,7 @@ module.exports = {
                 // console.log(record.toString());
 
                 if(email===record.toString()){
-                    res.status(205).json({
+                    res.status(200).json({
                             message: "User credentials already exist"
                         })
                 }else{
@@ -64,7 +64,7 @@ module.exports = {
             }
 
         } catch (error) {
-            res.status(400).json({
+            res.status(401).json({
                 message: error.message
             })
         }
@@ -101,8 +101,8 @@ module.exports = {
                         })
                     }
                 } else {
-                    res.status(404).json({
-                        message: "User not found"
+                    res.status(401).json({
+                        message: "Invalid Credentials"
                     })
                 }
             } else {

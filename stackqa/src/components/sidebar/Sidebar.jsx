@@ -26,7 +26,7 @@ function Sidebar({ isOpen }) {
   const [max, setMax]= useState(6)
   return (
     <div
-      className={`bg-[#06152D] p-1 pt-10 min-h-screen h-screen  fixed top-[60px] left-0  flex-col flex justify-between pb-20 transition-all duration-100 ease-linear overflow-x-hidden
+      className={`bg-[#06152D] p-1 pt-10 min-h-screen lg:min-h-screen  h-screen lg:h-screen fixed lg:fixed top-[60px] left-0  flex-col flex justify-between pb-20 transition-all duration-100 ease-linear overflow-x-hidden
     ${isOpen ? "w-[200px] opacity-100" : "w-[0px] opacity-0"}
     `}
     >

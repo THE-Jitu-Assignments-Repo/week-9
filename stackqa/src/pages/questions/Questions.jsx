@@ -48,7 +48,7 @@ function Questions() {
       {postOpen && <Postquestion />}
 
       <hr />
-      <div className="w-full grid grid-cols-2 gap-5 pl-40">
+      <div className="lg:w-full lg:grid lg:grid-cols-2 lg:gap-5  lg:pl-40">
         <section className="border mt-5 min-h-screen bg-slate-50 mb-4 rounded-md flex-col flex">
           {/* map post here */}
           {questions?.allPost?(questions?.allPost?.map((qst) => {
