@@ -7,7 +7,8 @@
 
 - Stack Overflow-lite is a platform where people can ask questions and provide answers.  
 
-### Technologies to use 
+### Technologies to use ![stackqa users](https://user-images.githubusercontent.com/65639270/208878671-daef6ef9-afe7-4101-b79a-e0694992d86a.PNG)
+
 
 - Reactjs 
 
@@ -172,7 +173,27 @@ These are the steps you ought to take to get ready to start building the project
 - Users can view questions with the most answers. 
 
       
+# DEMO PICS
+ ![stack post](https://user-images.githubusercontent.com/65639270/208878051-42ff3c83-a32f-4b75-8dab-76c7b71f6c30.PNG)
+
+ ## mobile view
+ ![mobile stackqa](https://user-images.githubusercontent.com/65639270/208878221-fd406917-95d4-4f30-80b3-02425a245574.PNG)
+
+ ## stackQA DB
+
+ ![stackqadb mike](https://user-images.githubusercontent.com/65639270/208878471-7cb1ff0b-0399-4175-896a-9d7a5bd7f4bf.PNG)
+
+## stackQA demo users if user is login
+ ![stackqa users](https://user-images.githubusercontent.com/65639270/208878811-c7379a92-63f8-49be-8055-eb50cff2828f.PNG)
+ 
+## profile view
+ 
+![profilepage](https://user-images.githubusercontent.com/65639270/208879617-e68a9054-dd1c-4805-867f-9ad011c755be.PNG)
 
  
+ ## homepage
+ 
+ ![home stack qa](https://user-images.githubusercontent.com/65639270/208880185-0af5ec7d-167b-4a22-bfa8-9aadc51367c3.PNG)
 
+ 
  
