@@ -43,14 +43,14 @@ function Profile() {
   return (
     <div>
       <div className="w-full mx-auto my-auto bg-blue-500 p-18">
-        <div className="rounded-full  w-32 h-32  top-28 ml-4 lg:ml-12 flex items-center justify-center relative shadow-lg hover:shadow-blue-300">
+        <div className="rounded-full  w-28 h-28  lg:w-32 lg:h-32 top-28 ml-4 lg:ml-12 flex items-center justify-center relative shadow-lg hover:shadow-blue-300">
           <div className="grid place-items-center">
             {user.imageUrl ? 
             (
               <img
-                src="/assets/pic.png"
+                src={user.imageUrl}
                 alt="pic"
-                className="rounded-full w-full relative "
+                className="rounded-full  object-scale-down w-full relative"
               />
             ) : (
               <div className="bg-blue-600 rounded-full w-24 h-24 items-center flex justify-center text-white capitalize text-3xl">

@@ -5,7 +5,9 @@ import { MdPostAdd } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Select from "react-select";
+import { toast } from "react-toastify";
 import {
+  getAllQuestions,
   G_modal,
   postQuestion,
 } from "../../../features/questions/QuestionSlice";
@@ -26,6 +28,7 @@ function Postquestion() {
   ];
   const [question, setQuestion] = useState("");
   const [selectedOption, setSelectedOption] = useState('');
+  const [errorD, setErrorD] = useState('')
   // const [post, setPost] = useState({question:'', category: ''})
 
   const handlePost = (e) => {
@@ -46,9 +49,15 @@ function Postquestion() {
     // const {question} = question
     // console.log(question);
     //     console.log(category);
+    if(!question && !category){
+      setErrorD('Please fill in the question field')
+      console.log(errorD);
+      toast.error(errorD)
+    }
 
     dispatch(postQuestion({ question, category }));
     dispatch(G_modal(false))
+    dispatch(getAllQuestions({pageNumber: 1 , rowsPerPage: 5}))
   };
 
   useEffect(() => {
@@ -59,7 +68,7 @@ function Postquestion() {
 
   return (
     <div className="fixed flex top-0 left-0 right-0 w-full h-full items-center  justify-center backdrop-blur-sm">
-      <div className="absolute bg-white lg:w-2/6  top-40 shadow-md rounded-sm h-auto z-10  outline-none overflow-x-hidden overflow-y-auto">
+      <div className="absolute bg-white lg:w-2/6  top-40 shadow-md rounded-sm h-auto z-40  outline-none overflow-x-hidden overflow-y-auto">
         <div className="flex items-center justify-between p-5 border">
           <span className="text-xl flex items-center gap-2">
             <MdPostAdd size={30} />
@@ -72,6 +81,7 @@ function Postquestion() {
           />
         </div>
         <article className="flex flex-col items-start p-5">
+          {errorD ? (<div className="text-center text-red-500">{errorD}</div>): ''}
           <textarea
             name="question"
             value={question}

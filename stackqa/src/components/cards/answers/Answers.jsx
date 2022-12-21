@@ -36,6 +36,8 @@ function Answers({ data }) {
 
   useEffect(() => {
     dispatch(getComment(data.answer_id));
+    // dispatch(getAllQuestions({ pageNumber: 1, rowsPerPage: 5 }));
+
     setShowComment(false);
   }, [data.answer_id]);
 
@@ -68,7 +70,9 @@ function Answers({ data }) {
               <AiFillCaretUp
                 className="hover:text-blue-500 cursor-pointer"
                 size={20}
-                onClick={() => dispatch(vote({direction: "up", IDanswer: data.answer_id}))}
+                onClick={() =>
+                  dispatch(vote({ direction: "up", IDanswer: data.answer_id }))
+                }
               />
               <span className="text-xl">
                 {data.totalVotes ? data.totalVotes : 0}
@@ -76,7 +80,11 @@ function Answers({ data }) {
               <AiFillCaretDown
                 className="hover:text-blue-500 cursor-pointer"
                 size={20}
-                onClick={() => dispatch(vote({direction: "down", IDanswer: data.answer_id}))}
+                onClick={() =>
+                  dispatch(
+                    vote({ direction: "down", IDanswer: data.answer_id })
+                  )
+                }
               />
             </div>
           </div>
@@ -103,7 +111,14 @@ function Answers({ data }) {
               </li>
               <li
                 className="hover:bg-slate-200 cursor-pointer p-2 flex items-center gap-1  "
-                onClick={() => dispatch(markPreferred({post_id: data.post_id, answer_id:data.answer_id}))}
+                onClick={() =>
+                  dispatch(
+                    markPreferred({
+                      post_id: data.post_id,
+                      answer_id: data.answer_id,
+                    })
+                  )
+                }
               >
                 <AiOutlineCheckCircle /> Accept
               </li>
@@ -129,7 +144,9 @@ function Answers({ data }) {
               <span className="font-extralight text-green-500">Prefered </span>
               <AiFillCheckCircle className="font-extralight text-green-500" />
             </div>
-          ): (<div></div>)}
+          ) : (
+            <div></div>
+          )}
         </div>
       </div>
       {commentOpen && <CommentModal ansId={data.answer_id} />}

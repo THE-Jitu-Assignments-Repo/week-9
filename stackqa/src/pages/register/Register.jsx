@@ -27,9 +27,9 @@ function Register() {
     e.preventDefault();
     dispatch(registerUser(regUser));
      if(!error){
-        return navigate('/register')
+       return navigate('/login')
       }else{
-        return navigate('/login')
+        return navigate('/register')
       }
   };
 

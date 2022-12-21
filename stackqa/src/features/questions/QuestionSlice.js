@@ -37,8 +37,8 @@ export const postQuestion = createAsyncThunk(
             toast.success("posted a question")
 
         } catch (error) {
-            toast.error(error.message)
-            // toast.error(error.response.data.message ? error.response.data.message : error.message)
+            // toast.error(error.message)
+            toast.error(error.response.data.message ? error.response.data.message : error.message)
         }
     }
 )
