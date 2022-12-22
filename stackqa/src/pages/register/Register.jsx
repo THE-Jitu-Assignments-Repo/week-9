@@ -61,7 +61,7 @@ function Register() {
             <a href="#" className="underline">
               terms
             </a>{" "}
-            and{" "}
+            and
             <a href="#" className="underline">
               conditions
             </a>
