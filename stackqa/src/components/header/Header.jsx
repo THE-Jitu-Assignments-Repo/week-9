@@ -21,7 +21,7 @@ function Header({ close }) {
   };
 
   return (
-    <nav className="flex fixed top-0 inset-x-0 h-[60px] items-center z-10  bg-gray-100 shadow-xl mb-1">
+    <nav className="flex fixed top-0 inset-x-0 h-[60px] items-center z-40  bg-gray-100 shadow-xl mb-1">
       <div className="flex-grow lg:flex lg:items-center lg:w-auto ml-2 lg:ml-8 flex items-center">
         <div className="">
           <AiOutlineMenu
@@ -29,14 +29,14 @@ function Header({ close }) {
             onClick={close}
           />
         </div>
-        <div className="flex items-center flex-shrink-0 text-white mr-5">
+        <div className="flex items-center flex-shrink-0 text-white mr-5 cursor-pointer" onClick={()=>navigate('/')}>
           <span className="font-bold font-serif lg:text-2xl tracking-tight text-blue-900 pr-2 pl-3 ">
             STACK<i className="text-blue-600">QA</i>
           </span>
           <img
             src="/assets/logo3.png"
             alt="logo"
-            className="h-8 w-8 mr-2 object-scale-down"
+            className="h-8 w-6 mr-2 object-scale-down lg:w-8"
           />
         </div>
       </div>
@@ -73,16 +73,13 @@ function Header({ close }) {
           {token && (
             <Link
               to="profile"
-              
               onClick={() => {
-                dispatch(getmyquestions()), dispatch(getuserdetails(),navigate('profile'));
+                dispatch(getmyquestions()),
+                  dispatch(getuserdetails(), navigate("profile"));
               }}
               className="block mt-4 lg:inline-block lg:mt-0 text-blue-400 hover:text-blue-900 items-center my-4 lg:my-auto"
             >
-              {/* <a */}
-              {/* > */}
-                My Profile
-              {/* </a> */}
+              My Profile
             </Link>
           )}
           {!token && (

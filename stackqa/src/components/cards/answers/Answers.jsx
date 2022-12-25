@@ -149,7 +149,9 @@ function Answers({ data }) {
           )}
         </div>
       </div>
-      {commentOpen && <CommentModal ansId={data.answer_id} />}
+      <div className="relative z-40">
+        {commentOpen && <CommentModal ansId={data.answer_id} />}
+      </div>
       {showComment &&
         AllComment?.map((item) => {
           return <Comment item={item} />;

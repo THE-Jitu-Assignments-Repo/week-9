@@ -42,13 +42,13 @@ function Questions() {
           </button>
         </div>
       </div>
-      <div className="z-30 relative">
+      <div className="z-40 relative">
         {/* question modal */}
         {postOpen && <Postquestion />}
       </div>
 
       <hr />
-      <div className="lg:w-full lg:grid lg:grid-cols-2 lg:gap-5  lg:pl-40">
+      <div className="lg:w-full lg:grid lg:grid-cols-2 lg:gap-5  lg:pl-40 ">
         <section className="border mt-5 min-h-screen bg-slate-50 mb-4 rounded-md flex-col flex">
           {/* map post here */}
           {questions?.allPost ? (
