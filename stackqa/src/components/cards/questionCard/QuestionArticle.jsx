@@ -77,7 +77,7 @@ function QuestionArticle({ item }) {
 
   return (
     <article
-      className="border-b h-auto grid-col-1 grid-flow-row items-center from-sky-200 bg-white p-3"
+      className="border-b h-auto grid-col-1 grid-flow-row items-center from-sky-200 bg-white p-3 border lg:p-3"
       key={item.post_id}
     >
       <div className="flex flex-row">
@@ -90,7 +90,7 @@ function QuestionArticle({ item }) {
             </div>
           )}
         </div>
-        <div className="p-2 justify-between flex-grow flex-wrap">
+        <div className="p-2 justify-between flex-grow flex-wrap w-1/2">
           <div>{item.username}</div>
           <span className="text-gray-300 text-ellipsis">
             Asked {moment(item.post_date).utc().format("MMMM Do YYYY")}
@@ -132,8 +132,8 @@ function QuestionArticle({ item }) {
         </section>
       </div>
       {item.preferredAns && (
-        <div className="flex flex-row items-center mb-4">
-          <div className="flex flex-col items-center justify-center pr-2">
+        <div className="flex flex-row items-center mb-4 ">
+          <div className="flex flex-col items-center justify-center pl-2">
             <AiFillCaretUp
               className="hover:text-blue-500 cursor-pointer"
               onClick={() =>

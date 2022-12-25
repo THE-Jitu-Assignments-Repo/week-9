@@ -31,7 +31,7 @@ function Questions() {
 
   return (
     <div>
-      <div className="pl-5 mt-2 flex items-center justify-between pr-5 p-2 ">
+      <div className="pl-5 mt-2 flex items-center justify-between pr-5 p-2">
         <h1 className="text-xl">All Questions</h1>
         <div>
           <button
