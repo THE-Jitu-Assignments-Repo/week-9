@@ -99,64 +99,68 @@ function QuestionArticle({ item }) {
             {item.question}
           </h3>
         </div>
-        <div className="relative">
-          <div className="peer hover:bg-blue-500 peer cursor-pointer hover:rounded-full hover:text-white">
-            <AiOutlineEllipsis className="" size={30} />
-          </div>
-          <ul className="h-auto hidden absolute peer-hover:flex hover:flex flex-col right-0 lg:left-0 drop-shadow-lg top-46 bg-white shadow-lg font-extralight w-[150px]  z-20 rounded-sm">
-            <li
-              className="hover:bg-slate-200 cursor-pointer p-2 flex items-center gap-1 "
-              onClick={handleEdit}
-            >
-              <AiOutlineEdit />
-              Edit post
-            </li>
-            <li
-              className="hover:bg-slate-200 cursor-pointer p-2 flex items-center gap-1 "
-              onClick={() => dispatch(deleteQuestion(item.post_id))}
-            >
-              <AiOutlineDelete />
-              Delete post
-            </li>
+        <section className="">
+          <div className="relative">
+            <div className="peer hover:bg-blue-500 peer cursor-pointer hover:rounded-full hover:text-white">
+              <AiOutlineEllipsis className="" size={30} />
+            </div>
+            <ul className="h-auto hidden absolute peer-hover:flex hover:flex flex-col right-0 lg:left-0 drop-shadow-lg top-46 bg-white shadow-lg font-extralight w-[150px]  z-20 rounded-sm">
+              <li
+                className="hover:bg-slate-200 cursor-pointer p-2 flex items-center gap-1 "
+                onClick={handleEdit}
+              >
+                <AiOutlineEdit />
+                Edit post
+              </li>
+              <li
+                className="hover:bg-slate-200 cursor-pointer p-2 flex items-center gap-1 "
+                onClick={() => dispatch(deleteQuestion(item.post_id))}
+              >
+                <AiOutlineDelete />
+                Delete post
+              </li>
 
-            <li className="hover:bg-slate-200 cursor-pointer p-2 flex items-center gap-1 ">
-              <AiOutlineSave />
-              Save post
-            </li>
-            <li className="hover:bg-slate-200 cursor-pointer p-2 flex items-center gap-1 ">
-              <AiOutlineCodepen /> Embed post
-            </li>
-          </ul>
-        </div>
+              <li className="hover:bg-slate-200 cursor-pointer p-2 flex items-center gap-1 ">
+                <AiOutlineSave />
+                Save post
+              </li>
+              <li className="hover:bg-slate-200 cursor-pointer p-2 flex items-center gap-1 ">
+                <AiOutlineCodepen /> Embed post
+              </li>
+            </ul>
+          </div>
+        </section>
       </div>
-      {item.preferredAns && <div className="flex flex-row items-center mb-4">
-        <div className="flex flex-col items-center justify-center pr-2">
-          <AiFillCaretUp
-            className="hover:text-blue-500 cursor-pointer"
-            onClick={() =>
-              dispatch(
-                markPreferred({ direction: "up", answerID: item.answer_id })
-              )
-            }
-            size={20}
-          />
-          <span className="text-xl">{item.totalVotes}</span>
-          <AiFillCaretDown
-            className="hover:text-blue-500 cursor-pointer"
-            onClick={() =>
-              dispatch(
-                markPreferred({ direction: "down", answerID: item.answer_id })
-              )
-            }
-            size={20}
-          />
+      {item.preferredAns && (
+        <div className="flex flex-row items-center mb-4">
+          <div className="flex flex-col items-center justify-center pr-2">
+            <AiFillCaretUp
+              className="hover:text-blue-500 cursor-pointer"
+              onClick={() =>
+                dispatch(
+                  markPreferred({ direction: "up", answerID: item.answer_id })
+                )
+              }
+              size={20}
+            />
+            <span className="text-xl">{item.totalVotes}</span>
+            <AiFillCaretDown
+              className="hover:text-blue-500 cursor-pointer"
+              onClick={() =>
+                dispatch(
+                  markPreferred({ direction: "down", answerID: item.answer_id })
+                )
+              }
+              size={20}
+            />
+          </div>
+          <div className="p-2 justify-between flex-grow flex-wrap">
+            <h3 className="leading-relaxed max-w-md font-extralight line-clamp-none">
+              {item.preferredAns}
+            </h3>
+          </div>
         </div>
-        <div className="p-2 justify-between flex-grow flex-wrap">
-          <h3 className="leading-relaxed max-w-md font-extralight line-clamp-none">
-            {item.preferredAns}
-          </h3>
-        </div>
-      </div>}
+      )}
       <div className="flex flex-row items-center rounded-sm justify-between bg-slate-300 m-8  p-2">
         <div className="items-center justify-between flex flow-row w-full ">
           <div
@@ -191,12 +195,13 @@ function QuestionArticle({ item }) {
           <GrSend size={20} />
         </button>
       </div>
-
-      {/* answer modal-content */}
-      {isanswer &&
-        answers?.map((answ) => {
-          return <Answers data={answ} />;
-        })}
+      <div className="z-30 relative">
+        {/* answer modal-content */}
+        {isanswer &&
+          answers?.map((answ) => {
+            return <Answers data={answ} />;
+          })}
+      </div>
     </article>
   );
 }
