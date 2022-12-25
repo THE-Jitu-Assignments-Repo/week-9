@@ -49,7 +49,7 @@ function Profile() {
             (
               <img
                 src={user.imageUrl}
-                alt="pic"
+                alt=""
                 className="rounded-full  object-scale-down w-full relative"
               />
             ) : (
