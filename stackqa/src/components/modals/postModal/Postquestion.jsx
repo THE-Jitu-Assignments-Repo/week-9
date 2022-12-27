@@ -5,16 +5,18 @@ import { MdPostAdd } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Select from "react-select";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import {
   getAllQuestions,
   G_modal,
   postQuestion,
 } from "../../../features/questions/QuestionSlice";
+import { validatePost } from "../../../Helpers/post/postvalidate";
 
 function Postquestion() {
   const { token } = useSelector((state) => state.user);
-  
+  const {errorQst} = useSelector(state=>state.questions)
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const options = [
@@ -27,8 +29,8 @@ function Postquestion() {
     { value: "General", label: "general" },
   ];
   const [question, setQuestion] = useState("");
-  const [selectedOption, setSelectedOption] = useState('');
-  const [errorD, setErrorD] = useState('')
+  const [selectedOption, setSelectedOption] = useState("");
+  // const [errorD, setErrorD] = useState('')
   // const [post, setPost] = useState({question:'', category: ''})
 
   const handlePost = (e) => {
@@ -45,20 +47,22 @@ function Postquestion() {
 
   const handleSumbitPost = (e) => {
     e.preventDefault();
-    const category = selectedOption.map((item) => item.value).toString();
     // const {question} = question
     // console.log(question);
     //     console.log(category);
-    if(!question && !category){
-      setErrorD('Please fill in the question field')
-      console.log(errorD);
-      toast.error(errorD)
+    // if(!question && !category){
+      //   setErrorD('Please fill in the question field')
+      //   console.log(errorD);
+      //   toast.error(errorD)
+      // }
+      if (!errorQst) {
+      const category = selectedOption.map((item) => item.value).toString();
+      dispatch(postQuestion({ question, category }));
+      dispatch(G_modal(false));
+      dispatch(getAllQuestions({ pageNumber: 1, rowsPerPage: 5 }));
     }
-
-    dispatch(postQuestion({ question, category }));
-    dispatch(G_modal(false))
-    dispatch(getAllQuestions({pageNumber: 1 , rowsPerPage: 5}))
   };
+
 
   useEffect(() => {
     if (!token) {
@@ -81,7 +85,7 @@ function Postquestion() {
           />
         </div>
         <article className="flex flex-col items-start p-5">
-          {errorD ? (<div className="text-center text-red-500">{errorD}</div>): ''}
+          {errorQst ? (<div className="text-center text-red-500">{errorQst}</div>): ''}
           <textarea
             name="question"
             value={question}

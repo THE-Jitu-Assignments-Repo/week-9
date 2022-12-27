@@ -6,6 +6,7 @@ import axios from "axios";
 import {
     toast
 } from "react-toastify";
+// import { validatePost } from "../../Helpers/post/postvalidate";
 
 
 const initialState = {
@@ -14,6 +15,7 @@ const initialState = {
     askedBy: null,
     postOpen: false,
     commentOpen: false,
+    errorQst:''
 
 }
 
@@ -23,10 +25,10 @@ const Token = localStorage.getItem('token')
 export const postQuestion = createAsyncThunk(
     "questions/postQuestion",
     async (postdetails, {
-        dispatch
+        dispatch,rejectWithValue
     }) => {
         try {
-
+            await validatePost(postDetails)
             const response = await axios.post('http://localhost:3001/question/postquestion', postdetails, {
                 headers: {
                     Authorization: `Bearer ${Token}`,
@@ -35,10 +37,11 @@ export const postQuestion = createAsyncThunk(
             dispatch(getAllQuestions())
             // console.log(response);
             toast.success("posted a question")
-
+            return response.data
         } catch (error) {
             // toast.error(error.message)
             toast.error(error.response.data.message ? error.response.data.message : error.message)
+            return rejectWithValue(error.response.data.message ? error.response.data.message : error.message)
         }
     }
 )
@@ -209,7 +212,8 @@ export const QuestionSlice = createSlice({
 
             }),
             builder.addCase(postQuestion.rejected, (state, action) => {
-                // console.log(action.payload);
+                console.log("ree");
+                state.errorQst=action.payload
             }),
             builder.addCase(getAllQuestions.fulfilled, (state, action) => {
                 state.questions = action.payload
