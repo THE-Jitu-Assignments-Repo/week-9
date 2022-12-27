@@ -28,7 +28,7 @@ export const postQuestion = createAsyncThunk(
         dispatch,rejectWithValue
     }) => {
         try {
-            await validatePost(postDetails)
+            // await validatePost(postDetails)
             const response = await axios.post('http://localhost:3001/question/postquestion', postdetails, {
                 headers: {
                     Authorization: `Bearer ${Token}`,
