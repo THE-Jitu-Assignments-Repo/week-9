@@ -32,14 +32,7 @@ function Profile() {
   if(user.username !== undefined){
      avatar = createAvatar(user.username);
   }
-  // console.log(user);
-  // let str2= user.username
-  // const createAvatar = (str2 = '') => {
-  // str2 = str2.split(' ');
-  // let avatar = str2[0][0] || str2[0][0]+str2[1][0];
-  // return avatar;
-// }
-
+  
   return (
     <div>
       <div className="w-full mx-auto my-auto bg-blue-500 p-18">
