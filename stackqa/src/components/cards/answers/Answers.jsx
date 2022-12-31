@@ -135,7 +135,8 @@ function Answers({ data }) {
             onClick={handleComment}
           >
             {" "}
-            {data.totalComments ? data.totalComments : ""} comment
+            {data.totalComments ? data.totalComments : ""}{" "}
+            {!data.totalComments? 'No Comments' : 'comment'} 
             {data.totalComments > 1 ? "s" : ""}
           </span>{" "}
           {data.preferred ? (
