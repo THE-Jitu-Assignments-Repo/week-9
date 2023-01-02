@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { AiOutlineFilter } from "react-icons/ai";
+import { AiOutlineEdit, AiOutlineFilter } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import Select from "react-select";
 import QuestionArticle from "../../components/cards/questionCard/QuestionArticle";
@@ -36,6 +36,9 @@ function Profile() {
   return (
     <div>
       <div className="w-full mx-auto my-auto bg-blue-500 p-18">
+        <div className="flex items-center justify-end p-5 relative">
+          <AiOutlineEdit  size={25} className="object-contain border  text-white hover:text-blue-200 cursor-pointer"/>
+        </div>
         <div className="rounded-full  w-28 h-28  lg:w-32 lg:h-32 top-28 ml-4 lg:ml-12 flex items-center justify-center relative shadow-lg hover:shadow-blue-300">
           <div className="grid place-items-center">
             {user.imageUrl ? 
