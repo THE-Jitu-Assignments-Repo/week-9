@@ -30,12 +30,14 @@ function Questions() {
   const handleNext=()=>{
     if(page === 1){
       dispatch(getAllQuestions({pageNumber: page +1, rowsPerPage:max}))
+      setPage(page+1)
     }
   }
 
   const handlePrev=()=>{
     if(page >= 1){
       dispatch(getAllQuestions({pageNumber: page -1, rowsPerPage:max}))
+       setPage(page-1)
     }
   }
   // console.log("csdc",data);
@@ -74,7 +76,7 @@ function Questions() {
           <div className="flex items-center justify-center gap-6 mt-2">
             <button className="hover:bg-blue-500 hover:text-white p-1 pr-2 pl-2 rounded-md text-sm font-extralight" onClick={handlePrev}>Prev</button>
             {page}
-            <button className="hover:bg-blue-500 hover:text-white p-1 pr-2 pl-2 rounded-md text-sm font-extralight" onClick={handleNext, setPage(prev) }>Next</button>
+            <button className="hover:bg-blue-500 hover:text-white p-1 pr-2 pl-2 rounded-md text-sm font-extralight" onClick={handleNext}>Next</button>
           </div>
         </section>
         <section className="w-[300px] p-4 mt-5 bg-slate-50 h-[500px] mb-10">
