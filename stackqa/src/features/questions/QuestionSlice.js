@@ -28,7 +28,7 @@ export const postQuestion = createAsyncThunk(
         dispatch,rejectWithValue
     }) => {
         try {
-            // await validatePost(postDetails)
+            await validatePost(postDetails.question)
             const response = await axios.post('http://localhost:3001/question/postquestion', postdetails, {
                 headers: {
                     Authorization: `Bearer ${Token}`,
@@ -40,7 +40,7 @@ export const postQuestion = createAsyncThunk(
             return response.data
         } catch (error) {
             // toast.error(error.message)
-            toast.error(error.response.data.message ? error.response.data.message : error.message)
+            // toast.error(error.response.data.message ? error.response.data.message : error.message)
             return rejectWithValue(error.response.data.message ? error.response.data.message : error.message)
         }
     }

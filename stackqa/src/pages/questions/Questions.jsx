@@ -60,6 +60,11 @@ function Questions() {
               <img src="https://imgs.search.brave.com/cvX6WWfjSjHAPgWt1QtqB8NV0Crx7OM3Uo34lU4pvps/rs:fit:675:450:1/g:ce/aHR0cHM6Ly9jZG5p/Lmljb25zY291dC5j/b20vaWxsdXN0cmF0/aW9uL3ByZW1pdW0v/dGh1bWIvbm8tc2Vh/cmNoLWZvdW5kLTI1/MTE2MDgtMjEzMzY5/Ni5wbmc" />
             </div>
           )}
+          <div className="flex items-center justify-center gap-4 mt-2">
+            <button className="hover:bg-blue-500 hover:text-white p-1 pr-2 pl-2 rounded-md text-sm font-extralight" onClick={()=>setPage(page-1)}>Prev</button>
+            {page}
+            <button className="hover:bg-blue-500 hover:text-white p-1 pr-2 pl-2 rounded-md text-sm font-extralight" onClick={()=>setPage(page+1)}>Next</button>
+          </div>
         </section>
         <section className="w-[300px] p-4 mt-5 bg-slate-50 h-[500px] mb-10">
           <div className="text-xl font-extralight">
