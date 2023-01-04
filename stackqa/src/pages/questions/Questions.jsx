@@ -75,7 +75,7 @@ function Questions() {
           )}
           <div className="flex items-center justify-center gap-6 mt-2">
             <button className="hover:bg-blue-500 hover:text-white p-1 pr-2 pl-2 rounded-md text-sm font-extralight" onClick={handlePrev}>Prev</button>
-            {page}
+           <span className="text-blue-500 font-mono text-xl">{page}</span> 
             <button className="hover:bg-blue-500 hover:text-white p-1 pr-2 pl-2 rounded-md text-sm font-extralight" onClick={handleNext}>Next</button>
           </div>
         </section>
