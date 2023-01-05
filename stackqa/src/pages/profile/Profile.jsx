@@ -34,14 +34,15 @@ function Profile() {
 
   return (
     <div>
-      <div className="w-full mx-auto my-auto bg-blue-500 p-18">
+      <div className="relative w-full mx-auto my-auto p-18 ">
+          <img src="../../../public/assets/bg.png" alt="bg" className=" absolute w-full object-cover h-[115%] backdrop-opacity-60 backdrop:blur-sm"/>      
         <div className="flex items-center justify-end p-5 relative">
           <AiOutlineEdit
             size={25}
-            className="object-contain border  text-white hover:text-blue-200 cursor-pointer"
+            className="object-contain border  text-white hover:text-blue-500 cursor-pointer"
           />
         </div>
-        <div className="rounded-full  w-28 h-28  lg:w-32 lg:h-32 top-28 ml-4 lg:ml-12 flex items-center justify-center relative shadow-lg hover:shadow-blue-300">
+        <div className="rounded-full  w-28 h-28  lg:w-32 lg:h-32 top-24 ml-4 lg:ml-12 flex items-center justify-center relative shadow-lg hover:shadow-blue-300">
           <div className="grid place-items-center">
             {user.imageUrl ? (
               <img
@@ -56,9 +57,9 @@ function Profile() {
             )}
           </div>
         </div>
-        <div className="flex pl-36 lg:pl-44">
+        <div className="flex pl-36 lg:pl-44 absolute">
           <div className="flex-grow">
-            <h1 className="text-xl font-bold text-white">{user.username}</h1>
+            <h1 className="text-xl pl-1 font-bold text-white">{user.username}</h1>
             {/* <p className="text-white text-sm pl-3">CTO, STACKQA</p> */}
             <span className="pl-3 font-sans font-semibold">
               <i>{user.email}</i>
@@ -66,14 +67,14 @@ function Profile() {
           </div>
         </div>
       </div>
-      <section className="w-full mt-24 shadow-sm">
+      <section className="w-full mt-32 shadow-sm">
         <div className="container h-full w-full p-12 px-5 py-2 mx-auto">
           <div className="flex flex-col pl-5 text-left mb-2 ">
             <span className="text-xl font-semibold leading-relaxed">
               Let's be productive today
             </span>
             <span className="text-xl font-extralight leading-relaxed">
-              Your stats...
+              My stats...
             </span>
           </div>
           <div className="flex gap-5 items-center justify-evenly mb-2 flex-wrap">
