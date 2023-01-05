@@ -4,7 +4,7 @@ import Header from "../header/Header";
 import Sidebar from "../sidebar/Sidebar";
 
 function Layout() {
-  const [isOpen, setIsOpen] = useState(true)
+  const [isOpen, setIsOpen] = useState(false)
   return (
     <>
     <div className="w-full min-w-full">
