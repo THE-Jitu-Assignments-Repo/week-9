@@ -74,7 +74,6 @@ function Header({ close }) {
             <Link
               to="profile"
               onClick={() => {
-                dispatch(getmyquestions()),
                   dispatch(getuserdetails(), navigate("profile"));
               }}
               className="block mt-4 lg:inline-block lg:mt-0 text-blue-400 hover:text-blue-900 items-center my-4 lg:my-auto"

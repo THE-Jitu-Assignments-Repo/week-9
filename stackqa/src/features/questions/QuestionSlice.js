@@ -28,7 +28,7 @@ export const postQuestion = createAsyncThunk(
         dispatch,rejectWithValue
     }) => {
         try {
-            await validatePost(postDetails.question)
+            // await validatePost(postDetails.question)
             const response = await axios.post('http://localhost:3001/question/postquestion', postdetails, {
                 headers: {
                     Authorization: `Bearer ${Token}`,
@@ -182,13 +182,14 @@ export const topSuggested = createAsyncThunk(
 
 export const getmyquestions = createAsyncThunk(
     "questions/getmyquestions",
-    async () => {
+    async (_,{dispatch}) => {
         try {
             const response = await axios.get('http://localhost:3001/question/myquestion/find', {
                 headers: {
                     Authorization: `Bearer ${Token}`,
                 }
             })
+            dispatch(getmyquestions())
             return response.data
         } catch (error) {
             return error.message

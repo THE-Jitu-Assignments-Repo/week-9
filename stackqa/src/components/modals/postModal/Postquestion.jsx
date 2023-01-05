@@ -55,12 +55,12 @@ function Postquestion() {
       //   console.log(errorD);
       //   toast.error(errorD)
       // }
-      if (!errorQst) {
+      // if (!errorQst) {
       const category = selectedOption.map((item) => item.value).toString();
       dispatch(postQuestion({ question, category }));
       dispatch(G_modal(false));
       dispatch(getAllQuestions({ pageNumber: 1, rowsPerPage: 5 }));
-    }
+    // }
   };
 
 
