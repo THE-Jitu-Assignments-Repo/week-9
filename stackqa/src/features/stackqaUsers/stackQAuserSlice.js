@@ -24,7 +24,8 @@ export const getStackQAusers = createAsyncThunk(
             })
             return response.data
         } catch (error) {
-            rejectWithValue(error)
+            return rejectWithValue(error)
+          
         }
     }
 )
@@ -35,7 +36,7 @@ export const stackQAuserSlice = createSlice({
     extraReducers: (builder)=>{
         builder.addCase(getStackQAusers.fulfilled,(state,action)=>{
             state.StackQAusers=action.payload
-        })
+        }),
         builder.addCase(getStackQAusers.rejected, (state,action)=>{
             toast.error(action.payload)
         })

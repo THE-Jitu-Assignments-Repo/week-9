@@ -58,7 +58,7 @@ export const getAllQuestions = createAsyncThunk(
             })
 
             const Data = response.data
-            console.log(Data.allPost);  
+            // console.log(Data.allPost);  
             return Data
         } catch (error) {
             console.log(error.message);
@@ -145,7 +145,7 @@ export const deleteQuestion = createAsyncThunk(
             dispatch(getAllQuestions())
             return reponse.data
         } catch (error) {
-            console.log(error);
+            // console.log(error);
             return rejectWithValue(error.message ? error.message : response.data.message)
         }
     }
@@ -213,7 +213,7 @@ export const QuestionSlice = createSlice({
 
             }),
             builder.addCase(postQuestion.rejected, (state, action) => {
-                console.log("ree");
+                // console.log("ree");
                 state.errorQst=action.payload
             }),
             builder.addCase(getAllQuestions.fulfilled, (state, action) => {
