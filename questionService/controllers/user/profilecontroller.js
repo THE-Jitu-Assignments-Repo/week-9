@@ -20,6 +20,17 @@ module.exports={
         } catch (error) {
             res.status(401).json({message: error.message})
         }
+    },
+    getStackQAUsersDetails: async(req,res)=>{
+        try {            
+            const pool = await mssql.connect(sqlConfig)
+
+            const AlluserDetails = await (await pool.request().execute('sp_getStackQaUsers')).recordset
+
+            res.status(200).json(AlluserDetails)
+        } catch (error) {
+            res.status(401).json({message: error.message})
+        }
     }
    
 }

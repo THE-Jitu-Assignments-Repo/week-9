@@ -17,6 +17,7 @@ import {
   getRecentlyPosted,
 } from "../../features/questions/QuestionSlice";
 import { useState } from "react";
+import { getStackQAusers } from "../../features/stackqaUsers/stackQAuserSlice";
 
 function Sidebar({ isOpen }) {
   const { token } = useSelector((state) => state.user);
@@ -82,6 +83,7 @@ function Sidebar({ isOpen }) {
           <Link
             to="users"
             className="items-center flex-row flex p-1 gap-1 pl-5 hover:bg-gray-800 hover:text-blue-500"
+            onClick={()=> dispatch(getStackQAusers())}
           >
             <AiOutlineUser />
             Users

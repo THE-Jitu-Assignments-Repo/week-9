@@ -1,32 +1,35 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect } from "react";
 import UsersCard from "../../components/cards/users/UsersCard";
-import axios from "axios";
 import { AiOutlineUser } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
+import { getStackQAusers } from "../../features/stackqaUsers/stackQAuserSlice";
+// import { useState } from "react";
 
 function Users() {
-  const [users, setUsers] = React.useState([]);
+  // const [us, setUs]=useState('')
+  const { StackQAusers } = useSelector(state=>state.stackQAusers)
 
-  useEffect(() => {
-    const fetchUsers = async () => {
-      const res = await axios.get("https://randomuser.me/api/?results=50");
-      const data = res.data;
-      setUsers(data);
-      // console.log(data)
-    };
+  // const dispatch = useDispatch()
 
-    fetchUsers();
-  }, []);
+  useEffect(()=>{
 
-//   console.log(users.results?.map((data) => data.name.last));
+    console.log("mmm");
+    // setUs(StackQAusers)
+    // dispatch(getStackQAusers())
+    // dispatch(getStackQAusers())
+  }, [])
+
+
+
   return (
     <div>
-      <div>
+      <div >
         <div className="flex flex-row justify-between items-center border pt-5">
           <h2 className="text-2xl pl-5 flex flex-row items-center gap-2"> <AiOutlineUser />Users</h2>
         </div>
         <div className="grid grid-cols-1 gap-4 w-full p-10 sm:grid-cols-4 sm:place-content-center lg:grid-cols-4 md:grid-cols-2">
-          {users.results?.map((user) => (
-            <UsersCard key={user.login.uuid} user={user} />
+          {StackQAusers?.map((user) => (
+            <UsersCard key={user.user_id} user={user} />
           ))}
         </div>
       </div>
